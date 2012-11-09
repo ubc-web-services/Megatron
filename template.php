@@ -101,9 +101,8 @@ function megatron_preprocess_html(&$vars) {
        'group' => JS_THEME,
      );
      drupal_add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', array('type' => 'external', 'weight' => -10));
-     //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/jquery-1.8.1.min.js', array('every_page' =>TRUE, 'weight' => -10));
      drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/modernizr-custom.2.5.2.js', array('every_page' =>TRUE, 'weight' => 9));
-     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', array('every_page' => 'true', 'weight' => 8));
+     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', array('every_page' => TRUE, 'weight' => 8));
      drupal_add_js('https://cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js', array('type' => 'external', 'weight' => 0));
      //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/scripts.js', $options);
      // drupal_add_library('system', 'cookie');
@@ -456,7 +455,7 @@ function megatron_megatron_btn_dropdown($variables) {
   
   // Finish markup 	
   $output .= '
-  <span class="caret"></span>
+  <div class="ubc7-arrow down-arrow"></div>
 	</a>
 	' . $variables['links'] . '
   </div>';
@@ -531,7 +530,7 @@ function megatron_menu_local_task($variables) {
     $children = drupal_render_children($variables['element']);
     $children = '</b><ul class="secondary-tabs dropdown-menu">' . $children . "</ul>";
 
-	return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<b class="caret"></a>' . $children . "</li>\n";
+	return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<div class="ubc7-arrow down-arrow"></div>' . $children . "</li>\n";
   }else{
 	return '<li class="' . implode(' ', $classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
   }
@@ -539,7 +538,7 @@ function megatron_menu_local_task($variables) {
 
 
 function megatron_menu_tree(&$variables) {
-  return '<ul class="menu nav">' . $variables['tree'] . '</ul>';
+  return '<ul class="menu nav bootstrap-sidenav">' . $variables['tree'] . '</ul>';
 }
 
 
@@ -553,7 +552,7 @@ function megatron_menu_link(array $variables) {
   if ($element['#below']) {
 	// Ad our own wrapper
 	unset($element['#below']['#theme_wrappers']);
-    $sub_menu = '<ul>' . drupal_render($element['#below']) . '</ul>';
+    $sub_menu = '<ul class="menu nav subnav">' . drupal_render($element['#below']) . '</ul>';
 
   //$element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
 	//$element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
@@ -1183,7 +1182,7 @@ function megatron_megatron_links($variables) {
 	  if (isset($link['href'])) {
 		if(count($children) > 0) { 
 		  $link['html'] = TRUE;
-		  $link['title'] .= '<b class="caret"></b>';
+		  $link['title'] .= '<div class="ubc7-arrow down-arrow"></div>';
 		  $output .=  '<a' . drupal_attributes($link['attributes']) . ' href="#">'. $link['title'] .'</a>';
 		}else{
 		// Pass in $link as $options, they share the same keys.
@@ -1244,4 +1243,4 @@ function megatron_preprocess_views_view_grid(&$vars) {
 
 
 /** Define CLF page elements in an include */
-require_once('includes/template-ubc-clf-elements.inc');
+require_once('includes/template-ubc-clf-elements.inc');'includes/template-ubc-clf-elements.inc');

@@ -1,10 +1,11 @@
 // Custom Javascript if necessary
-(function($) { 
+(function ($) {
 // Insert necessary javascript stuff here
-
-$(document).ready(function() {
+	
+	$(document).ready(function () {
+	
 	// ... or here
 	
-});
+	});
 
 })(jQuery);
