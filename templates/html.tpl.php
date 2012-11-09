@@ -68,6 +68,5 @@
   <?php print $page; ?>
   <?php print $page_bottom; ?>
   <?php print $scripts; ?>
-  <script src="https://cdn.ubc.ca/clf/7.0/js/ubc-clf.min.js" type="text/javascript"></script>
 </body>
 </html>

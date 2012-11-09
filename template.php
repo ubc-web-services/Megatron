@@ -100,8 +100,11 @@ function megatron_preprocess_html(&$vars) {
      $options = array(
        'group' => JS_THEME,
      );
-     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/modernizr-custom.2.5.2.js', $options);
-     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', $options);
+     drupal_add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', array('type' => 'external', 'weight' => -10));
+     //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/jquery-1.8.1.min.js', array('every_page' =>TRUE, 'weight' => -10));
+     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/modernizr-custom.2.5.2.js', array('every_page' =>TRUE, 'weight' => 9));
+     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', array('every_page' => 'true', 'weight' => 8));
+     drupal_add_js('https://cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js', array('type' => 'external', 'weight' => 0));
      //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/scripts.js', $options);
      // drupal_add_library('system', 'cookie');
 
@@ -1081,10 +1084,10 @@ function megatron_css_alter(&$css) {
 function megatron_js_alter(&$js) {
   $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
   $js = array_diff_key($js, $excludes);
-  global $base_url;
-      $jQuery_version = '1.7.2';
-      $jQuery_local = $base_url.'/'.drupal_get_path('theme', 'megatron').'/js/lib/jquery-1.7.2.min.js?v='.$jQuery_version;
-      $jQuery_cdn = 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
+/*  global $base_url;
+      $jQuery_version = '1.8.1';
+      $jQuery_local = $base_url.'/'.drupal_get_path('theme', 'megatron').'/js/lib/jquery-1.8.1.min.js?v='.$jQuery_version;
+      $jQuery_cdn = 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
   
       $javascript['misc/jquery.js']['data']    = $jQuery_cdn;
       $javascript['misc/jquery.js']['version'] = $jQuery_version;
@@ -1092,8 +1095,8 @@ function megatron_js_alter(&$js) {
       $group  = $javascript['misc/jquery.js']['group']  = JS_LIBRARY;
       $weight = $javascript['misc/jquery.js']['weight'] = -20; 
       
-      drupal_add_js('window.jQuery || document.write(\'<script type="text/javascript" src="'.$jQuery_local.'"><\/script>\')',
-          array('type'=>'inline', 'scope'=>'header', 'group'=>$group, 'every_page'=>TRUE, 'weight'=>$weight));
+      drupal_add_js('window.jQuery || document.write(\'<script type="text/javascript" src="'.$jQuery_cdn.'"><\/script>\')',
+          array('type'=>'inline', 'scope'=>'header', 'group'=>$group, 'every_page'=>TRUE, 'weight'=>$weight));*/
 }
 
 function _megatron_alter($files, $type) {

@@ -69,8 +69,8 @@
         <a href="http://www.ubc.ca">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
       </div>
       <div id="ubc7-global-utility">
-        <a data-toggle="collapse" data-target="#ubc7-global-menu"><span>UBC Quick Links</span></a>
-        <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/">UBC Quick Links</a></noscript>
+        <button data-toggle="collapse" data-target="#ubc7-global-menu"><span>UBC Search</span></button>
+        <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
       </div>
     </div>
   </header>
@@ -101,15 +101,15 @@
   <?php endif; ?>  	  
 
   <!-- BEGIN: UBC CLF CONTENT SPACE -->
-  <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">    
+  <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
     <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
       
-      <?php if ($page['sidebar_first']): ?>
-      <aside class="<?php if ($is_front): print 'span4'; else: print 'span3'; endif; ?> region region-sidebar-first" role="complementary">
+      <?php if (($page['sidebar_first']) && (!$is_front)): ?>
+      <aside class="span3 region region-sidebar-first" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
       <?php endif; ?>
-        
+      
       <section class="<?php print _megatron_content_span($columns); ?>">  
         <?php if ($page['highlighted']): ?>
         <div class="highlighted hero-unit"><?php print render($page['highlighted']); ?></div>
@@ -132,6 +132,12 @@
         <?php endif; ?>
         <?php print render($page['content']); ?>
       </section>
+      
+      <?php if (($page['sidebar_first']) && ($is_front)): ?>
+      <aside class="span4 region region-sidebar-first" role="complementary">
+        <?php print render($page['sidebar_first']); ?>
+      </aside>  <!-- /#sidebar-first -->
+      <?php endif; ?>
  
       <?php if (($page['sidebar_second']) && (!$is_front)): ?>
       <aside class="<?php if ($is_front): print 'span4'; else: print 'span3'; endif; ?> region region-sidebar-second" role="complementary">

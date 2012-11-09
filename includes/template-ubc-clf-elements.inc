@@ -87,45 +87,6 @@ function megatron_ubc_clf_breadcrumbs($variables) {
 return $output;
 }
 
-/** UBC CLF Carousel options
- *
- * Options:
- * $duration: in milliseconds
- * $speed: in milliseconds
- * $style: 'default', 'thumbnail', 'sliding_gallery', 'transparent_slider'
- *
- * For ex, to include in your theme file: print megatron_ubc_clf_carousel('4000', '800', 'sliding_gallery');
- *
----------------------------------------------------------- */
-function megatron_ubc_clf_carousel($duration = NULL, $speed = NULL, $style = NULL) {  
-  // output carousel view
-  $output = '  <div id="UBCHeadlineWidget" ';
-  if (isset($duration['element'])) {
-    $duration = $duration['element'];	
-  }
-  else {
-    $duration = theme_get_setting('carousel_duration');
-  }
-  $output .= 'data-duration="' . $duration . '"';
-  if (isset($speed)) {
-    $speed = $speed;
-  }
-  else {
-    $speed = theme_get_setting('carousel_speed');
-  }
-  $output .= ' data-speed="' . $speed . '" class="';
-  if (isset($style)) {
-    $output .= $style;
-  }
-  else {  
-    $output .= theme_get_setting('carousel_option');
-  }
-  $output .= '"><div class="carousel">';
-  $output .= views_embed_view('news_views', $display_id = 'block');
-  $output .= '</div></div>';
-  return $output;
-}
-
 /** Return the UBC CLF visual identity footer
 ---------------------------------------------------------- */
 function megatron_ubc_clf_visual_identity_footer($variables) {
@@ -176,9 +137,12 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     } 
     else { $output .= ''; }
     $output .= '
-      <div class="ubc7-back-to-top">
-          <a class="reverse" href="#" title="Back to top">Back to top <div class="ubc7-arrow up-arrow gray"></div></a>
-      </div></div></div>
+      </div></div>
+      <div class="row-fluid expand ubc7-back-to-top">
+                      <div class="span2">
+                          <a href="#" title="Back to top">Back to top <div class="ubc7-arrow up-arrow grey"></div></a>
+                      </div>
+                  </div>
       <div class="row-fluid expand" id="ubc7-global-footer">
          <div class="span5" id="ubc7-signature"><a href="http://www.ubc.ca/">The University of British Columbia</a></div>
          <div class="span7" id="ubc7-footer-menu"></div>

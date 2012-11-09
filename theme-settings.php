@@ -37,7 +37,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       'https://cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-wg.min.css' => t('Grey with White text'),
     ),
   );
-    
+  
   $form['clf_theme']['clf_unit_campus'] = array(
       '#type' => 'select',
       '#title' => t('Campus'),
