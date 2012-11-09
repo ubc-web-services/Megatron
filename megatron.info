@@ -1,0 +1,65 @@
+name = MEGATRON!!!!
+description = <strong>Megatron is a responsive Drupal theme for the UBC CLF (Common Look and Feel),  developed by the UBC IT Web Services Department</strong> For support, to report an issue or more information, please contact UBC IT Web Services at: <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services">http://web.it.ubc.ca/forms/webservices/</a>
+version = 2.0
+core = 7.x
+
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[prefooter]      = 'Pre-footer'
+regions[footer]         = 'Footer'
+
+stylesheets[all][] = css/clf_drupal.css
+stylesheets[all][] = css/unit-custom.css
+stylesheets[print][] = css/print.css
+
+; Scripts - added in template.php
+;scripts[] = js/lib/jquery-1.7.2.min.js
+
+settings[toggle_name] = 0
+settings[toggle_search] = 1
+
+;Excluded Files
+;javascript
+exclude[js][] = 'misc/jquery.js'
+
+;css
+exclude[css][] = 'misc/vertical-tabs.css'
+exclude[css][] = 'modules/aggregator/aggregator.css'
+exclude[css][] = 'modules/block/block.css'
+exclude[css][] = 'modules/book/book.css'
+exclude[css][] = 'modules/comment/comment.css'
+exclude[css][] = 'modules/dblog/dblog.css'
+exclude[css][] = 'modules/file/file.css'
+exclude[css][] = 'modules/filter/filter.css'
+exclude[css][] = 'modules/forum/forum.css'
+exclude[css][] = 'modules/help/help.css'
+exclude[css][] = 'modules/menu/menu.css'
+exclude[css][] = 'modules/node/node.css'
+exclude[css][] = 'modules/openid/openid.css'
+exclude[css][] = 'modules/poll/poll.css'
+exclude[css][] = 'modules/search/search.css'
+exclude[css][] = 'modules/statistics/statistics.css'
+exclude[css][] = 'modules/syslog/syslog.css'
+exclude[css][] = 'modules/system/admin.css'
+exclude[css][] = 'modules/system/maintenance.css'
+exclude[css][] = 'modules/system/system.css'
+exclude[css][] = 'modules/system/system.admin.css'
+exclude[css][] = 'modules/system/system.base.css'
+exclude[css][] = 'modules/system/system.maintenance.css'
+exclude[css][] = 'modules/system/system.menus.css'
+exclude[css][] = 'modules/system/system.messages.css'
+exclude[css][] = 'modules/system/system.theme.css'
+exclude[css][] = 'modules/taxonomy/taxonomy.css'
+exclude[css][] = 'modules/tracker/tracker.css'
+exclude[css][] = 'modules/update/update.css'
+exclude[css][] = 'modules/user/user.css'
+
+; Information added by drupal.org packaging script on 2012-06-10
+version = "7.x-2.x-dev"
+core = "7.x"
+project = "megatron"
+datestamp = "1339332196"

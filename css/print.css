@@ -1,0 +1,30 @@
+/* Use this stylesheet for print styles only. */
+* {
+  background-color: transparent; }
+#toolbar,
+#header,
+#navigation,
+#content-bottom,
+#footer,
+.sidebar,
+.breadcrumb,
+.tabs,
+.feed-icon,
+.links,
+.messages,
+.status,
+.skip {
+  display: none; }
+#page {
+  width: 100%; }
+#main {
+  margin: 20px 0;
+  width: auto; }
+a:hover, a:active, a:link, a:visited {
+  color: black; }
+
+/* CSS2 selector to add visible href after links. */
+#content a:link:after, #content a:visited:after {
+  content: " (" attr(href) ") ";
+  font-size: 0.8em;
+  font-weight: normal; }
