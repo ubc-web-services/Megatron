@@ -100,9 +100,9 @@ function megatron_preprocess_html(&$vars) {
      $options = array(
        'group' => JS_THEME,
      );
-     drupal_add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', array('type' => 'external', 'weight' => -10));
-     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/modernizr-custom.2.5.2.js', array('every_page' =>TRUE, 'weight' => 9));
-     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', array('every_page' => TRUE, 'weight' => 8));
+     //drupal_add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', array('every_page' =>TRUE, 'type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 1));
+     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/modernizr-custom.2.5.2.js', array('every_page' =>TRUE, 'group'=>JS_LIBRARY, 'weight' => 9));
+     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', array('every_page' => TRUE, 'group'=>JS_LIBRARY, 'weight' => 8));
      drupal_add_js('https://cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js', array('type' => 'external', 'weight' => 0));
      //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/scripts.js', $options);
      // drupal_add_library('system', 'cookie');
@@ -1243,4 +1243,4 @@ function megatron_preprocess_views_view_grid(&$vars) {
 
 
 /** Define CLF page elements in an include */
-require_once('includes/template-ubc-clf-elements.inc');'includes/template-ubc-clf-elements.inc');
+require_once('includes/template-ubc-clf-elements.inc');

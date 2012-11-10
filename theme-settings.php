@@ -44,6 +44,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       '#description' => t('Choose the Unit campus.'),
       '#default_value' => theme_get_setting('clf_unit_campus'),
       '#options' => array(
+        '' => t('Exclude'),
         'vancouver' => t('Vancouver'),
         'okanagan' => t('Okanagan'),
       ),

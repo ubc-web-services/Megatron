@@ -67,6 +67,7 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js?v.1.8.1"></script>
   <?php print $scripts; ?>
 </body>
 </html>
