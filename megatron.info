@@ -15,8 +15,10 @@ regions[footer]         = 'Footer'
 stylesheets[all][] = css/clf_drupal.css
 stylesheets[all][] = css/unit-custom.css
 
-; Scripts - added in template.php
-;scripts[] = js/lib/jquery-1.7.2.min.js
+;Scripts
+scripts[] = js/lib/modernizr-custom.2.5.2.js
+scripts[] = js/lib/bootstrap-alert.js
+scripts[] = js/custom-min.js
 
 settings[toggle_name] = 0
 settings[toggle_search] = 1
