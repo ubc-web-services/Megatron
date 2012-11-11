@@ -1,5 +1,12 @@
 <?php
 
+
+/** MEGATRON FULL BOOTSTRAP TEMPLATE
+    Rename this to replace template.php for a number of additional functions 
+    Most of these additional functions alter forms, buttons and pages with Twitter Bootstrap's markup
+---------------------------------------------------------- */
+
+
 /** hook_theme() 
 ---------------------------------------------------------- */
 function megatron_theme() {
@@ -53,13 +60,6 @@ function megatron_html_head_alter(&$head_elements) {
   );
 }
 
-/**Changes the search form to use the HTML5 "search" input attribute
----------------------------------------------------------- */
-function megatron_preprocess_search_block_form(&$vars) {
-  $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
-}
-
-
 
 /** HTML.TPL.PHP PREPROCESS VARIABLES
 ---------------------------------------------------------- */
@@ -104,8 +104,12 @@ function megatron_preprocess_html(&$vars) {
      $options = array(
        'group' => JS_THEME,
      );
+     //drupal_add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', array('every_page' =>TRUE, 'type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 1));
+     //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/modernizr-custom.2.5.2.js', array('every_page' =>TRUE, 'group'=>JS_LIBRARY, 'weight' => 9));
+     //drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/bootstrap-alert.js', array('every_page' => TRUE, 'group'=>JS_LIBRARY, 'weight' => 8));
      drupal_add_js('//cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js?v.7.0.1', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));
      
+    
     // Setup Google Webmasters Verification Meta Tag
       $google_webmasters_verification = array(
         '#type' => 'html_tag',
@@ -183,8 +187,14 @@ function megatron_preprocess_block(&$variables, $hook) {
 }
 
 
-/** BLOCK.TPL.PHP PREPROCESS VARIABLES
----------------------------------------------------------- */
+/**
+ * Override or insert variables into the block templates.
+ *
+ * @param $variables
+ *   An array of variables to pass to the theme template.
+ * @param $hook
+ *   The name of the template being rendered ("block" in this case.)
+ */
 function megatron_process_block(&$variables, $hook) {
   // Drupal 7 should use a $title variable instead of $block->subject.
   $variables['title'] = $variables['block']->subject;
@@ -238,6 +248,35 @@ function megatron_preprocess_page(&$variables) {
       ),
     ));
   }
+  
+  // Secondary nav
+  $variables['secondary_nav'] = FALSE;
+  if($variables['secondary_menu']) {
+    $secondary_menu = menu_load(variable_get('menu_secondary_links_source', 'user-menu'));
+    
+    // Build links
+    $tree = menu_tree_page_data($secondary_menu['menu_name']);
+    $variables['secondary_menu'] = megatron_menu_navigation_links($tree);
+    
+    // Build list
+    $variables['secondary_nav'] = theme('megatron_btn_dropdown', array(
+      'links' => $variables['secondary_menu'],
+      'label' => $secondary_menu['title'],
+      'type' => 'success',
+      'attributes' => array(
+        'id' => 'user-menu',
+        'class' => array('pull-right'),
+      ),
+      'heading' => array(
+        'text' => t('Secondary menu'),
+        'level' => 'h2',
+        'class' => array('element-invisible'),
+      ),
+    ));
+  }
+  
+  // Replace tabs with dropdown version
+  $variables['tabs']['#primary'] = _megatron_local_tasks($variables['tabs']['#primary']);
 }
 
 
@@ -261,6 +300,47 @@ function _megatron_content_span($columns = 1) {
     break;
   }
   return $class;
+}
+
+/** GENERAL
+A wrapper function for megatron_theme_get_settings().
+ * 
+ * @param $name
+ *   The name of the setting that you want to retrieve. 
+ * @param $default (optional)
+ *   The name (key) of the theme that you want to fetch the
+ *   setting for. Defaults to NULL.   
+ * @param $theme (optional)
+ *   The key (machine-readable name) of a theme. Defaults to the key of the
+ *   current theme if not defined.
+ *   
+ * @see 
+ *   megatron_theme_get_setting().
+ */
+function megatron_theme_get_setting($name, $theme = NULL) {
+  switch($name){
+	case 'exclude':
+		$setting = megatron_theme_get_info($name, $theme);
+		break;
+	default:
+	  $setting = theme_get_setting($name, $theme);
+		break;
+  }
+
+  return isset($setting) ? $setting : NULL; 
+}
+
+
+function megatron_get_settings($theme = NULL) {
+
+  if (!isset($theme)) {
+    $theme = !empty($GLOBALS['theme_key']) ? $GLOBALS['theme_key'] : '';
+  }
+	if($theme) {
+		$themes = list_themes();
+    $theme_object = $themes[$theme];
+	}
+	return $theme_object->info['settings'];
 }
 
 
@@ -372,18 +452,85 @@ function megatron_megatron_btn_dropdown($variables) {
 }  
 
 
+/** theme_megatron_progress_bar
+---------------------------------------------------------- */
+function megatron_megatron_progress_bar($variables) {
+  $variables['attributes']['class'][] = 'progress';
+  
+  return "<div". drupal_attributes($variables['attributes']) .">
+  <div class=\"bar\"
+       style=\"width: ". $variables['percent'] ."%;\"></div>
+  </div>";
+}
+
+
+/** MENUS
+Returns HTML for primary and secondary local tasks.
+---------------------------------------------------------- */
+function megatron_menu_local_tasks(&$vars) {
+  $output = '';
+
+  if ( !empty($vars['primary']) ) {
+    $vars['primary']['#prefix'] = '<ul class="nav nav-tabs">';
+    $vars['primary']['#suffix'] = '</ul>';
+    $output .= drupal_render($vars['primary']);
+  }
+
+  if ( !empty($vars['secondary']) ) {
+    $vars['secondary']['#prefix'] = '<ul class="nav nav-pills">';
+    $vars['secondary']['#suffix'] = '</ul>';
+    $output .= drupal_render($vars['secondary']);
+  }
+
+  return $output;
+}
+
+
+/** Returns HTML for primary and secondary local tasks.
+---------------------------------------------------------- */
+function megatron_menu_local_task($variables) {
+  $link = $variables['element']['#link'];
+  $link_text = $link['title'];
+  $classes = array();
+
+  if (!empty($variables['element']['#active'])) {
+    // Add text to indicate active tab for non-visual users.
+    $active = '<span class="element-invisible">' . t('(active tab)') . '</span>';
+
+    // If the link does not contain HTML already, check_plain() it now.
+    // After we set 'html'=TRUE the link will not be sanitized by l().
+    if (empty($link['localized_options']['html'])) {
+      $link['title'] = check_plain($link['title']);
+    }
+    $link['localized_options']['html'] = TRUE;
+    $link_text = t('!local-task-title!active', array('!local-task-title' => $link['title'], '!active' => $active));
+
+    $classes[] = 'active';
+  }
+
+  // Render child tasks if available.
+  $children = '';
+  if (element_children($variables['element'])) {
+    $link['localized_options']['attributes']['class'][] = 'dropdown-toggle';
+	  $link['localized_options']['attributes']['data-toggle'][] = 'dropdown';
+    $classes[] = 'dropdown';
+
+    $children = drupal_render_children($variables['element']);
+    $children = '</b><ul class="secondary-tabs dropdown-menu">' . $children . "</ul>";
+
+	return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<div class="ubc7-arrow down-arrow"></div>' . $children . "</li>\n";
+  }else{
+	return '<li class="' . implode(' ', $classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
+  }
+}
+
+
 function megatron_menu_tree(&$variables) {
   return '<ul class="menu nav bootstrap-sidenav">' . $variables['tree'] . '</ul>';
 }
 
 
 function megatron_menu_link(array $variables) {
-  // remove some default drupal menu classes
-  $remove = array('leaf', 'expanded', 'collapsed', 'expandable');
-    if($remove){
-     $variables['element']['#attributes']['class'] = array_diff($variables['element']['#attributes']['class'],$remove);
-  }
-  
   $element = $variables['element'];
   $sub_menu = '';
   
@@ -391,50 +538,80 @@ function megatron_menu_link(array $variables) {
   //$element['#title'] = check_plain($element['#title']);
   
   if ($element['#below']) {
-	// Add our own wrapper
+	// Ad our own wrapper
 	unset($element['#below']['#theme_wrappers']);
     $sub_menu = '<ul class="menu nav subnav">' . drupal_render($element['#below']) . '</ul>';
 
-	$element['#localized_options']['html'] = TRUE;	
+  //$element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+	//$element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
+	//$element['#attributes']['class'][] = 'dropdown';
+	$element['#localized_options']['html'] = TRUE;
+	//$element['#title'] .= '<b class="caret"></b>';
+	
 	$element['#href'] = "";
   }
   
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  // Adding a class depending on the TITLE of the link using our safe string
-  $element['#attributes']['class'][] = megatron_id_safe($element['#title']);
   // Adding an ID depending on the ID of the link
   $element['#attributes']['id'][] = 'mid-' . $element['#original_link']['mlid'];
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
 
-// ZEN TABS (also see custom styles in stylesheet and 'tabs' images folder)
-// Customize the PRIMARY and SECONDARY LINKS, to allow the admin tabs to work on all browsers
-function megatron_menu_local_task($variables) {
-  $link = $variables['element']['#link'];
-  $link['localized_options']['html'] = TRUE;
-  return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l('<span class="tab">' . $link['title'] . '</span>', $link['href'], $link['localized_options']) . "</li>\n";
-}
-
-//  Duplicate of theme_menu_local_tasks() but adds clearfix to tabs.
-function megatron_menu_local_tasks() {
-  $output = array();
-  if ($primary = menu_primary_local_tasks()) {
-    if(menu_secondary_local_tasks()) {
-      $primary['#prefix'] = '<ul class="tabs primary with-secondary clearfix">';
-    }
-    else {
-      $primary['#prefix'] = '<ul class="tabs primary clearfix">';
-    }
-    $primary['#suffix'] = '</ul>';
-    $output[] = $primary;
+/** Get all primary tasks including subsets
+---------------------------------------------------------- */
+function _megatron_local_tasks($tabs = FALSE) {
+  if($tabs == '')
+	return $tabs;
+  
+  if(!$tabs)
+	$tabs = menu_primary_local_tasks();
+  
+  foreach($tabs as $key => $element) {
+	$result = db_select('menu_router', NULL, array('fetch' => PDO::FETCH_ASSOC))
+	  ->fields('menu_router')
+	  ->condition('tab_parent', $element['#link']['path'])
+	  ->condition('context', MENU_CONTEXT_INLINE, '<>')
+	  ->condition('type', array(MENU_DEFAULT_LOCAL_TASK, MENU_LOCAL_TASK), 'IN')
+	  ->orderBy('weight')
+	  ->orderBy('title')
+	  ->execute();
+  
+	$router_item = menu_get_item($element['#link']['path']);
+	$map = $router_item['original_map'];
+  
+	$i = 0;
+	foreach ($result as $item) {
+	  _menu_translate($item, $map, TRUE);
+  
+	  //only add items that we have access to
+	  if ($item['tab_parent'] && $item['access']) {
+		//set path to that of parent for the first item
+		if ($i === 0) {
+		  $item['href'] = $item['tab_parent'];
+		}
+  
+		if (current_path() == $item['href']) {
+		  $tabs[$key][] = array(
+			'#theme' => 'menu_local_task',
+			'#link' => $item,
+			'#active' => TRUE,
+		  );
+		}
+		else {
+		  $tabs[$key][] = array(
+			'#theme' => 'menu_local_task',
+			'#link' => $item,
+		  );
+		}
+  
+		//only count items we have access to.
+		$i++;
+	  }
+	}
   }
-  if ($secondary = menu_secondary_local_tasks()) {
-    $secondary['#prefix'] = '<ul class="tabs secondary clearfix">';
-    $secondary['#suffix'] = '</ul>';
-    $output[] = $secondary;
-  }
-  return drupal_render($output);
+  
+  return $tabs;
 }
 
 
@@ -442,6 +619,18 @@ function megatron_menu_local_tasks() {
 Implements hook_form_alter().
 ---------------------------------------------------------- */
 function megatron_form_alter(&$form, &$form_state, $form_id) {
+  // Id's of forms that should be ignored
+  // Make this configurable?
+  $form_ids = array(
+    'node_form',
+    'system_site_information_settings',
+    'user_profile_form',
+  );
+  
+  // Only wrap in container for certain form
+  if(isset($form['#form_id']) && !in_array($form['#form_id'], $form_ids) && !isset($form['#node_edit_form']))
+    $form['actions']['#theme_wrappers'] = array();
+  
   // Customize the search block form
   if ($form_id == 'search_block_form') {
     //$form['search_block_form']['#title'] = t('Search'); // Change the text on the label element
@@ -457,181 +646,6 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
     //$form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Search';}";
     //$form['search_block_form']['#attributes']['onfocus'] = "if (this.value == 'Search') {this.value = '';}";
     // Prevent user from searching the default text
-    //$form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
-  }
-}  
-
-
-/** Returns HTML for status and/or error messages, grouped by type.
----------------------------------------------------------- */
-function megatron_status_messages($vars) {
-  $display = $vars['display'];
-  $output = '';
-
-  $status_heading = array(
-    'status' => t('Status message'),
-    'error' => t('Error message'),
-    'warning' => t('Warning message'),
-  );
-  foreach (drupal_get_messages($display) as $type => $messages) {
-    $output .= "<div class=\"alert alert-block alert-$type\">\n";
-    $output .= "  <a class=\"close\" data-dismiss=\"alert\" href=\"#\">x</a>\n";
-    if (!empty($status_heading[$type])) {
-      $output .= '<h4 class="alert-heading">' . $status_heading[$type] . "</h4>\n";
-    }
-    if (count($messages) > 1) {
-      $output .= " <ul>\n";
-      foreach ($messages as $message) {
-        $output .= '  <li>' . $message . "</li>\n";
-      }
-      $output .= " </ul>\n";
-    }
-    else {
-      $output .= $messages[0];
-    }
-    $output .= "</div>\n";
-  }
-  return $output;
-}
-
-
-/** Allow css files to be excluded in the .info file
----------------------------------------------------------- */
-function megatron_css_alter(&$css) {
-  $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'css');
-  $css = array_diff_key($css, $excludes);
-}
-
-
-/** Allow js files to be excluded in the .info file
----------------------------------------------------------- */
-function megatron_js_alter(&$js) {
-  $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
-  $js = array_diff_key($js, $excludes);
-}
-
-
-function _megatron_alter($files, $type) {
-  $output = array();
-  
-  foreach($files as $key => $value) {
-    if(isset($files[$key][$type])) {
-	  foreach($files[$key][$type] as $file => $name) {
-		  $output[$name] = FALSE;
-	  }
-    }
-  }
-  return $output;
-}
-
-/** Returns HTML for a set of links.
----------------------------------------------------------- */
-function megatron_megatron_links($variables) {
-  $links = $variables['links'];
-  $attributes = $variables['attributes'];
-  $heading = $variables['heading'];
-
-  global $language_url;
-  $output = '';
-
-  if (count($links) > 0) {
-    $output = '';
-    $output .= '<ul' . drupal_attributes($attributes) . '>';
-    
-    // Treat the heading first if it is present to prepend it to the
-    // list of links.
-    if (!empty($heading)) {
-      if (is_string($heading)) {
-        // Prepare the array that will be used when the passed heading
-        // is a string.
-        $heading = array(
-          'text' => $heading,
-          // Set the default level of the heading. 
-          'level' => 'li',
-        );
-      }
-      $output .= '<' . $heading['level'];
-      if (!empty($heading['class'])) {
-        $output .= drupal_attributes(array('class' => $heading['class']));
-      }
-      $output .= '>' . check_plain($heading['text']) . '</' . $heading['level'] . '>';
-    }
-
-    $num_links = count($links);
-    $i = 1;
-	
-    foreach ($links as $key => $link) {
-      $children = array();
-      if(isset($link['below']))
-      $children = $link['below'];
-      
-	    $attributes = array('class' => array($key));
-	  
-	    // Add first, last and active classes to the list of links to help out themers.
-      if ($i == 1) {
-        $attributes['class'][] = 'first';
-      }
-      if ($i == $num_links) {
-        $attributes['class'][] = 'last';
-      }
-      if (isset($link['href']) && ($link['href'] == $_GET['q'] || ($link['href'] == '<front>' && drupal_is_front_page()))
-           && (empty($link['language']) || $link['language']->language == $language_url->language)) {
-        $attributes['class'][] = 'active';
-      }
-	  
-	    if(count($children) > 0) {
-		    $attributes['class'][] = 'dropdown';
-		    $link['attributes']['data-toggle'] = 'dropdown';
-		    $link['attributes']['class'][] = 'dropdown-toggle';
-      }
-	  
-  	  if(!isset($link['attributes']))
-  		$link['attributes'] = array();
-  		
-  	  $class = (count($children) > 0) ? 'dropdown' : NULL;
-  	  $output .= '<li' . drupal_attributes(array('class' => array($class))) . '>';
-	  
-  	  if (isset($link['href'])) {
-  		  if(count($children) > 0) { 
-  		    $link['html'] = TRUE;
-  		    $link['title'] .= '<div class="ubc7-arrow down-arrow"></div>';
-  		    $output .=  '<a' . drupal_attributes($link['attributes']) . ' href="#">'. $link['title'] .'</a>';
-  		  }else{
-  		    // Pass in $link as $options, they share the same keys.
-  		    $output .= l($link['title'], $link['href'], $link);
-  		  }
-  	  }
-  	  elseif (!empty($link['title'])) {
-  	   // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
-  	   if (empty($link['html'])) {
-  		   $link['title'] = check_plain($link['title']);
-  	   }
-  	   $span_attributes = '';
-  	   if (isset($link['attributes'])) {
-  		   $span_attributes = drupal_attributes($link['attributes']);
-  	   }
-	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
-     }
-	  
-	  $i++;
-	  
-	  if(count($children) > 0) {
-		  $attributes = array();
-      $attributes['class'] = array('dropdown-menu');
-		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
-	  }
-	  
-	  $output .= "</li>\n";	
-    }
-
-    $output .= '</ul>';
-  }
-
-  return $output;
-}
-
-/** Define CLF page elements in an include */
-require_once('includes/template-ubc-clf-elements.inc');he default text
     //$form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
   }
   

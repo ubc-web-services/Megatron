@@ -70,25 +70,87 @@ img, canvas {
  text-transform: uppercase;
  text-align: center;
  word-wrap: break-word; }
-// Console, style from Slate theme
-/*div.messages {
- padding: 9px;
- margin: 1em 0;
- color: #036;
- background: #a0ccff;
- border: 1px solid #ace; }
-div.warning {
- color: #840;
- background: #fe6;
- border-color: #ed5; }
-div.error {
- color: #fff;
- background: #e63;
- border-color: #d52; }
-div.status {
- color: #360;
- background: #cf8;
- border-color: #be7; }*/ 
+/* @group Tabs */
+div.tabs { margin: 0 0 5px 0; }
+ul.primary, ul.secondary { width: 99%; }
+ul.primary {
+ margin: 0;
+ padding: 0 0 0 10px;
+ border-width: 0;
+ list-style: none;
+ white-space: nowrap;
+ line-height: normal;
+ background: url(../img/tabs/tab-bar.png) repeat-x left bottom; }
+ul.primary li {
+ float: left;
+ margin: 0;
+ padding: 0; }
+ul.primary li.active a, ul.primary li.active a:hover {
+ border-width: 0;
+ color: @black;
+ background-color: transparent;
+ background: url(../img/tabs/tab-left.png) no-repeat left 0; }
+ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
+  background: url(../img/tabs/tab-right.png) no-repeat right 0; }
+ul.primary li a {
+ display: block;
+ height: 24px;
+ margin: 0;
+ padding: 0 0 0 5px;
+ border-width: 0;
+ font-weigh: bold;
+ text-decoration: none;
+ color: #777777;
+ background-color: transparent;
+ background: url(../img/tabs/tab-left.png) no-repeat left -38px; }
+ul.primary li a:hover {
+ border-width: 0;
+ background-color: transparent;
+ background: url(../img/tabs/tab-left.png) no-repeat left -76px; }
+ul.primary li a:hover .tab {
+  background: url(../img/tabs/tab-right.png) no-repeat right -76px; }
+ul.primary li a .tab {
+ display: block;
+ height: 20px;
+ margin: 0;
+ padding: 4px 13px 0 6px;
+ border-width: 0;
+ line-height: 20px;
+ background: url(../img/tabs/tab-right.png) no-repeat right -38px; }
+ul.secondary {
+ margin: 0;
+ padding: 0 0 0 5px;
+ border-bottom: 1px solid silver;
+ list-style: none;
+ white-space: nowrap;
+ background: url(../img/tabs/tab-secondary-bg.png) repeat-x left bottom; }
+ul.secondary li {
+ float: left;
+ margin: 0 5px 0 0;
+ padding: 5px 0;
+ border-right: none; }
+ul.secondary a {
+ display: block;
+ height: 24px;
+ margin: 0;
+ padding: 0;
+ border: 1px solid silver;
+ text-decoration: none;
+ color: #777777;
+ background: url(../img/tabs/tab-secondary.png) repeat-x left -56px; }
+ul.secondary a .active, .activeul.secondary a:hover {
+ border: 1px solid silver;
+ color: @black;
+ background: url(../img/tabs/tab-secondary.png) repeat-x left top; }
+ul.secondary a:hover {
+ background: url(../img/tabs/tab-secondary.png) repeat-x left bottom; }
+ul.secondary a .tab {
+ display: block;
+ height: 18px;
+ margin: 0;
+ padding: 3px 8px;
+ line-height: 18px; }
+/* @end */
 
 // Custom Utilities for Drupal CLF
 //-------------------------
