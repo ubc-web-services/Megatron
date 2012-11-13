@@ -31,12 +31,24 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Choose the CLF Colour Scheme.'),
     '#default_value' => theme_get_setting('clf_clf_theme'),
     '#options' => array(
-      'https://cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full.min.css' => t('Blue with White text'),
-      'https://cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-bw.min.css' => t('White with Blue text'),
-      'https://cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-gw.min.css' => t('White with Grey text'),
-      'https://cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-wg.min.css' => t('Grey with White text'),
+      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full.min.css?v.7.0.1' => t('Blue with White text'),
+      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-bw.min.css?v.7.0.1' => t('White with Blue text'),
+      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-gw.min.css?v.7.0.1' => t('White with Grey text'),
+      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-wg.min.css?v.7.0.1' => t('Grey with White text'),
     ),
   );
+  
+  $form['clf_theme']['clf_layout'] = array(
+    '#type' => 'select', 
+    '#title' => t('Layout'), 
+    '#description' => t('Make the CLF Fluid (100% width)'),
+    '#default_value' => theme_get_setting('clf_layout'),
+    '#options' => array(
+     '' => t('Default'),
+     '__fluid' => t('Fluid Width (100%)'),
+     '__full' => t('Full Width Header and Footer'),
+   ),
+ );
   
   $form['clf_theme']['clf_unit_campus'] = array(
       '#type' => 'select',

@@ -154,5 +154,6 @@
     
   <footer id="ubc7-footer" role="content-info" >
     <?php print theme('ubc_clf_visual_identity_footer'); ?>
+    <?php print theme('ubc_clf_global_utility_footer'); ?>
   </footer>
 </div> <!-- /#container -->

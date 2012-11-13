@@ -83,8 +83,8 @@ function megatron_preprocess_html(&$vars) {
       $vars['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
       $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
     }
-
-    $vars['classes_array'][] = ' ' . theme_get_setting('clf_colour_option') . ' ';
+    // add a body class to tell us what layout we're using
+    $vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
     //Uses RDFa attributes if the RDF module is enabled
     //Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
     // Add rdf info
@@ -195,9 +195,10 @@ function megatron_process_block(&$variables, $hook) {
 ---------------------------------------------------------- */
 function megatron_preprocess_page(&$variables) {
   // Add template suggestions based on content type 
-  if (isset($vars['node'])) {  
-    $vars['theme_hook_suggestions'][] = 'page__type__'. $vars['node']->type;
-    $vars['theme_hook_suggestions'][] = "page__node__" . $vars['node']->nid; 
+  if (isset($variables['node'])) {  
+    $variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
+    $variables['theme_hook_suggestions'][] = 'page__type__'. $variables['node']->type;
+    $variables['theme_hook_suggestions'][] = "page__node__" . $variables['node']->nid; 
   }
 
   // Add information about the number of sidebars.
@@ -508,6 +509,7 @@ function megatron_css_alter(&$css) {
 function megatron_js_alter(&$js) {
   $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
   $js = array_diff_key($js, $excludes);
+  
 }
 
 
@@ -631,13 +633,7 @@ function megatron_megatron_links($variables) {
 }
 
 /** Define CLF page elements in an include */
-require_once('includes/template-ubc-clf-elements.inc');he default text
-    //$form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
-  }
-  
-}  
-
-/** Returns HTML for a form element.
+require_once('includes/template-ubc-clf-elements.inc');rm element.
 ---------------------------------------------------------- */
 function megatron_form_element(&$variables) {
   $element = &$variables['element'];

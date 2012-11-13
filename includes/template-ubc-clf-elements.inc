@@ -139,22 +139,28 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     $output .= '
       </div></div>
       <div class="row-fluid expand ubc7-back-to-top">
-                      <div class="span2">
-                          <a href="#" title="Back to top">Back to top <div class="ubc7-arrow up-arrow grey"></div></a>
-                      </div>
-                  </div>
-      <div class="row-fluid expand" id="ubc7-global-footer">
+        <div class="span2">
+          <a href="#" title="Back to top">Back to top <div class="ubc7-arrow up-arrow grey"></div></a>
+        </div>
+      </div>';
+    return $output;
+  }
+  
+  /** Return the UBC CLF visual identity footer
+  ---------------------------------------------------------- */
+  function megatron_ubc_clf_global_utility_footer($variables) {
+    $output = '<div class="row-fluid expand" id="ubc7-global-footer">
          <div class="span5" id="ubc7-signature"><a href="http://www.ubc.ca/">The University of British Columbia</a></div>
          <div class="span7" id="ubc7-footer-menu"></div>
       </div>
       <div class="row-fluid expand" id="ubc7-minimal-footer">
          <div class="span12">
-             <ul>
-                 <li><a href="https://cdn.ubc.ca/clf/ref/emergency">Emergency Procedures</a> <span class="divider">|</span></li>
-                 <li><a href="https://cdn.ubc.ca/clf/ref/terms">Terms of Use</a> <span class="divider">|</span></li>
-                 <li><a href="https://cdn.ubc.ca/clf/ref/copyright">Copyright</a> <span class="divider">|</span></li>
-                 <li><a href="https://cdn.ubc.ca/clf/ref/accessibility">Accessibility</a></li>
-             </ul>
+           <ul>
+             <li><a href="https://cdn.ubc.ca/clf/ref/emergency">Emergency Procedures</a> <span class="divider">|</span></li>
+             <li><a href="https://cdn.ubc.ca/clf/ref/terms">Terms of Use</a> <span class="divider">|</span></li>
+             <li><a href="https://cdn.ubc.ca/clf/ref/copyright">Copyright</a> <span class="divider">|</span></li>
+             <li><a href="https://cdn.ubc.ca/clf/ref/accessibility">Accessibility</a></li>
+           </ul>
          </div>
       </div>';
     return $output;
@@ -163,15 +169,15 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
 /** Scripts for Google Analytics 
 ---------------------------------------------------------- */
 function megatron_ubc_clf_bottom_scripts($variables) {
-      $output = '';
-      if (theme_get_setting('google_analytics')) {
-          $output .= '<script type="text/javascript"> 
-            <!--//--><![CDATA[//><!--var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));//--><!]]></script>';
-          $output .= '<script type="text/javascript"> 
-            <!--//--><![CDATA[//><!--
-              try{var pageTracker = _gat._getTracker("' . theme_get_setting('google_analytics') . '");pageTracker._trackPageview();} catch(err) {}
-            //--><!]]>
-          </script>';
+    $output = '';
+    if (theme_get_setting('google_analytics')) {
+        $output .= '<script type="text/javascript"> 
+          <!--//--><![CDATA[//><!--var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));//--><!]]></script>';
+        $output .= '<script type="text/javascript"> 
+          <!--//--><![CDATA[//><!--
+            try{var pageTracker = _gat._getTracker("' . theme_get_setting('google_analytics') . '");pageTracker._trackPageview();} catch(err) {}
+          //--><!]]>
+        </script>';
       } 
     return $output; 
   }

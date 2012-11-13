@@ -3,14 +3,12 @@ description = <strong>Megatron is a responsive Drupal theme for the UBC CLF (Com
 version = 2.0
 core = 7.x
 
-regions[header]         = 'Top Bar'
-regions[highlighted]    = 'Highlighted'
+regions[highlighted]    = 'Content: Above'
 regions[help]           = 'Help'
 regions[content]        = 'Content'
-regions[sidebar_first]  = 'Primary'
-regions[sidebar_second] = 'Secondary'
-regions[prefooter]      = 'Pre-footer'
-regions[footer]         = 'Footer'
+regions[sidebar_first]  = 'First Sidebar'
+regions[sidebar_second] = 'Second Sidebar'
+regions[prefooter]      = 'Content: Below'
 
 stylesheets[all][] = css/clf_drupal.css
 stylesheets[all][] = css/unit-custom.css
@@ -62,5 +60,7 @@ exclude[css][] = 'modules/user/user.css'
 ; Information added by drupal.org packaging script on 2012-06-10
 version = "7.x-2.x-dev"
 core = "7.x"
+project = "megatron"
+datestamp = "1339332196"= "7.x"
 project = "megatron"
 datestamp = "1339332196"
