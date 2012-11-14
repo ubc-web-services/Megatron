@@ -14,7 +14,7 @@ stylesheets[all][] = css/clf_drupal.css
 stylesheets[all][] = css/unit-custom.css
 
 ;Scripts
-scripts[] = js/lib/modernizr-custom.2.5.2.js
+scripts[] = js/lib/modernizr.custom.2.6.2.js
 scripts[] = js/lib/bootstrap-alert.js
 scripts[] = js/custom-min.js
 
@@ -60,7 +60,5 @@ exclude[css][] = 'modules/user/user.css'
 ; Information added by drupal.org packaging script on 2012-06-10
 version = "7.x-2.x-dev"
 core = "7.x"
-project = "megatron"
-datestamp = "1339332196"= "7.x"
 project = "megatron"
 datestamp = "1339332196"
