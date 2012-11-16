@@ -102,19 +102,7 @@ function megatron_preprocess_html(&$vars) {
        'group' => JS_THEME,
      );
      drupal_add_js('//cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js?v.7.0.1', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));
-     
-    // Setup Google Webmasters Verification Meta Tag
-      $google_webmasters_verification = array(
-        '#type' => 'html_tag',
-        '#tag' => 'meta',
-        '#attributes' => array(
-          'name' => 'google-site-verification',
-          'content' => theme_get_setting('webmaster_tools_verification'),
-        )
-      );
-      
-      // Add Google Webmasters Verification Meta Tag to head
-      drupal_add_html_head($google_webmasters_verification, 'google_webmasters_verification');
+    
   }
 
 
