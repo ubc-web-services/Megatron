@@ -19,9 +19,6 @@ function megatron_theme() {
     'ubc_clf_global_utility_footer' => array(
       'variables' => array('element' => NULL)    
     ),
-    'ubc_clf_bottom_scripts' => array(
-      'variables' => array('element' => NULL)    
-    ),
     'megatron_links' => array(
       'variables' => array('links' => array(), 'attributes' => array(), 'heading' => NULL),
     ),

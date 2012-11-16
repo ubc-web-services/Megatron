@@ -474,33 +474,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     );
 
 
-/** WEB TOOLS (analytics etc.)
----------------------------------------------------------- */
-  $form['web_tools'] = array(
-      '#type' => 'fieldset',
-      '#title' => 'Tracking and SEO',
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-  );
-
-  $form['web_tools']['google_analytics'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Paste Google Analytics UA tracking code (for example, UA-125436)'),
-      '#maxlength' => '50',
-      '#description' => t('You can find this on the settings page in your <a href="http://google.com/analytics" target="_blank">Google Analytics account</a>. Should be in form UA-XXXXXXX'),
-      '#default_value' => 'UA-',
-      '#required' =>  FALSE,
-      '#default_value' => theme_get_setting('google_analytics'),
-  );
-
-  $form['web_tools']['webmaster_tools_verification'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Paste your Google Webmaster Tools verification code (for example, 30594838)'),
-      '#required' => FALSE,
-      '#default_value' => theme_get_setting('webmaster_tools_verification'),
-  );
-
-
 // Return the additional form widgets
 return $form;
 }

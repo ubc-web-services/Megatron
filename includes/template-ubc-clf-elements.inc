@@ -165,19 +165,3 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
       </div>';
     return $output;
   }
-
-/** Scripts for Google Analytics 
----------------------------------------------------------- */
-function megatron_ubc_clf_bottom_scripts($variables) {
-    $output = '';
-    if (theme_get_setting('google_analytics')) {
-        $output .= '<script type="text/javascript"> 
-          <!--//--><![CDATA[//><!--var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));//--><!]]></script>';
-        $output .= '<script type="text/javascript"> 
-          <!--//--><![CDATA[//><!--
-            try{var pageTracker = _gat._getTracker("' . theme_get_setting('google_analytics') . '");pageTracker._trackPageview();} catch(err) {}
-          //--><!]]>
-        </script>';
-      } 
-    return $output; 
-  }
