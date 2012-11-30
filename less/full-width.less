@@ -1,31 +1,39 @@
 /** Added by James for full width **/
 
-body.layout--full, 
+body, 
 .nocolor { background: #fff; }
 
 /**** IF USING BLUE/ GREY BG, NEED TO USE THIS ****/
 /* #ubc7-header {
   background-color: #002145; */ /* (blue) or grey */
   /*border-top: 3px solid white; }*/
+/** ALTERNATE THEME COLOURS **/
+.themecolour-g #ubc7-header {
+  background-color: @ubcGrey;
+  border-top: 3px solid white; }
+.themecolour-gw #ubc7-header, .themecolour-bw #ubc7-header {
+  background-color: #fff; 
+  //border-top: 3px solid white; 
+}
   
-.layout--full #ubc7-header, 
-.layout--full header [class*="span"] {
+#ubc7-header, 
+header [class*="span"] {
   height: 95px;
   box-shadow: inset 0 10px 10px -10px black;
   -moz-box-shadow: inset 0 10px 10px -10px black;
   -webkit-box-shadow: inset 0 10px 10px -10px black; }
   
-.layout--full #ubc7-footer, 
-.layout--full #ubc7-header { width: 100%; }
+#ubc7-footer, 
+#ubc7-header { width: 100%; }
 
-.layout--full #ubc7-unit-menu > .container { width: 940px; }
+#ubc7-unit-menu > .container { width: 940px; }
 
-.layout--full .container.full {
+.container.full {
   width: 94%;
   margin-left: 2%;
   margin-right: 2%; }
 
-.layout--full .expand {
+.expand {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -34,21 +42,21 @@ body.layout--full,
 @media screen and (min-width:1200px) {
     
   /**** Header ****/
-  .layout--full #ubc7-header, 
-  .layout--full header [class*="span"] { height: 115px; }
+  #ubc7-header, 
+  header [class*="span"] { height: 115px; }
   
-  .layout--full #ubc7-unit-menu > .container { width: 1170px; }
+  ubc7-unit-menu > .container { width: 1170px; }
 }
 
 @media screen and (max-width:979px) {
         
   /** Container become full screen when below 980px **/
-  .layout--full .container.full {
+  .container.full {
     margin-left: 0px;
     margin-right: 0px;
     width: auto; }
     
-  .layout--full .expand {
+  .expand {
     margin-left: -20px;
     margin-right: -20px;
     padding-left: 20px;

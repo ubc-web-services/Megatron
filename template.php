@@ -81,7 +81,11 @@ function megatron_preprocess_html(&$vars) {
       $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
     }
     // add a body class to tell us what layout we're using
-    $vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
+    //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
+    // add a body class to tell us what colours we're using
+    $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
+    
+      
     //Uses RDFa attributes if the RDF module is enabled
     //Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
     // Add rdf info
@@ -102,6 +106,14 @@ function megatron_preprocess_html(&$vars) {
        'group' => JS_THEME,
      );
      drupal_add_js('//cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js?v.7.0.1', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));
+     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/jquery-1.8.1.min.js', 
+       array(
+              'group' => JS_LIBRARY,
+              'weight' => -20,
+              'media' => 'screen', 
+              'every_page' => TRUE,
+            )
+        );
     
   }
 
@@ -113,8 +125,9 @@ function megatron_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   $breadcrumb = array_unique($breadcrumb);
   $breadcrumb[0] = ''; 
+  $show_breadcrumb = theme_get_setting('breadcrumb_display');
     
-  if (!empty($breadcrumb)) {
+  if ((!empty($breadcrumb)) && ($show_breadcrumb == 'yes')) {
     // Provide a navigational heading to give context for breadcrumb links to
     // screen-reader users. Make the heading invisible with .element-invisible.
     $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
@@ -136,6 +149,7 @@ function megatron_breadcrumb($variables) {
     $crumbs .= '<li class="active">'. drupal_get_title() .'</li></ul>';
     return $crumbs;
   }
+  return '';
 }
 
 
@@ -181,7 +195,7 @@ function megatron_process_block(&$variables, $hook) {
 function megatron_preprocess_page(&$variables) {
   // Add template suggestions based on content type 
   if (isset($variables['node'])) {  
-    $variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
+    //$variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
     $variables['theme_hook_suggestions'][] = 'page__type__'. $variables['node']->type;
     $variables['theme_hook_suggestions'][] = "page__node__" . $variables['node']->nid; 
   }
@@ -494,7 +508,19 @@ function megatron_css_alter(&$css) {
 function megatron_js_alter(&$js) {
   $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
   $js = array_diff_key($js, $excludes);
-  
+ /* global $base_url;
+        $jQuery_version = '1.8.2';
+        $jQuery_local = $base_url.'/'.drupal_get_path('theme', 'megatron').'/js/lib/jquery-1.8.1.min.js?v='.$jQuery_version;
+        $jQuery_cdn = 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+    
+        $javascript['misc/jquery.js']['data']    = $jQuery_cdn;
+        $javascript['misc/jquery.js']['version'] = $jQuery_version;
+    
+        $group  = $javascript['misc/jquery.js']['group']  = JS_LIBRARY;
+        $weight = $javascript['misc/jquery.js']['weight'] = -20; 
+        
+        drupal_add_js('window.jQuery || document.write(\'<script type="text/javascript" src="'.$jQuery_local.'"><\/script>\')',
+            array('type'=>'inline', 'scope'=>'header', 'group'=>$group, 'every_page'=>TRUE, 'weight'=>$weight));*/
 }
 
 

@@ -25,20 +25,20 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#collapsed' => TRUE,
   );
 
-  $form['clf_theme']['clf_clf_theme'] = array(
+  $form['clf_theme']['clf_clf_theme_new'] = array(
     '#type' => 'select',
     '#title' => t('CLF Colour Scheme'),
     '#description' => t('Choose the CLF Colour Scheme.'),
-    '#default_value' => theme_get_setting('clf_clf_theme'),
+    '#default_value' => theme_get_setting('clf_clf_theme_new'),
     '#options' => array(
-      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full.min.css?v.7.0.1' => t('Blue with White text'),
-      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-bw.min.css?v.7.0.1' => t('White with Blue text'),
-      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-gw.min.css?v.7.0.1' => t('White with Grey text'),
-      '//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full-wg.min.css?v.7.0.1' => t('Grey with White text'),
+      '' => t('Blue with White text'),
+      '-bw' => t('White with Blue text'),
+      '-gw' => t('White with Grey text'),
+      '-wg' => t('Grey with White text'),
     ),
   );
   
-  $form['clf_theme']['clf_layout'] = array(
+ /* $form['clf_theme']['clf_layout'] = array(
     '#type' => 'select', 
     '#title' => t('Layout'), 
     '#description' => t('Make the CLF Fluid (100% width)'),
@@ -48,7 +48,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
      '__fluid' => t('Fluid Width (100%)'),
      '__full' => t('Full Width Header and Footer'),
    ),
- );
+ );*/
   
   $form['clf_theme']['clf_unit_campus'] = array(
       '#type' => 'select',
@@ -445,6 +445,24 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#maxlength' => 128,
   );
   
+ /** CLF BREADCRUMB
+ ---------------------------------------------------------- */    
+ $form['breadcrumb'] = array(
+  '#type' => 'fieldset',
+  '#title' => t('Breadcrumb Display Option'),
+  '#collapsible' => TRUE,
+  '#collapsed' => TRUE,
+ );
+ $form['breadcrumb']['breadcrumb_display'] = array(
+  '#type' => 'select',
+  '#title' => t('Display breadcrumb'),
+  '#default_value' => theme_get_setting('breadcrumb_display'),
+  '#options' => array(
+    'yes' => t('Yes'),
+    'no' => t('No'),
+  ),
+ );
+  
   
 /** CLF SOCIAL MEDIA LINKS (FOOTER)
 ---------------------------------------------------------- */
@@ -472,6 +490,8 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       '#size' => 60, 
       '#maxlength' => 128,
     );
+    
+
 
 
 // Return the additional form widgets

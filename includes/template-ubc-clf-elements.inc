@@ -106,7 +106,17 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     $output .= '<span class="ubc7-address-country">' . theme_get_setting('clf_country') . '</span> ';
     $output .= '<span class="ubc7-address-postal">' . theme_get_setting('clf_postal') . '</span>';
     $output .= '</div>';
-    $output .= '<div id="ubc7-address-phone">' . theme_get_setting('clf_telephone') . '</div></div>';
+    if (theme_get_setting('clf_telephone')) {
+       $output .= '<div class="ubc7-address-phone">Tel ' . theme_get_setting('clf_telephone') . '</div>';
+     }
+    if (theme_get_setting('clf_fax')) {
+       $output .= '<div class="ubc7-address-fax">Fax ' . theme_get_setting('clf_fax') . '</div>';
+     }
+    if (theme_get_setting('clf_email')) {
+        $output .= '<div class="ubc7-address-email">E-mail <a href="mailto:' . theme_get_setting('clf_email') . '">' . theme_get_setting('clf_email') . '</a></div>';
+    }
+    $output .= '</div>';
+    
     if (theme_get_setting('clf_u_unitinfoshow')) {
         $output .= '<div class="span5">';
         $output .= '<div class="ubc7-address-unit-name"><strong>' . theme_get_setting('clf_u_unitname') . '</strong></div>'; 
@@ -121,7 +131,16 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
         $output .= '<span class="ubc7-address-country">' . theme_get_setting('clf_u_country') . '</span> ';
         $output .= '<span class="ubc7-address-postal">' . theme_get_setting('clf_u_postal') . '</span>';
         $output .= '</div>';
-        $output .= '<div class="ubc7-address-phone">' . theme_get_setting('clf_u_telephone') . '</div></div>';
+        if (theme_get_setting('clf_u_telephone')) {
+           $output .= '<div class="ubc7-address-phone">Tel ' . theme_get_setting('clf_u_telephone') . '</div>';
+         }
+        if (theme_get_setting('clf_u_fax')) {
+            $output .= '<div class="ubc7-address-fax">Fax ' . theme_get_setting('clf_u_fax') . '</div>';
+          }
+        if (theme_get_setting('clf_u_email')) {
+            $output .= '<div class="ubc7-address-email">E-mail <a href="mailto:' . theme_get_setting('clf_u_email') . '">' . theme_get_setting('clf_u_email') . '</a></div>';
+        }
+        $output .= '</div>';
     } 
     else { $output .= ''; }
     $output .= '<div class="span2">';
