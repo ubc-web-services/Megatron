@@ -8,7 +8,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#prefix' => '<div class="clf_credits">', 
     '#suffix' => '</div>',
     '#weight' => -10,
-    '#description' => t('<strong>Megatron is a responsive Drupal theme for the UBC CLF (Common Look and Feel).</strong><br />The CLF is developed and distributed by UBC Web Communications. You can find out more about the CLF and the UBC brand at <a href="http://brand.ubc.ca/" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca</a>.<br />Megatron has been developed by the UBC IT Web Services Department. For support, to report an issue or more information, please contact UBC IT <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">Web Services</a>.'),
+    '#description' => t('<strong>Megatron is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );
@@ -28,13 +28,13 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_theme']['clf_clf_theme_new'] = array(
     '#type' => 'select',
     '#title' => t('CLF Colour Scheme'),
-    '#description' => t('Choose the CLF Colour Scheme.'),
+    '#description' => t('View <a href="http://clf.ubc.ca/design-specifications/">colour theme options</a> and design specifications. '),
     '#default_value' => theme_get_setting('clf_clf_theme_new'),
     '#options' => array(
-      '' => t('Blue with White text'),
-      '-bw' => t('White with Blue text'),
-      '-gw' => t('White with Grey text'),
-      '-wg' => t('Grey with White text'),
+      '' => t('White on Blue'),
+      '-wg' => t('White on Grey'),
+      '-gw' => t('Grey on White'),
+      '-bw' => t('Blue on White'),
     ),
   );
   
@@ -52,8 +52,8 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   
   $form['clf_theme']['clf_unit_campus'] = array(
       '#type' => 'select',
-      '#title' => t('Campus'),
-      '#description' => t('Choose the Unit campus.'),
+      '#title' => t('Campus Identity'),
+      '#description' => t('Select your unit\'s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate and serves the whole university or if neither option is applicable, leave this field blank. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
       '#default_value' => theme_get_setting('clf_unit_campus'),
       '#options' => array(
         '' => t('Exclude'),
@@ -458,7 +458,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   '#title' => t('Display breadcrumb'),
   '#default_value' => theme_get_setting('breadcrumb_display'),
   '#options' => array(
-    'yes' => t('Yes'),
+    'yes' => t('Yes (Highly Recommended'),
     'no' => t('No'),
   ),
  );
