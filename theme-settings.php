@@ -189,6 +189,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_unit_info']['clf_telephone'] = array(
     '#type' => 'textfield', 
     '#title' => t('Telephone Number'), 
+    '#description' => t('Format as xxx xxx xxxx (spaces only)'),
     '#default_value' => theme_get_setting('clf_telephone'), 
     '#size' => 60, 
     '#maxlength' => 128,
@@ -197,6 +198,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_unit_info']['clf_fax'] = array(
     '#type' => 'textfield', 
     '#title' => t('Fax Number'), 
+    '#description' => t('Format as xxx xxx xxxx (spaces only)'),
     '#default_value' => theme_get_setting('clf_fax'), 
     '#size' => 60, 
     '#maxlength' => 128,
@@ -299,11 +301,7 @@ return $form;
 }
 ?>
 
-'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Email'), 
-    '#default_value' => theme_get_setting('clf_email'), 
-    '#size' => 60, 
+ '#size' => 60, 
     '#maxlength' => 128,
   );
 
