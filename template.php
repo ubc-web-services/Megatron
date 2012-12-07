@@ -105,16 +105,7 @@ function megatron_preprocess_html(&$vars) {
      $options = array(
        'group' => JS_THEME,
      );
-     drupal_add_js('//cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js?v.7.0.1', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));
-     drupal_add_js(drupal_get_path('theme', 'megatron'). '/js/lib/jquery-1.8.1.min.js', 
-       array(
-              'group' => JS_LIBRARY,
-              'weight' => -20,
-              'media' => 'screen', 
-              'every_page' => TRUE,
-            )
-        );
-    
+     drupal_add_js('//cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js?v.7.0.1', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));    
   }
 
 
@@ -503,24 +494,14 @@ function megatron_css_alter(&$css) {
 }
 
 
-/** Allow js files to be excluded in the .info file
+/** Allow js files to be excluded in the .info file / Replace jQuery with updated version
 ---------------------------------------------------------- */
-function megatron_js_alter(&$js) {
-  $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
-  $js = array_diff_key($js, $excludes);
- /* global $base_url;
-        $jQuery_version = '1.8.2';
-        $jQuery_local = $base_url.'/'.drupal_get_path('theme', 'megatron').'/js/lib/jquery-1.8.1.min.js?v='.$jQuery_version;
-        $jQuery_cdn = 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
-    
-        $javascript['misc/jquery.js']['data']    = $jQuery_cdn;
-        $javascript['misc/jquery.js']['version'] = $jQuery_version;
-    
-        $group  = $javascript['misc/jquery.js']['group']  = JS_LIBRARY;
-        $weight = $javascript['misc/jquery.js']['weight'] = -20; 
-        
-        drupal_add_js('window.jQuery || document.write(\'<script type="text/javascript" src="'.$jQuery_local.'"><\/script>\')',
-            array('type'=>'inline', 'scope'=>'header', 'group'=>$group, 'every_page'=>TRUE, 'weight'=>$weight));*/
+function megatron_js_alter(&$javascript) {
+  // USED TO EXCLUDE JS FILES VIA THE .INFO FILE - REMOVED DUE TO CONFLICT WITH IMCE - DEC6-2012 - jotoole 
+  //$excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
+  //$js = array_diff_key($js, $excludes);
+  // Swap out jQuery to use an updated version of the library.
+  $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
 }
 
 
@@ -616,6 +597,35 @@ function megatron_megatron_links($variables) {
   	  }
   	  elseif (!empty($link['title'])) {
   	   // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
+  	   if (empty($link['html'])) {
+  		   $link['title'] = check_plain($link['title']);
+  	   }
+  	   $span_attributes = '';
+  	   if (isset($link['attributes'])) {
+  		   $span_attributes = drupal_attributes($link['attributes']);
+  	   }
+	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
+     }
+	  
+	  $i++;
+	  
+	  if(count($children) > 0) {
+		  $attributes = array();
+      $attributes['class'] = array('dropdown-menu');
+		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
+	  }
+	  
+	  $output .= "</li>\n";	
+    }
+
+    $output .= '</ul>';
+  }
+
+  return $output;
+}
+
+/** Define CLF page elements in an include */
+require_once('includes/template-ubc-clf-elements.inc');es.
   	   if (empty($link['html'])) {
   		   $link['title'] = check_plain($link['title']);
   	   }

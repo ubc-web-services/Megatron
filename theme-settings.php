@@ -1,24 +1,26 @@
 <?php
 
+/** CLF THEME INFO
+---------------------------------------------------------- */
 function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 
   $form['clf_credits'] = array(
     '#type' => 'fieldset', 
-    '#title' => t('Megatron Theme Information'), 
+    '#title' => t('UBC CLF 7.0 Drupal Theme Information'), 
     '#prefix' => '<div class="clf_credits">', 
     '#suffix' => '</div>',
     '#weight' => -10,
-    '#description' => t('<strong>Megatron is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.'),
+    '#description' => t('<strong>This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );
   
   
-/** CLF COLOUR SETTINGS
+/** CLF COLOUR OPTIONS
 ---------------------------------------------------------- */
   $form['clf_theme'] = array(
     '#type' => 'fieldset', 
-    '#title' => t('CLF Colour and Theme Options'), 
+    '#title' => t('CLF Colour Theme Options'), 
     '#prefix' => '<div class="clf_coloroptions">', 
     '#suffix' => '</div>',
     '#collapsible' => TRUE,
@@ -50,35 +52,211 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
    ),
  );*/
   
-  $form['clf_theme']['clf_unit_campus'] = array(
+  /** CLF CAMPUS IDENTITY OPTIONS
+  ---------------------------------------------------------- */
+  $form['clf_identity'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Campus Identity'), 
+    '#prefix' => '<div class="clf_identity">', 
+    '#suffix' => '</div>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  
+  $form['clf_identity']['clf_unit_campus'] = array(
       '#type' => 'select',
       '#title' => t('Campus Identity'),
-      '#description' => t('Select your unit\'s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate and serves the whole university or if neither option is applicable, leave this field blank. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
+      '#description' => t('Select your unit\'s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate and serves the whole university or if neither option is applicable, leave this field blank. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
       '#default_value' => theme_get_setting('clf_unit_campus'),
       '#options' => array(
-        '' => t('Exclude'),
         'vancouver' => t('Vancouver'),
         'okanagan' => t('Okanagan'),
+        '' => t('Institution-wide mandate / Not applicable'),
       ),
   );
   
-  $form['clf_theme']['colourpicker'] = array(
+  /** CLF UNIT / WEBSITE INFORMATION
+  ---------------------------------------------------------- */
+  $form['clf_unit_info'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Unit / Website Information'), 
+    '#prefix' => '<div class="clf_unit_info">', 
+    '#suffix' => '</div>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  
+  $form['clf_unit_info']['clf_faculty'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Is your unit part of a Faculty?'),
+    '#default_value' => theme_get_setting('clf_faculty'),
+  );
+  
+  $form['clf_unit_info']['clf_faculty_name'] = array(
+      '#type' => 'select',
+      '#title' => t('If yes, choose your Faculty'),
+      '#default_value' => theme_get_setting('clf_faculty_name'),
+      '#options' => array(
+        'Faculty of Applied Science' => t('Faculty of Applied Science'),
+        'Faculty of Arts' => t('Faculty of Arts'),
+        'Faculty of Dentistry' => t('Faculty of Dentistry'),
+        'Faculty of Education' => t('Faculty of Education'),
+        'Faculty of Forestry' => t('Faculty of Forestry'),
+        'Faculty of Graduate Studies' => t('Faculty of Graduate Studies'),
+        'Faculty of Land and Food Systems' => t('Faculty of Land and Food Systems'),
+        'Faculty of Law' => t('Faculty of Law'),
+        'Faculty of Medicine' => t('Faculty of Medicine'),
+        'Faculty of Pharmaceutical Sciences' => t('Faculty of Pharmaceutical Sciences'),
+        'Faculty of Science' => t('Faculty of Science'),
+        'Sauder School of Business' => t('Sauder School of Business'),
+      ),
+  );
+  
+  $form['clf_unit_info']['clf_unitname'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('This field will populate the <a href="http://clf.ubc.ca/parts-of-the-clf/#unit-name" title="View the location of the Unit Name" target="_blank">Unit Name</a> in the header and the <a href="http://clf.ubc.ca/parts-of-the-clf/#unit-sub-footer" title="View the location of the Unit Sub Footer" target="_blank">Unit Sub Footer</a>. '), 
+    '#default_value' => theme_get_setting('clf_unitname'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+    '#required' => true,
+  );
+  
+ $form['clf_unit_info']['colourpicker'] = array(
       '#type' => 'textfield',
-      '#title' => 'Enter the hex number for the Unit Area background. Format should be "cccccc".',
+      '#title' => 'Unit Name Background Colour',
+      '#description' => t('See design specifications for <a href="http://clf.ubc.ca/parts-of-the-clf/#unit-colors" title="Learn more about the Unit Name background colours" target="_blank">Unit Name background colours</a>. Use HEX colour (do not include the #)'),
       '#size' => 7,
       '#maxlength' => 7,
       '#suffix' => '<div id="colourpicker"></div>',
       '#default_value' => theme_get_setting('colourpicker'),
   );
  
-  
-/** CLF UTILITY INFORMATION
+  $form['clf_unit_info']['breadcrumb_display'] = array(
+   '#type' => 'select',
+   '#title' => t('Breadcrumbs Display Option'),
+   '#description' => t('See <a href="http://clf.ubc.ca/parts-of-the-clf/#breadcrumbs" title="earn more about the breadcrumbs guidelines" target="_blank">breadcrumbs guidelines</a>.'),
+   '#default_value' => theme_get_setting('breadcrumb_display'),
+   '#options' => array(
+     'yes' => t('Yes (Highly Recommended'),
+     'no' => t('No'),
+   ),
+  );
+
+/*  $form['clf_general']['clf_unitinfohelp'] = array('#type' => 'markup', '#value' => '<p>Fill in your unit\'s information here.  Only the unit name field is required.  The field values are used to generate a <a href="http://microformats.org/wiki/hcard" target="_blank">microformats hCard</a> in the CLF footer.</p>');
+
+*/
+
+  $form['clf_unit_info']['clf_streetaddr'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Street Address'), 
+    '#default_value' => theme_get_setting('clf_streetaddr'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_locality'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('City'), 
+    '#default_value' => theme_get_setting('clf_locality'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_region'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Province / Region'), 
+    '#default_value' => theme_get_setting('clf_region'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_country'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Country Name'), 
+    '#default_value' => theme_get_setting('clf_country'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_postal'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Postal Code'), 
+    '#default_value' => theme_get_setting('clf_postal'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_telephone'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Telephone Number'), 
+    '#default_value' => theme_get_setting('clf_telephone'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_fax'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Fax Number'), 
+    '#default_value' => theme_get_setting('clf_fax'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_email'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Email'), 
+    '#default_value' => theme_get_setting('clf_email'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+  $form['clf_unit_info']['clf_website'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Website'), 
+    '#description' => t('Do not include the http://'),
+    '#default_value' => theme_get_setting('clf_website'), 
+    '#size' => 60, 
+    '#maxlength' => 128,
+  );
+
+
+
+/** CLF SOCIAL MEDIA LINKS (FOOTER)
+---------------------------------------------------------- */
+    $form['clf_social'] = array(
+      '#type' => 'fieldset', 
+      '#title' => t('Unit Social Media Links'), 
+      '#prefix' => '<div class="clf_general">', 
+      '#suffix' => '</div>',
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+
+    $form['clf_social']['clf_social_twitter'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Twitter Account Link'), 
+      '#default_value' => theme_get_setting('clf_social_twitter'), 
+      '#size' => 60, 
+      '#maxlength' => 128,
+    );
+
+    $form['clf_social']['clf_social_facebook'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Facebook Account Link'), 
+      '#default_value' => theme_get_setting('clf_social_facebook'), 
+      '#size' => 60, 
+      '#maxlength' => 128,
+    );
+
+
+/** CLF UTILITY BUTTON SEARCH TOOL CONFIG
 ---------------------------------------------------------- */
   $form['clf_utility'] = array(
     '#type' => 'fieldset', 
-    '#title' => t('CLF Utility Header (SEARCH / PLACE OF MIND DROPDOWN)'), 
+    '#title' => t('Global Utility Button Search Tool Configuration'), 
     '#prefix' => '<div class="clf_header">', 
     '#suffix' => '</div>',
+    '#description' => t('See search tool configuration <a href="http://clf.ubc.ca/implementing-the-clf/#search-tool" title="Learn more about the Search Tool Guidelines" target="_blank">guidelines</a>.'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
@@ -108,230 +286,20 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#maxlength' => 128,
   );
 
-  $form['clf_utility']['clf_subunit_blank'] = array(
+/*  $form['clf_utility']['clf_subunit_blank'] = array(
     '#type' => 'checkbox', 
     '#title' => t('Make subunit text in search bar blank (overrides all other settings)'), 
     '#default_value' => theme_get_setting('clf_subunit_blank'),
-  );
-
-
-/** CAROUSEL SETTINGS
----------------------------------------------------------- */
-  /*
-  $form['carousel'] = array(
-      '#type' => 'fieldset',
-      '#title' => 'Carousel settings',
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-  );
-
-  $form['carousel']['image'] = array(
-      '#prefix' => '<div id="carousel-image">',
-      '#suffix' => '</div>',
-      '#type' => 'radios',
-      '#title' => t(''),
-      '#default_value' => theme_get_setting('image'),
-      '#options' => array(
-      ),
-  ); 
-
-  $form['carousel']['enable_carousel'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Enable carousel'),
-      '#description' => t('Click the box to enable the carousel.'),
-      '#default_value' => theme_get_setting('enable_carousel'),
-  );
-
-  $form['carousel']['carousel_speed'] = array(
-       '#type' => 'select',
-       '#title' => t('How fast should it be'),
-       '#description' => t('Set animation speed'),
-       '#default_value' => theme_get_setting('carousel_speed'),
-       '#options' => array(
-        '1500' => t('Slow'),
-        '1000' => t('Medium'),
-        '400' => t('Fast'),     
-       ),
-  );
-
-  $form['carousel']['carousel_duration'] = array(
-      '#type' => 'select',
-      '#title' => t('How long between each slide (in seconds)'),
-      '#description' => t(''),
-      '#default_value' => theme_get_setting('animation'),
-      '#options' => array(
-        '8000' => t('8'),
-        '6000' => t('6'),
-        '4000' => t('4'),
-      ),
-  );
-
-  $form['carousel']['carousel_option'] = array(
-       '#type' => 'select',
-       '#title' => t('Choose a style'),
-       '#description' => t('Set the style for your carousel'),
-       '#default_value' => theme_get_setting('carousel_option'),
-       '#options' => array(
-        'default' => t('Standard UBC CLF carousel'),
-        'thumbnails' => t('With thumbnails'),
-        'sliding_gallery' => t('Horizonal Slider'),
-        'transparent_slider' => t('Transparent Slider'),     
-       ),
-  );
-
-  $form['carousel']['number_of_items'] = array(
-      '#type' => 'select',
-      '#title' => t('Number of Items (must have at least two)'),
-      '#description' => t('Choose the number of items.'),
-      '#default_value' => theme_get_setting('number_of_items'),
-      '#options' => array(
-        '2' => t('2'),
-        '3' => t('3'),
-        '4' => t('4'),
-        '5' => t('5'),
-        '6' => t('6'),
-        '7' => t('7'),
-        '8' => t('8'),
-        '0' => t('Unlimited'),
-      ),
-  );
-  */
-
-
-/** Tab widget settings   
----------------------------------------------------------- */
- 
- /*
-  $form['widget'] = array(
-      '#type' => 'fieldset',
-      '#title' => 'Tab widget settings',
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-  );
-  
-  $form['widget']['widget_image'] = array(
-      '#prefix' => '<div id="widget-image">',
-      '#suffix' => '</div>',
-      '#type' => 'radios',
-      '#title' => t(''),
-      '#default_value' => theme_get_setting('widget_image'),
-      '#options' => array(
-      ),
-  );
-
-  $form['widget']['widget_enable'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Enable widget'),
-      '#description' => t('Click the checkbox to enable the widget.'),
-      '#default_value' => theme_get_setting('widget_enable'),
-  );
-
-  $form['widget']['widget_items'] = array(
-      '#type' => 'checkboxes',
-      '#title' => t('Add items to widget'),
-      '#description' => t('Check the items to add to the widget.'),
-      '#default_value' => theme_get_setting('widget_items'),
-      '#options' => array(
-        'featured' => t('<strong>Featured</strong> - Must have Featured Module installed'),
-        'news' => t('<strong>News</strong> - Must have News Module installed'),
-        'events' => t('<strong>Events</strong> - Must have Events Module installed'),
-      ),
-  );
-  */
+  );*/
 
 
 
-/** CLF GENERAL UNIT INFORMATION
----------------------------------------------------------- */
-  $form['clf_general'] = array(
-    '#type' => 'fieldset', 
-    '#title' => t('CLF General Unit Information'), 
-    '#prefix' => '<div class="clf_general">', 
-    '#suffix' => '</div>',
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  );
+// Return the additional form widgets
+return $form;
+}
+?>
 
-  $form['clf_general']['clf_unitinfohelp'] = array('#type' => 'markup', '#value' => '<p>Fill in your unit\'s information here.  Only the unit name field is required.  The field values are used to generate a <a href="http://microformats.org/wiki/hcard" target="_blank">microformats hCard</a> in the CLF footer.</p>');
-
-  $form['clf_general']['clf_unitname'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Unit Name (sets name in Unit area of header and footer)'), 
-    '#default_value' => theme_get_setting('clf_unitname'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-    '#required' => true,
-  );
-  
-  $form['clf_general']['clf_campus'] = array(
-      '#type' => 'radios',
-      '#title' => t('Campus'),
-      '#description' => t('Choose the campus.'),
-      '#default_value' => theme_get_setting('clf_campus'),
-      '#options' => array(
-        '' => t('Exclude'),
-        '<div class="ubc7-address-campus">Vancouver Campus</div>' => t('Vancouver'),
-        '<div class="ubc7-address-campus">Okanagan Campus</div>' => t('Okanagan'),
-      ),
-  );
-
-  $form['clf_general']['clf_streetaddr'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Street Address'), 
-    '#default_value' => theme_get_setting('clf_streetaddr'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_locality'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('City'), 
-    '#default_value' => theme_get_setting('clf_locality'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_region'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Province / Region'), 
-    '#default_value' => theme_get_setting('clf_region'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_country'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Country Name'), 
-    '#default_value' => theme_get_setting('clf_country'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_postal'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Postal Code'), 
-    '#default_value' => theme_get_setting('clf_postal'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_telephone'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Telephone Number'), 
-    '#default_value' => theme_get_setting('clf_telephone'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_fax'] = array(
-    '#type' => 'textfield', 
-    '#title' => t('Fax Number'), 
-    '#default_value' => theme_get_setting('clf_fax'), 
-    '#size' => 60, 
-    '#maxlength' => 128,
-  );
-
-  $form['clf_general']['clf_email'] = array(
+'] = array(
     '#type' => 'textfield', 
     '#title' => t('Email'), 
     '#default_value' => theme_get_setting('clf_email'), 

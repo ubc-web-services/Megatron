@@ -21,9 +21,9 @@ scripts[] = js/custom-min.js
 settings[toggle_name] = 0
 settings[toggle_search] = 1
 
-;Excluded Files
+;Excluded Files - THIS FUNCTION REMOVED 6/12/12 - jotoole
 ;javascript
-exclude[js][] = 'misc/jquery.js'
+;exclude[js][] = 'misc/jquery.js'
 
 ;css
 exclude[css][] = 'misc/vertical-tabs.css'

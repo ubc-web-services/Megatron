@@ -54,9 +54,9 @@ function megatron_ubc_clf_toolbar($variables) {
 ---------------------------------------------------------- */
 function megatron_ubc_clf_header($variables) {
   $output = '';
-   if (theme_get_setting('clf_u_unitname')) {
+   if (theme_get_setting('clf_faculty')) {
       $output .= '
-      <div id="ubc7-unit-name"><a href="/"><span id="ubc7-unit-faculty">' . theme_get_setting('clf_u_unitname'); 
+      <div id="ubc7-unit-name"><a href="/"><span id="ubc7-unit-faculty">' . theme_get_setting('clf_faculty_name'); 
       $output .= '</span><span id="ubc7-unit-identifier">';
       $output .= '' . theme_get_setting('clf_unitname') . '</span></a>
   </div>';
@@ -91,11 +91,10 @@ return $output;
 ---------------------------------------------------------- */
 function megatron_ubc_clf_visual_identity_footer($variables) {
     $output = '<div id="ubc7-unit-footer" class="row-fluid expand">';
-    if (theme_get_setting('clf_u_unitinfoshow')) {
-        $output .= '<div class="span5" id="ubc7-unit-address">';
-    } 
-    else { $output .= '<div class="span10" id="ubc7-unit-address">'; }
+    $output .= '<div class="span10" id="ubc7-unit-address">'; 
     $output .= '<div class="ubc7-address-unit-name"><strong>' . theme_get_setting('clf_unitname') . '</strong></div>' . theme_get_setting('clf_campus') . ''; 
+    if (theme_get_setting('clf_faculty')) {
+        $output .= '<div class="ubc7-address-faculty-name">' . theme_get_setting('clf_faculty_name') . '</div>'; }
     $output .= '<div class="ubc7-address-street">' . theme_get_setting('clf_streetaddr') . '</div>';
     $output .= '<div class="ubc7-address-location">';
     $output .= '<span class="ubc7-address-city">' . theme_get_setting('clf_locality') . '</span>';
@@ -115,34 +114,10 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     if (theme_get_setting('clf_email')) {
         $output .= '<div class="ubc7-address-email">E-mail <a href="mailto:' . theme_get_setting('clf_email') . '">' . theme_get_setting('clf_email') . '</a></div>';
     }
+    if (theme_get_setting('clf_website')) {
+        $output .= '<div class="ubc7-address-website">Website <a href="http://' . theme_get_setting('clf_website') . '" title="' . theme_get_setting('clf_unitname') . '">' . theme_get_setting('clf_website') . '</a></div>';
+    }
     $output .= '</div>';
-    
-    if (theme_get_setting('clf_u_unitinfoshow')) {
-        $output .= '<div class="span5">';
-        $output .= '<div class="ubc7-address-unit-name"><strong>' . theme_get_setting('clf_u_unitname') . '</strong></div>'; 
-        $output .= theme_get_setting('clf_u_campus');
-        $output .= '<div class="ubc7-address-street">' . theme_get_setting('clf_u_streetaddr') . '</div>';
-        $output .= '<div class="ubc7-address-location">';
-        $output .= '<span class="ubc7-address-city">' . theme_get_setting('clf_u_locality') . '</span>';
-         if (theme_get_setting('clf_u_locality') && theme_get_setting('clf_u_region')) {
-            $output .= ',';
-          }
-        $output .= ' <span class="ubc7-address-province" title="' . theme_get_setting('clf_u_region') . '">' . theme_get_setting('clf_region') . '</span> ';
-        $output .= '<span class="ubc7-address-country">' . theme_get_setting('clf_u_country') . '</span> ';
-        $output .= '<span class="ubc7-address-postal">' . theme_get_setting('clf_u_postal') . '</span>';
-        $output .= '</div>';
-        if (theme_get_setting('clf_u_telephone')) {
-           $output .= '<div class="ubc7-address-phone">Tel ' . theme_get_setting('clf_u_telephone') . '</div>';
-         }
-        if (theme_get_setting('clf_u_fax')) {
-            $output .= '<div class="ubc7-address-fax">Fax ' . theme_get_setting('clf_u_fax') . '</div>';
-          }
-        if (theme_get_setting('clf_u_email')) {
-            $output .= '<div class="ubc7-address-email">E-mail <a href="mailto:' . theme_get_setting('clf_u_email') . '">' . theme_get_setting('clf_u_email') . '</a></div>';
-        }
-        $output .= '</div>';
-    } 
-    else { $output .= ''; }
     $output .= '<div class="span2">';
     if (theme_get_setting('clf_social_facebook') || theme_get_setting('clf_social_twitter'))  {
       $output .= '<strong>Find us on</strong><div id="ubc7-unit-social-icons">';
