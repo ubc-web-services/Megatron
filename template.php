@@ -622,36 +622,7 @@ function megatron_megatron_links($variables) {
   }
 
   return $output;
-}
-
-/** Define CLF page elements in an include */
-require_once('includes/template-ubc-clf-elements.inc');es.
-  	   if (empty($link['html'])) {
-  		   $link['title'] = check_plain($link['title']);
-  	   }
-  	   $span_attributes = '';
-  	   if (isset($link['attributes'])) {
-  		   $span_attributes = drupal_attributes($link['attributes']);
-  	   }
-	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
-     }
-	  
-	  $i++;
-	  
-	  if(count($children) > 0) {
-		  $attributes = array();
-      $attributes['class'] = array('dropdown-menu');
-		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
-	  }
-	  
-	  $output .= "</li>\n";	
-    }
-
-    $output .= '</ul>';
-  }
-
-  return $output;
-}
+} 
 
 /** Define CLF page elements in an include */
 require_once('includes/template-ubc-clf-elements.inc');
