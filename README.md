@@ -34,7 +34,7 @@ ___________________
 MODULES NOT RECOMMENDED
 _______________________
 
-jQuery update - jquery versions over 1.6.x currently break ctools (which breaks views [which is really, really bad]) - jquery has been updated for the Megatron theme, but not for the admin theme (allowing ctools to function normally)
-Environment Indicator - breaks in jquery versions 1.8+
+- jQuery update - jquery versions over 1.6.x currently break ctools (which breaks views [which is really, really bad]) - jquery has been updated for the Megatron theme, but not for the admin theme (allowing ctools to function normally)
+- Environment Indicator - breaks in jquery versions 1.8+
 
 *for all things broken and otherwise terribly wrong, please contact Bjorn Thompson.

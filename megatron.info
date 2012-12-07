@@ -1,5 +1,5 @@
 name = MEGATRON!!!!
-description = <strong>Megatron is a responsive Drupal theme for the UBC CLF (Common Look and Feel).</strong><br />The CLF is developed and distributed by UBC Web Communications. You can find out more about the CLF and the UBC brand at <a href="http://brand.ubc.ca/" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca</a>.<br />Megatron has been developed by the UBC IT Web Services Department. For support, to report an issue or more information, please contact UBC IT <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">Web Services</a>
+description = <strong>This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.
 version = 2.0
 core = 7.x
 
