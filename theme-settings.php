@@ -285,24 +285,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#maxlength' => 128,
   );
 
-/*  $form['clf_utility']['clf_subunit_blank'] = array(
-    '#type' => 'checkbox', 
-    '#title' => t('Make subunit text in search bar blank (overrides all other settings)'), 
-    '#default_value' => theme_get_setting('clf_subunit_blank'),
-  );*/
-
- 
-
-// Return the additional form widgets
-return $form;
-}
-?>
-
-subunit text in search bar blank (overrides all other settings)'), 
-    '#default_value' => theme_get_setting('clf_subunit_blank'),
-  );*/
-
- 
 
 // Return the additional form widgets
 return $form;
