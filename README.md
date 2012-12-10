@@ -1,11 +1,11 @@
-Megatron!!!
-===========
+UBC CLF 7.0 DRUPAL THEME (aka Megatron)
+=======================================
 
 A responsive UBC CLF (Common Look and Feel) theme for Drupal 7. Created by the UBC IT Web Services Department.
 
 Use your robot voice while reading this.
 
-MEGATRON FEATURES
+UBC CLF 7.0 DRUPAL THEME FEATURES
 _________________
 
 Bootstrap / CLF:
