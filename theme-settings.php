@@ -65,7 +65,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_identity']['clf_unit_campus'] = array(
       '#type' => 'select',
       '#title' => t('Campus Identity'),
-      '#description' => t('This field shows your unit\’s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate or if neither choice is applicable, select the third option. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
+      '#description' => t('This field shows your unit\'s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate or if neither choice is applicable, select the third option. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
       '#default_value' => theme_get_setting('clf_unit_campus'),
       '#options' => array(
         'vancouver' => t('Vancouver'),
