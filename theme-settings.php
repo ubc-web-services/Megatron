@@ -10,12 +10,11 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#prefix' => '<div class="clf_credits">', 
     '#suffix' => '</div>',
     '#weight' => -10,
-    '#description' => t('<strong>This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.'),
+    '#description' => t('<strong> The CLF 7.0 Drupal theme is a responsive theme, developed by the <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services Department</a>.<br /><br />The <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">CLF</a> is developed and distributed by Communications &amp; Marketing. For support or to report and issue with this theme, <a href="http://clf.ubc.ca/support/" title="Contact UBC Communications & Marketing" target="_blank">please contact us</a>.'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
-  );
-  
-  
+  );  
+    
 /** CLF COLOUR OPTIONS
 ---------------------------------------------------------- */
   $form['clf_theme'] = array(
@@ -30,7 +29,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_theme']['clf_clf_theme_new'] = array(
     '#type' => 'select',
     '#title' => t('CLF Colour Scheme'),
-    '#description' => t('View <a href="http://clf.ubc.ca/design-specifications/">colour theme options</a> and design specifications. '),
+    '#description' => t('View <a href="http://clf.ubc.ca/design-specifications/">colour theme options</a> and design specifications.'),
     '#default_value' => theme_get_setting('clf_clf_theme_new'),
     '#options' => array(
       '' => t('White on Blue'),
@@ -66,7 +65,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_identity']['clf_unit_campus'] = array(
       '#type' => 'select',
       '#title' => t('Campus Identity'),
-      '#description' => t('Select your unit\'s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate and serves the whole university or if neither option is applicable, leave this field blank. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
+      '#description' => t('This field shows your unit\’s campus mandate: Vancouver Campus or Okanagan Campus. If your unit has an institution-wide mandate or if neither choice is applicable, select the third option. See <a href="http://clf.ubc.ca/parts-of-the-clf/">Campus Identity</a> for guidelines.'),
       '#default_value' => theme_get_setting('clf_unit_campus'),
       '#options' => array(
         'vancouver' => t('Vancouver'),
@@ -172,7 +171,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 
   $form['clf_unit_info']['clf_country'] = array(
     '#type' => 'textfield', 
-    '#title' => t('Country Name'), 
+    '#title' => t('Country'), 
     '#default_value' => theme_get_setting('clf_country'), 
     '#size' => 60, 
     '#maxlength' => 128,
@@ -188,8 +187,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 
   $form['clf_unit_info']['clf_telephone'] = array(
     '#type' => 'textfield', 
-    '#title' => t('Telephone Number'), 
-    '#description' => t('Format as xxx xxx xxxx (spaces only)'),
+    '#title' => t('Telephone Number - format as xxx xxx xxxx (spaces only)'), 
     '#default_value' => theme_get_setting('clf_telephone'), 
     '#size' => 60, 
     '#maxlength' => 128,
@@ -197,8 +195,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 
   $form['clf_unit_info']['clf_fax'] = array(
     '#type' => 'textfield', 
-    '#title' => t('Fax Number'), 
-    '#description' => t('Format as xxx xxx xxxx (spaces only)'),
+    '#title' => t('Fax Number - format as xxx xxx xxxx (spaces only)'), 
     '#default_value' => theme_get_setting('clf_fax'), 
     '#size' => 60, 
     '#maxlength' => 128,
@@ -291,6 +288,17 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 /*  $form['clf_utility']['clf_subunit_blank'] = array(
     '#type' => 'checkbox', 
     '#title' => t('Make subunit text in search bar blank (overrides all other settings)'), 
+    '#default_value' => theme_get_setting('clf_subunit_blank'),
+  );*/
+
+ 
+
+// Return the additional form widgets
+return $form;
+}
+?>
+
+subunit text in search bar blank (overrides all other settings)'), 
     '#default_value' => theme_get_setting('clf_subunit_blank'),
   );*/
 
