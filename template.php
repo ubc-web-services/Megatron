@@ -618,7 +618,7 @@ function megatron_js_alter(&$javascript) {
   //$excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
   //$js = array_diff_key($js, $excludes);
   // Swap out jQuery to use an updated version of the library.
-  $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+  $javascript['misc/jquery.js']['data'] = 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
 }
 
 
@@ -649,12 +649,10 @@ function megatron_megatron_links($variables) {
     $output = '';
     $output .= '<ul' . drupal_attributes($attributes) . '>';
     
-    // Treat the heading first if it is present to prepend it to the
-    // list of links.
+    // Treat the heading first if it is present to prepend it to the list of links.
     if (!empty($heading)) {
       if (is_string($heading)) {
-        // Prepare the array that will be used when the passed heading
-        // is a string.
+        // Prepare the array that will be used when the passed heading is a string.
         $heading = array(
           'text' => $heading,
           // Set the default level of the heading. 
@@ -672,6 +670,8 @@ function megatron_megatron_links($variables) {
     $i = 1;
 	
     foreach ($links as $key => $link) {
+      // to add a counter that lets us assign an id to each li
+      static $item_id = 0;
       $children = array();
       if(isset($link['below']))
       $children = $link['below'];
@@ -679,34 +679,37 @@ function megatron_megatron_links($variables) {
 	    $attributes = array('class' => array($key));
 	  
 	    // Add first, last and active classes to the list of links to help out themers.
-      if ($i == 1) {
+      /*if ($i == 1) {
         $attributes['class'][] = 'first';
       }
       if ($i == $num_links) {
         $attributes['class'][] = 'last';
-      }
+      }*/
       if (isset($link['href']) && ($link['href'] == $_GET['q'] || ($link['href'] == '<front>' && drupal_is_front_page()))
            && (empty($link['language']) || $link['language']->language == $language_url->language)) {
         $attributes['class'][] = 'active';
       }
-	  
 	    if(count($children) > 0) {
 		    $attributes['class'][] = 'dropdown';
 		    $link['attributes']['data-toggle'] = 'dropdown';
 		    $link['attributes']['class'][] = 'dropdown-toggle';
+		    //$link['element']['#original_link']['mlid'];
+		    //$link['attributes']['id'][] = 'mid-' . $link['mlid'];
       }
-	  
+	    
   	  if(!isset($link['attributes']))
   		$link['attributes'] = array();
   		
   	  $class = (count($children) > 0) ? 'dropdown' : NULL;
-  	  $output .= '<li' . drupal_attributes(array('class' => array($class))) . '>';
+  	  $output .= '<li id="mid-' . (++$item_id) . '"' . drupal_attributes(array('class' => array($class))) . '>';
 	  
+	    
   	  if (isset($link['href'])) {
   		  if(count($children) > 0) { 
   		    $link['html'] = TRUE;
   		    $link['title'] .= '<div class="ubc7-arrow down-arrow"></div>';
   		    $output .=  '<a' . drupal_attributes($link['attributes']) . ' href="#">'. $link['title'] .'</a>';
+  		    //$output .=  '<a' . drupal_attributes($link['attributes']) . ' href="' . $link['href'] . '">'. $link['title'] .'</a>';
   		  }else{
   		    // Pass in $link as $options, they share the same keys.
   		    $output .= l($link['title'], $link['href'], $link);

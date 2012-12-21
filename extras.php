@@ -606,8 +606,13 @@ function megatron_item_list($variables) {
 /** Add Bootstrap table class to tables added by Drupal
 ---------------------------------------------------------- */
 function megatron_preprocess_table(&$variables) {
-  $variables['attributes']['class'][] = 'table';
-  $variables['attributes']['class'][] = 'table-striped';
+  if(!isset($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = array('table', 'table-striped');
+  }
+  else {
+    $variables['attributes']['class'][] = 'table';
+    $variables['attributes']['class'][] = 'table-striped';
+  }
 }
 
 /** VIEWS

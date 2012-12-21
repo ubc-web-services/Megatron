@@ -13,9 +13,9 @@ regions[prefooter]      = 'Content: Below'
 stylesheets[all][] = css/clf_drupal.css
 stylesheets[all][] = css/unit-custom.css
 
-;Scripts
-scripts[] = js/lib/modernizr.custom.2.6.2.js
-scripts[] = js/lib/bootstrap-alert.js
+;Scripts - concatenated modernizr and bootstrap-alert
+;scripts[] = js/lib/modernizr.custom.2.6.2.js
+;scripts[] = js/lib/bootstrap-alert.js
 scripts[] = js/custom-min.js
 
 settings[toggle_name] = 0
