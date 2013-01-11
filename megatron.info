@@ -13,7 +13,7 @@ regions[prefooter]      = 'Content: Below'
 stylesheets[all][] = css/clf_drupal.css
 stylesheets[all][] = css/unit-custom.css
 
-;Scripts - concatenated modernizr and bootstrap-alert
+;Scripts - concatenated modernizr and bootstrap-alert with custom
 ;scripts[] = js/lib/modernizr.custom.2.6.2.js
 ;scripts[] = js/lib/bootstrap-alert.js
 scripts[] = js/custom-min.js

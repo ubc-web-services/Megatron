@@ -105,7 +105,7 @@ function megatron_preprocess_html(&$vars) {
      $options = array(
        'group' => JS_THEME,
      );
-     drupal_add_js('//cdn.ubc.ca/clf/7.0.1/js/ubc-clf.min.js?v.7.0.1', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));    
+     drupal_add_js('//cdn.ubc.ca/clf/7.0.2/js/ubc-clf.min.js?v.7.0.2', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));    
   }
 
 
@@ -345,7 +345,7 @@ function megatron_megatron_btn_dropdown($variables) {
 	$output .= l($variables['label']['title'], $$variables['label']['href'], $variables['label']);
   }
   
-  $output .= '<a class="btn'. $type_class .' dropdown-toggle" data-toggle="dropdown" href="#">';
+  $output .= '<a class="btn '. $type_class .' dropdown-toggle" data-toggle="dropdown" href="#">';
   
   // Its a link so create one
   if(is_string($variables['label'])) {
@@ -474,12 +474,12 @@ function megatron_menu_local_task($variables) {
   // Render child tasks if available.
   $children = '';
   if (element_children($variables['element'])) {
-    $link['localized_options']['attributes']['class'][] = 'dropdown-toggle';
+    $link['localized_options']['attributes']['class'][] = 'btn dropdown-toggle';
 	  $link['localized_options']['attributes']['data-toggle'][] = 'dropdown';
     $classes[] = 'dropdown';
 
     $children = drupal_render_children($variables['element']);
-    $children = '</b><ul class="secondary-tabs dropdown-menu">' . $children . "</ul>";
+    $children = '<ul class="secondary-tabs dropdown-menu">' . $children . "</ul>";
 
 	return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<div class="ubc7-arrow down-arrow"></div>' . $children . "</li>\n";
   }else{
@@ -678,23 +678,13 @@ function megatron_megatron_links($variables) {
       
 	    $attributes = array('class' => array($key));
 	  
-	    // Add first, last and active classes to the list of links to help out themers.
-      /*if ($i == 1) {
-        $attributes['class'][] = 'first';
-      }
-      if ($i == $num_links) {
-        $attributes['class'][] = 'last';
-      }*/
       if (isset($link['href']) && ($link['href'] == $_GET['q'] || ($link['href'] == '<front>' && drupal_is_front_page()))
            && (empty($link['language']) || $link['language']->language == $language_url->language)) {
         $attributes['class'][] = 'active';
       }
 	    if(count($children) > 0) {
 		    $attributes['class'][] = 'dropdown';
-		    $link['attributes']['data-toggle'] = 'dropdown';
-		    $link['attributes']['class'][] = 'dropdown-toggle';
-		    //$link['element']['#original_link']['mlid'];
-		    //$link['attributes']['id'][] = 'mid-' . $link['mlid'];
+		    $link['attributes']['class'][] = 'btn';
       }
 	    
   	  if(!isset($link['attributes']))
@@ -707,9 +697,8 @@ function megatron_megatron_links($variables) {
   	  if (isset($link['href'])) {
   		  if(count($children) > 0) { 
   		    $link['html'] = TRUE;
-  		    $link['title'] .= '<div class="ubc7-arrow down-arrow"></div>';
-  		    $output .=  '<a' . drupal_attributes($link['attributes']) . ' href="#">'. $link['title'] .'</a>';
-  		    //$output .=  '<a' . drupal_attributes($link['attributes']) . ' href="' . $link['href'] . '">'. $link['title'] .'</a>';
+  		    $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
+  		    $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
   		  }else{
   		    // Pass in $link as $options, they share the same keys.
   		    $output .= l($link['title'], $link['href'], $link);
@@ -725,6 +714,30 @@ function megatron_megatron_links($variables) {
   		   $span_attributes = drupal_attributes($link['attributes']);
   	   }
 	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
+     }
+	  
+	  $i++;
+	  
+	  if(count($children) > 0) {
+		  $attributes = array();
+      $attributes['class'] = array('dropdown-menu');
+		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
+	  }
+	  
+	  $output .= "</li>\n";	
+    }
+
+    $output .= '</ul>';
+  }
+  if(count($children) > 0) {
+    $output .= '</div>';
+  }
+
+  return $output;
+} 
+
+/** Define CLF page elements in an include */
+require_once('includes/template-ubc-clf-elements.inc'); '</span>';
      }
 	  
 	  $i++;

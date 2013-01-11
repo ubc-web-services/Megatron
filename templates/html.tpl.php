@@ -60,12 +60,12 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//cdn.ubc.ca/clf/7.0/img/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//cdn.ubc.ca/clf/7.0/img/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="//cdn.ubc.ca/clf/7.0/img/apple-touch-icon-57-precomposed.png">
-  <link href="//cdn.ubc.ca/clf/7.0.1/css/ubc-clf-full<?php print theme_get_setting('clf_clf_theme_new'); ?>.min.css?v.7.0.1" rel="stylesheet">
+  <link href="//cdn.ubc.ca/clf/7.0.2/css/ubc-clf-full<?php print theme_get_setting('clf_clf_theme_new'); ?>.min.css?v.7.0.1" rel="stylesheet">
   <?php print $styles; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>
-  <?php print $page; ?>
+  <?php print $page; ?> 
   <?php print $page_bottom; ?>
   <?php print $scripts; ?>
 </body>
