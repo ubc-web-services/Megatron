@@ -737,26 +737,3 @@ function megatron_megatron_links($variables) {
 
   return $output;
 } 
-
-'</span>';
-     }
-	  
-	  $i++;
-	  
-	  if(count($children) > 0) {
-		  $attributes = array();
-      $attributes['class'] = array('dropdown-menu');
-		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
-	  }
-	  
-	  $output .= "</li>\n";	
-    }
-
-    $output .= '</ul>';
-  }
-
-  return $output;
-} 
-
-/** Define CLF page elements in an include */
-require_once('includes/template-ubc-clf-elements.inc');
