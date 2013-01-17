@@ -50,7 +50,6 @@
   <a href="#ubc7-unit-menu" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
 </div>
 
-
 <div class="container">
   <?php print theme('ubc_clf_toolbar'); ?>
   <header id="ubc7-header" class="row-fluid expand" role="banner">
