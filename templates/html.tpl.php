@@ -62,6 +62,7 @@
   <link rel="apple-touch-icon-precomposed" href="//cdn.ubc.ca/clf/7.0/img/apple-touch-icon-57-precomposed.png">
   <link href="//cdn.ubc.ca/clf/7.0.2/css/ubc-clf-full<?php print theme_get_setting('clf_clf_theme_new'); ?>.min.css?v.7.0.2" rel="stylesheet">
   <?php print $styles; ?>
+  <script src="<?php print base_path() . path_to_theme();?>/js/lib/modernizr.custom.2.6.2.js?mglaqz"></script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>

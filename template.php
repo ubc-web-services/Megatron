@@ -342,7 +342,7 @@ function megatron_megatron_btn_dropdown($variables) {
   // Start markup
   $output = '<div'. drupal_attributes($variables['attributes']) .'>';
   
-  // Ad as string if its not a link
+  // Add as string if its not a link
   if(is_array($variables['label'])) {
 	$output .= l($variables['label']['title'], $$variables['label']['href'], $variables['label']);
   }
@@ -372,10 +372,10 @@ function megatron_menu_tree(&$variables) {
 
 function megatron_menu_link(array $variables) {
   // remove some default drupal menu classes
-  $remove = array('leaf', 'expanded', 'collapsed', 'expandable');
+  /*$remove = array('leaf', 'expanded', 'collapsed', 'expandable');
     if($remove){
      $variables['element']['#attributes']['class'] = array_diff($variables['element']['#attributes']['class'],$remove);
-  }
+  }*/
   
   $element = $variables['element'];
   $sub_menu = '';
@@ -389,7 +389,7 @@ function megatron_menu_link(array $variables) {
     $sub_menu = '<ul class="menu nav subnav">' . drupal_render($element['#below']) . '</ul>';
 
 	$element['#localized_options']['html'] = TRUE;	
-	$element['#href'] = "";
+	//$element['#href'] = "";
   }
   
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
@@ -640,6 +640,7 @@ function _megatron_alter($files, $type) {
 /** Returns HTML for a set of links.
 ---------------------------------------------------------- */
 function megatron_megatron_links($variables) {
+
   $links = $variables['links'];
   $attributes = $variables['attributes'];
   $heading = $variables['heading'];
@@ -691,7 +692,6 @@ function megatron_megatron_links($variables) {
 	    
   	  if(!isset($link['attributes']))
   		$link['attributes'] = array();
-  		
   	  $class = (count($children) > 0) ? 'dropdown' : NULL;
   	  $output .= '<li id="mid-' . (++$item_id) . '"' . drupal_attributes(array('class' => array($class))) . '>';
 	  
