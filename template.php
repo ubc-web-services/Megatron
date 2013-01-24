@@ -117,6 +117,7 @@ function megatron_breadcrumb($variables) {
   $breadcrumb = array_unique($breadcrumb);
   $breadcrumb[0] = ''; 
   $show_breadcrumb = theme_get_setting('breadcrumb_display');
+  $pos = FALSE;
     
   if ((!empty($breadcrumb)) && ($show_breadcrumb == 'yes')) {
     // Provide a navigational heading to give context for breadcrumb links to
@@ -128,8 +129,9 @@ function megatron_breadcrumb($variables) {
     $array_size = count($breadcrumb);
     $i = 0;
     while ( $i < $array_size) {
-    
-      $pos = strpos($breadcrumb[$i], drupal_get_title());
+      if(drupal_get_title()) {
+        $pos = strpos($breadcrumb[$i], drupal_get_title());
+      }
       //we stop duplicates entering where there is a sub nav based on page jumps
       if ($pos === false){
         $crumbs .= '<li class="breadcrumb-' . $i;
