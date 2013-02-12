@@ -113,6 +113,7 @@ function megatron_preprocess_html(&$vars) {
 Return a themed breadcrumb trail
 ---------------------------------------------------------- */
 function megatron_breadcrumb($variables) {
+  global $base_path;
   $breadcrumb = $variables['breadcrumb'];
   $breadcrumb = array_unique($breadcrumb);
   $breadcrumb[0] = ''; 
@@ -124,7 +125,7 @@ function megatron_breadcrumb($variables) {
     // screen-reader users. Make the heading invisible with .element-invisible.
     $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
     $crumbs = '<ul class="breadcrumb expand">';
-    $crumbs .= '<li class="breadcrumb-home"><a href="/">' . theme_get_setting('clf_unitname') . '</a></li>';
+    $crumbs .= '<li class="breadcrumb-home"><a href="' . $base_path . '">' . theme_get_setting('clf_unitname') . '</a></li>';
     
     $array_size = count($breadcrumb);
     $i = 0;

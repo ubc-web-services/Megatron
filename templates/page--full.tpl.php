@@ -100,7 +100,7 @@
   </nav>
   <?php endif; ?>
   	  
-  <?php if ($breadcrumb && !$is_front): ?>
+  <?php if (($breadcrumb) && (!$is_front)): ?>
   <div class="container">
     <?php print $breadcrumb; ?>
   </div><!-- /.container -->

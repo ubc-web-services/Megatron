@@ -53,10 +53,11 @@ function megatron_ubc_clf_toolbar($variables) {
 /** Return the UBC CLF HEADER
 ---------------------------------------------------------- */
 function megatron_ubc_clf_header($variables) {
+  global $base_path;
   $output = '';
    if (theme_get_setting('clf_faculty')) {
       $output .= '
-      <div id="ubc7-unit-name"><a href="/"><span id="ubc7-unit-faculty">' . theme_get_setting('clf_faculty_name'); 
+      <div id="ubc7-unit-name"><a href="' . $base_path . '"><span id="ubc7-unit-faculty">' . theme_get_setting('clf_faculty_name'); 
       $output .= '</span><span id="ubc7-unit-identifier">';
       $output .= '' . theme_get_setting('clf_unitname') . '</span></a>
   </div>';
@@ -119,13 +120,22 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     }
     $output .= '</div>';
     $output .= '<div class="span2">';
-    if (theme_get_setting('clf_social_facebook') || theme_get_setting('clf_social_twitter'))  {
+    if (theme_get_setting('clf_social_facebook') || theme_get_setting('clf_social_twitter') || theme_get_setting('clf_social_linkedin') || theme_get_setting('clf_social_googleplus') || theme_get_setting('clf_social_youtube'))  {
       $output .= '<strong>Find us on</strong><div id="ubc7-unit-social-icons">';
         if (theme_get_setting('clf_social_facebook')) {
           $output .= '<a href="' . theme_get_setting('clf_social_facebook') . '"><i class="icon-facebook-sign"></i></a>&nbsp;';
         }
         if (theme_get_setting('clf_social_twitter')) {
           $output .= '<a href="' . theme_get_setting('clf_social_twitter') . '"><i class="icon-twitter-sign"></i></a>&nbsp;';
+        }
+        if (theme_get_setting('clf_social_linkedin')) {
+          $output .= '<a href="' . theme_get_setting('clf_social_linkedin') . '"><i class="icon-linkedin-sign"></i></a>&nbsp;';
+        }
+        if (theme_get_setting('clf_social_googleplus')) {
+          $output .= '<a href="' . theme_get_setting('clf_social_googleplus') . '"><i class="icon-google-plus-sign"></i></a>&nbsp;';
+        }
+        if (theme_get_setting('clf_social_youtube')) {
+          $output .= '<a href="' . theme_get_setting('clf_social_youtube') . '"><i class="icon-youtube"></i></a>&nbsp;';
         }
       $output .= '</div>';
     } 

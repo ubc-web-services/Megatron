@@ -230,6 +230,14 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
+    
+    $form['clf_social']['clf_social_facebook'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Facebook Account Link'), 
+      '#default_value' => theme_get_setting('clf_social_facebook'), 
+      '#size' => 60, 
+      '#maxlength' => 128,
+    );
 
     $form['clf_social']['clf_social_twitter'] = array(
       '#type' => 'textfield', 
@@ -238,11 +246,27 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       '#size' => 60, 
       '#maxlength' => 128,
     );
-
-    $form['clf_social']['clf_social_facebook'] = array(
+    
+    $form['clf_social']['clf_social_linkedin'] = array(
       '#type' => 'textfield', 
-      '#title' => t('Facebook Account Link'), 
-      '#default_value' => theme_get_setting('clf_social_facebook'), 
+      '#title' => t('Linkedin Account Link'), 
+      '#default_value' => theme_get_setting('clf_social_linkedin'), 
+      '#size' => 60, 
+      '#maxlength' => 128,
+    );
+    
+    $form['clf_social']['clf_social_googleplus'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Google Plus Account Link'), 
+      '#default_value' => theme_get_setting('clf_social_googleplus'), 
+      '#size' => 60, 
+      '#maxlength' => 128,
+    );
+    
+    $form['clf_social']['clf_social_youtube'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('YouTube Account Link'), 
+      '#default_value' => theme_get_setting('clf_social_youtube'), 
       '#size' => 60, 
       '#maxlength' => 128,
     );

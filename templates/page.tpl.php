@@ -95,7 +95,7 @@
   </nav>
   <?php endif; ?>
   	  
-  <?php if ($breadcrumb && !$is_front): ?>
+  <?php if (($breadcrumb) && (!$is_front)): ?>
   <?php print $breadcrumb; ?>
   <?php endif; ?>  	  
 
