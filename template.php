@@ -619,11 +619,13 @@ function megatron_css_alter(&$css) {
 /** Allow js files to be excluded in the .info file / Replace jQuery with updated version
 ---------------------------------------------------------- */
 function megatron_js_alter(&$javascript) {
-  // USED TO EXCLUDE JS FILES VIA THE .INFO FILE - REMOVED DUE TO CONFLICT WITH IMCE - DEC6-2012 - jotoole 
-  //$excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'js');
-  //$js = array_diff_key($js, $excludes);
-  // Swap out jQuery to use an updated version of the library.
-  $javascript['misc/jquery.js']['data'] = 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+  // Swap out jQuery to use an external version of the library (a requirement of the Twitter Bootstrap framework).
+  $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+  $javascript['misc/jquery.js']['type'] = 'external';
+  $javascript['misc/jquery.js']['version'] = '1.8.1';
+  //$javascript['misc/jquery.form.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+  //$javascript['misc/jquery.form.js']['type'] = 'external';
+  //$javascript['misc/jquery.form.js']['version'] = '1.8.1';
 }
 
 
