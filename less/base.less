@@ -74,7 +74,7 @@ img, canvas {
  text-align: center;
  word-wrap: break-word; }
 /* @group Tabs */
-div.tabs { margin: 0 0 5px 0; }
+/*div.tabs { margin: 0 0 5px 0; }
 ul.primary, ul.secondary { width: 99%; }
 ul.primary {
  margin: 0;
@@ -152,7 +152,7 @@ ul.secondary a .tab {
  height: 18px;
  margin: 0;
  padding: 3px 8px;
- line-height: 18px; }
+ line-height: 18px; }*/
 /* @end */
 
 // Custom Utilities for Drupal CLF
@@ -228,6 +228,20 @@ display: block;
 margin: 0 0 -1px;
 padding: 8px 14px 8px 28px;
 text-decoration: none; }
+
+// Make inline fields behave
+.field-label-inline label { display: inline-block; }
+
+// Fix collapsibe fieldset behaviour
+html.js fieldset.collapsible .fieldset-legend,
+html.js fieldset.collapsed .fieldset-legende { background-image: none; }
+html.js fieldset.collapsible .fieldset-legend a:after,
+html.js fieldset.collapsed .fieldset-legend a:after {
+  position: absolute;  
+  left: 0;
+  top: 0; }
+html.js fieldset.collapsible .fieldset-legend a:after { content: "-"; }
+html.js fieldset.collapsed .fieldset-legend a:after { content: "+"; }
 
 /* @group Redefine Bootstrap nav */
 /*ul.menu {
