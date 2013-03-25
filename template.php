@@ -623,9 +623,10 @@ function megatron_js_alter(&$javascript) {
   $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
   $javascript['misc/jquery.js']['type'] = 'external';
   $javascript['misc/jquery.js']['version'] = '1.8.1';
-  //$javascript['misc/jquery.form.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
-  //$javascript['misc/jquery.form.js']['type'] = 'external';
-  //$javascript['misc/jquery.form.js']['version'] = '1.8.1';
+  //if (isset($javascript['jquery.form.js'])) {
+  //  $javascript['misc/jquery.form.js']['data'] = path_to_theme() . '/js/lib/jquery.form.js';
+  //  $javascript['misc/jquery.form.js']['version'] = '3.27.0';
+  //}
 }
 
 
@@ -729,6 +730,7 @@ function megatron_megatron_links($variables) {
 		  $attributes = array();
       $attributes['class'] = array('dropdown-menu');
 		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
+		  $output .= '</div>';
 	  }
 	  
 	  $output .= "</li>\n";	
@@ -736,9 +738,9 @@ function megatron_megatron_links($variables) {
 
     $output .= '</ul>';
   }
-  if(count($children) > 0) {
-    $output .= '</div>';
-  }
+  //if(count($children) > 0) {
+ //   $output .= '</div>';
+ // }
 
   return $output;
 } 
