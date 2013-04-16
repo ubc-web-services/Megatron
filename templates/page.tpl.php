@@ -139,7 +139,7 @@
       <?php endif; ?>
  
       <?php if (($page['sidebar_second']) && (!$is_front)): ?>
-      <aside class="<?php if ($is_front): print 'span4'; else: print 'span3'; endif; ?> region region-sidebar-second" role="complementary">
+      <aside class="span3 region region-sidebar-second" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
       <?php endif; ?>
