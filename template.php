@@ -80,8 +80,6 @@ function megatron_preprocess_html(&$vars) {
       $vars['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
       $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
     }
-    // add a body class to tell us what layout we're using
-    //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
     // add a body class to tell us what colours we're using
     $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
     
@@ -244,15 +242,19 @@ function _megatron_content_span($columns = 1) {
   $class = FALSE;
   switch($columns) {
   case 1:
+    // default (no sidebars)
     $class = 'span12';
     break;
   case 2:
+    // 1 sidebar
     $class = 'span9';
     break;
   case 3:
+    // 2 sidebars
     $class = 'span6';
     break;
   case 4:
+    // front with 1 sidebar
     $class = 'span8';
     break;
   }
