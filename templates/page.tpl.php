@@ -100,6 +100,10 @@
   <?php endif; ?>  	  
 
   <!-- BEGIN: UBC CLF CONTENT SPACE -->
+   <?php if ($page['highlighted']): ?>
+     <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
+   <?php endif; ?>
+  
   <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
     <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
       
@@ -110,10 +114,6 @@
       <?php endif; ?>
       
       <section class="<?php print _megatron_content_span($columns); ?>">  
-        <?php if ($page['highlighted']): ?>
-        <div class="highlighted hero-unit"><?php print render($page['highlighted']); ?></div>
-        <?php endif; ?>
-        <a id="main-content"></a>
         <?php print render($title_prefix); ?>
         <?php if ($title): ?>
         <h1 class="page-header"><?php print $title; ?></h1>
