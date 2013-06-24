@@ -44,7 +44,7 @@
 	*/
 
 ?>
-<?php require_once(path_to_theme() . '/includes/config.php'); ?>
+<?php require_once(drupal_get_path('theme','megatron') . '/includes/config.php'); ?>
 <div class="skip">
   <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   <a href="#ubc7-unit-menu" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
