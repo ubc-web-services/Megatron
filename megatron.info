@@ -1,8 +1,10 @@
 name = UBC CLF 7.0.2 Drupal Theme
-description = <strong>This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.
-version = 2.0
+description = This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.
+version = 2.2
 core = 7.x
 
+regions[search]         = 'Search'
+;regions[navigation]     = 'Navigation'
 regions[highlighted]    = 'Content: Above'
 regions[help]           = 'Help'
 regions[content]        = 'Content'
@@ -18,14 +20,10 @@ stylesheets[all][] = css/unit-custom.css
 ;scripts[] = js/lib/bootstrap-alert.js
 scripts[] = js/custom-min.js
 
-settings[toggle_name] = 0
-settings[toggle_search] = 1
+;settings[toggle_name] = 0
+;settings[toggle_search] = 1
 
-;Excluded Files - THIS FUNCTION REMOVED 6/12/12 - jotoole
-;javascript
-;exclude[js][] = 'misc/jquery.js'
-
-;css
+;Excluded CSS Files
 exclude[css][] = 'misc/vertical-tabs.css'
 exclude[css][] = 'modules/aggregator/aggregator.css'
 exclude[css][] = 'modules/block/block.css'
@@ -57,7 +55,6 @@ exclude[css][] = 'modules/tracker/tracker.css'
 exclude[css][] = 'modules/update/update.css'
 exclude[css][] = 'modules/user/user.css'
 
-version = "7.0.2"
 core = "7.x"
 project = "megatron"
 datestamp = "1339332196"

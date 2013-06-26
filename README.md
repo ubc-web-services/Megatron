@@ -19,7 +19,7 @@ Drupal / Theme level:
 - ability to add / exclude css / js in .info file
 
 Usage:
- - you MUST use an alternate admin theme or jquery will be break. It is also recommended to use the 'edit / create content in admin theme' option on the /admin/appearance page.
+ - you MUST use an alternate admin theme or jQuery will be break. It is also recommended to use the 'edit / create content in admin theme' option on the /admin/appearance page.
 
 
 RECOMMENDED MODULES
@@ -33,5 +33,9 @@ ___________________
 MODULES NOT RECOMMENDED
 _______________________
 
-- jQuery update - jquery versions over 1.6.x currently break ctools (which breaks views [which is really, really bad]) - jquery has been updated for the Megatron theme, but not for the admin theme (allowing ctools to function normally)
-- Environment Indicator - breaks in jquery versions 1.8+
+- Environment Indicator - breaks in jQuery versions 1.8+
+
+MODULES THAT REQUIRE THEME CHANGES
+_______________________
+
+- jQuery update - If jQuery update is used, you must remove the updated jQuery in template.php (megatron_js_alter). Additionally, the jQuery version should be 1.8.x.

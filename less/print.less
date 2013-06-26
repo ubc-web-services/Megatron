@@ -1,0 +1,34 @@
+/* Use this stylesheet for print styles only. */
+* {
+  background-color: transparent; }
+#toolbar,
+#ubc7-header,
+#navigation,
+#content-bottom,
+#ubc7-footer,
+aside,
+.breadcrumb,
+.tabs,
+.nav-tabs,
+.feed-icon,
+.links,
+.messages,
+.status,
+.skip { display: none !important; }
+#page { width: 100%; }
+#main {
+margin: 20px 0;
+width: auto; }
+a:hover, a:active, a:link, a:visited { color: black; }
+.collapsible > div, .ctools-collapsed > div { display: block !important; }
+div#ubc7-unit {
+background: #fff !important;
+box-shadow: none;
+-moz-box-shadow: none;
+-webkit-box-shadow: none; }
+
+/* CSS2 selector to add visible href after links. */
+#content a:link:after, #content a:visited:after {
+content: " (" attr(href) ") ";
+font-size: 0.8em;
+font-weight: normal; }

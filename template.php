@@ -80,6 +80,8 @@ function megatron_preprocess_html(&$vars) {
       $vars['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
       $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
     }
+    // add a body class to tell us what layout we're using
+    //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
     // add a body class to tell us what colours we're using
     $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
     
@@ -189,9 +191,7 @@ function megatron_preprocess_page(&$variables) {
   require_once('includes/template-ubc-clf-elements.inc');
   // Add template suggestions based on content type 
   if (isset($variables['node'])) {  
-    //$variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
     $variables['theme_hook_suggestions'][] = 'page__type__'. $variables['node']->type;
-    $variables['theme_hook_suggestions'][] = "page__node__" . $variables['node']->nid; 
   }
 
   // Add information about the number of sidebars.
@@ -293,20 +293,36 @@ function megatron_theme_get_info($setting_name, $theme = NULL) {
 }
 
 
-/** Returns navigational links based on a menu tree */
+/** THEME MEGATRON MAIN MENU LINKS
+Returns navigational links based on a menu tree */
 function megatron_menu_navigation_links($tree, $lvl = 0) {
   $result = array();
-
-  if(count($tree) > 0) {
-	foreach($tree as $id => $item) {
-	  $new_item = array('title' => $item['link']['title'], 'link_path' => $item['link']['link_path'], 'href' => $item['link']['href']);
-	  
-	  // Don't use levels deeper than 1
-	  if($lvl < 1)
-		$new_item['below'] = megatron_menu_navigation_links($item['below'], $lvl+1);
-	  
-	  $result['menu-'. $item['link']['mlid']] = $new_item;
-	}
+  
+  if (count($tree) > 0) {  
+    foreach ($tree as $id => $item) {
+    
+      // Only work with enabled links
+      if (empty($item['link']['hidden'])) {
+        $class = '';
+        // add active-trail
+        if ($item['link']['in_active_trail']) {
+          $class = ' active-trail ';
+        }
+        // add class based on link title
+        $classtwo = megatron_id_safe($item['link']['title']);
+        $new_item = array(
+          'title' => $item['link']['title'],
+          'link_path' => $item['link']['link_path'],
+          'href' => $item['link']['href'],
+        );
+    	  
+    	  // Don't use levels deeper than 1
+    	  if($lvl < 1)
+    		$new_item['below'] = megatron_menu_navigation_links($item['below'], $lvl+1);
+    	  
+    	  $result['menu-'. $item['link']['mlid'] . $class . ' ' .$classtwo] = $new_item;
+    	}
+    }
   }
   
   return $result;
@@ -370,6 +386,9 @@ function megatron_megatron_btn_dropdown($variables) {
 }  
 
 
+/** THEME MENU UNORDERED LIST MARKUP
+theme all sets of links
+---------------------------------------------------------- */
 function megatron_menu_tree(&$variables) {
   return '<ul class="menu nav bootstrap-sidenav">' . $variables['tree'] . '</ul>';
 }
@@ -382,33 +401,26 @@ function megatron_menu_link(array $variables) {
      $variables['element']['#attributes']['class'] = array_diff($variables['element']['#attributes']['class'],$remove);
   }*/
   
-  $element = $variables['element'];
-  $sub_menu = '';
-  
-  // Sanitize title
-  //$element['#title'] = check_plain($element['#title']);
-  
-  if ($element['#below']) {
-	// Add our own wrapper
-	unset($element['#below']['#theme_wrappers']);
-    $sub_menu = '<ul class="menu nav subnav">' . drupal_render($element['#below']) . '</ul>';
-
-	$element['#localized_options']['html'] = TRUE;	
-	//$element['#href'] = "";
+    $element = $variables['element'];
+    $sub_menu = '';
+    
+    if ($element['#below']) {
+        $sub_menu = drupal_render($element['#below']);
+    }
+    
+    $element['#attributes']['class'][] = megatron_id_safe($element['#title']);
+    $element['#attributes']['id'][] = 'mid-' . $element['#original_link']['mlid'];
+    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+      return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
   }
   
-  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  // Adding a class depending on the TITLE of the link using our safe string
-  $element['#attributes']['class'][] = megatron_id_safe($element['#title']);
-  // Adding an ID depending on the ID of the link
-  $element['#attributes']['id'][] = 'mid-' . $element['#original_link']['mlid'];
-  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
-}
 
 
-// ZEN TABS (also see custom styles in stylesheet and 'tabs' images folder)
-// Customize the PRIMARY and SECONDARY LINKS, to allow the admin tabs to work on all browsers
-/*function megatron_menu_local_task($variables) {
+/** TABS 
+ZEN TABS (also see custom styles in stylesheet)
+Customize the PRIMARY and SECONDARY LINKS, to allow the admin tabs to work on all browsers
+---------------------------------------------------------- */
+function megatron_menu_local_task($variables) {
   $link = $variables['element']['#link'];
   $link['localized_options']['html'] = TRUE;
   return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l('<span class="tab">' . $link['title'] . '</span>', $link['href'], $link['localized_options']) . "</li>\n";
@@ -433,124 +445,7 @@ function megatron_menu_local_tasks() {
     $output[] = $secondary;
   }
   return drupal_render($output);
-}*/
-/** MENUS
-Returns HTML for primary and secondary local tasks.
----------------------------------------------------------- */
-function megatron_menu_local_tasks(&$vars) {
-  $output = '';
-
-  if ( !empty($vars['primary']) ) {
-    $vars['primary']['#prefix'] = '<ul class="nav nav-tabs">';
-    $vars['primary']['#suffix'] = '</ul>';
-    $output .= drupal_render($vars['primary']);
-  }
-
-  if ( !empty($vars['secondary']) ) {
-    $vars['secondary']['#prefix'] = '<ul class="nav nav-pills">';
-    $vars['secondary']['#suffix'] = '</ul>';
-    $output .= drupal_render($vars['secondary']);
-  }
-
-  return $output;
 }
-
-
-/** Returns HTML for primary and secondary local tasks.
----------------------------------------------------------- */
-function megatron_menu_local_task($variables) {
-  $link = $variables['element']['#link'];
-  $link_text = $link['title'];
-  $classes = array();
-
-  if (!empty($variables['element']['#active'])) {
-    // Add text to indicate active tab for non-visual users.
-    $active = '<span class="element-invisible">' . t('(active tab)') . '</span>';
-
-    // If the link does not contain HTML already, check_plain() it now.
-    // After we set 'html'=TRUE the link will not be sanitized by l().
-    if (empty($link['localized_options']['html'])) {
-      $link['title'] = check_plain($link['title']);
-    }
-    $link['localized_options']['html'] = TRUE;
-    $link_text = t('!local-task-title!active', array('!local-task-title' => $link['title'], '!active' => $active));
-
-    $classes[] = 'active';
-  }
-
-  // Render child tasks if available.
-  $children = '';
-  if (element_children($variables['element'])) {
-    $link['localized_options']['attributes']['class'][] = 'btn dropdown-toggle';
-	  $link['localized_options']['attributes']['data-toggle'][] = 'dropdown';
-    $classes[] = 'dropdown';
-
-    $children = drupal_render_children($variables['element']);
-    $children = '<ul class="secondary-tabs dropdown-menu">' . $children . "</ul>";
-
-	return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<div class="ubc7-arrow down-arrow"></div>' . $children . "</li>\n";
-  }else{
-	return '<li class="' . implode(' ', $classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
-  }
-}
-
-
-/** Get all primary tasks including subsets
----------------------------------------------------------- */
-function _megatron_local_tasks($tabs = FALSE) {
-  if($tabs == '')
-	return $tabs;
-  
-  if(!$tabs)
-	$tabs = menu_primary_local_tasks();
-  
-  foreach($tabs as $key => $element) {
-	$result = db_select('menu_router', NULL, array('fetch' => PDO::FETCH_ASSOC))
-	  ->fields('menu_router')
-	  ->condition('tab_parent', $element['#link']['path'])
-	  ->condition('context', MENU_CONTEXT_INLINE, '<>')
-	  ->condition('type', array(MENU_DEFAULT_LOCAL_TASK, MENU_LOCAL_TASK), 'IN')
-	  ->orderBy('weight')
-	  ->orderBy('title')
-	  ->execute();
-  
-	$router_item = menu_get_item($element['#link']['path']);
-	$map = $router_item['original_map'];
-  
-	$i = 0;
-	foreach ($result as $item) {
-	  _menu_translate($item, $map, TRUE);
-  
-	  //only add items that we have access to
-	  if ($item['tab_parent'] && $item['access']) {
-		//set path to that of parent for the first item
-		if ($i === 0) {
-		  $item['href'] = $item['tab_parent'];
-		}
-  
-		if (current_path() == $item['href']) {
-		  $tabs[$key][] = array(
-			'#theme' => 'menu_local_task',
-			'#link' => $item,
-			'#active' => TRUE,
-		  );
-		}
-		else {
-		  $tabs[$key][] = array(
-			'#theme' => 'menu_local_task',
-			'#link' => $item,
-		  );
-		}
-  
-		//only count items we have access to.
-		$i++;
-	  }
-	}
-  }
-  
-  return $tabs;
-}
-
 
 
 /** FORMS
@@ -576,8 +471,23 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
   }
 }  
 
+/** BUTTONS */
+function megatron_button($variables) {
+  $element = $variables['element'];
+  $label = check_plain($element['#value']);
+  $element['#attributes']['type'] = 'submit';
+  element_set_attributes($element, array('id', 'name', 'value'));
+  $element['#attributes']['class'][] = 'btn form-' . $element['#button_type'];
+  if (!empty($element['#attributes']['disabled'])) {
+    $element['#attributes']['class'][] = 'form-button-disabled';
+  }
+ return '<button' . drupal_attributes($element['#attributes']) . '>'. $label .'</button>
+   '; // This line break adds inherent margin between multiple buttons
+}
 
-/** Returns HTML for status and/or error messages, grouped by type.
+
+/** STATUS MESSAGES
+Returns HTML for status and/or error messages, grouped by type.
 ---------------------------------------------------------- */
 function megatron_status_messages($vars) {
   $display = $vars['display'];
@@ -610,7 +520,8 @@ function megatron_status_messages($vars) {
 }
 
 
-/** Allow css files to be excluded in the .info file
+/** EXCLUDE CSS
+Allow css files to be excluded in the .info file
 ---------------------------------------------------------- */
 function megatron_css_alter(&$css) {
   $excludes = _megatron_alter(megatron_theme_get_info('exclude'), 'css');
@@ -618,7 +529,8 @@ function megatron_css_alter(&$css) {
 }
 
 
-/** Allow js files to be excluded in the .info file / Replace jQuery with updated version
+/** REPLACE CORE jQUERY
+Replace jQuery with updated version
 ---------------------------------------------------------- */
 function megatron_js_alter(&$javascript) {
   // Swap out jQuery to use an external version of the library (a requirement of the Twitter Bootstrap framework).
@@ -648,6 +560,102 @@ function _megatron_alter($files, $type) {
 /** Returns HTML for a set of links.
 ---------------------------------------------------------- */
 function megatron_megatron_links($variables) {
+
+  $links = $variables['links'];
+  $attributes = $variables['attributes'];
+  $heading = $variables['heading'];
+
+  global $language_url;
+  $output = '';
+
+  if (count($links) > 0) {
+    $output = '';
+    $output .= '<ul' . drupal_attributes($attributes) . '>';
+    
+    // Treat the heading first if it is present to prepend it to the list of links.
+    if (!empty($heading)) {
+      if (is_string($heading)) {
+        // Prepare the array that will be used when the passed heading is a string.
+        $heading = array(
+          'text' => $heading,
+          // Set the default level of the heading. 
+          'level' => 'li',
+        );
+      }
+      $output .= '<' . $heading['level'];
+      if (!empty($heading['class'])) {
+        $output .= drupal_attributes(array('class' => $heading['class']));
+      }
+      $output .= '>' . check_plain($heading['text']) . '</' . $heading['level'] . '>';
+    }
+
+	
+    foreach ($links as $key => $link) {
+      $children = array();
+      if(isset($link['below']))
+      $children = $link['below'];
+      
+	    $attributes = array('class' => array($key));
+	  
+      if (isset($link['href']) && ($link['href'] == $_GET['q'] || ($link['href'] == '<front>' && drupal_is_front_page()))
+           && (empty($link['language']) || $link['language']->language == $language_url->language)) {
+        $attributes['class'][] = 'active';
+      }
+	    if(count($children) > 0) {
+		    $attributes['class'][] = 'dropdown';
+		    $link['attributes']['class'][] = 'btn';
+      }
+	    
+  	  if(!isset($link['attributes']))
+  		$link['attributes'] = array();
+  	  $class = (count($children) > 0) ? 'dropdown' : NULL;
+  	  $output .= '<li ' . drupal_attributes($attributes) . '>';
+	  
+	    
+  	  if (isset($link['href'])) {
+  		  if(count($children) > 0) { 
+  		    $link['html'] = TRUE;
+  		    $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
+  		    $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
+  		  }else{
+  		    // Pass in $link as $options, they share the same keys.
+  		    $output .= l($link['title'], $link['href'], $link);
+  		  }
+  	  }
+  	  elseif (!empty($link['title'])) {
+  	   // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
+  	   if (empty($link['html'])) {
+  		   $link['title'] = check_plain($link['title']);
+  	   }
+  	   $span_attributes = '';
+  	   if (isset($link['attributes'])) {
+  		   $span_attributes = drupal_attributes($link['attributes']);
+  	   }
+	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
+     }
+	  	  
+	  if(count($children) > 0) {
+		  $attributes = array();
+      $attributes['class'] = array('dropdown-menu');
+		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
+		  $output .= '</div>';
+	  }
+	  
+	  $output .= "</li>\n";	
+    }
+
+    $output .= '</ul>';
+  }
+  //if(count($children) > 0) {
+ //   $output .= '</div>';
+ // }
+
+  return $output;
+} 
+
+/** Returns HTML for a set of links.
+---------------------------------------------------------- */
+/*function megatron_megatron_links($variables) {
 
   $links = $variables['links'];
   $attributes = $variables['attributes'];
@@ -745,4 +753,4 @@ function megatron_megatron_links($variables) {
  // }
 
   return $output;
-} 
+} */

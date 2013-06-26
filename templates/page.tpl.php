@@ -51,7 +51,16 @@
 </div>
 
 <div class="container">
-  <?php print theme('ubc_clf_toolbar'); ?>
+  <div class="collapse expand" id="ubc7-global-menu">
+      <div id="ubc7-search" class="expand">
+          <div id="ubc7-search-box">
+            <?php if ($page['search']): print render($page['search']); else: print theme('ubc_clf_toolbar'); endif; ?>
+          </div>
+      </div>
+      <div id="ubc7-global-header" class="expand">
+          <!-- Global Utility Header from CDN -->
+      </div>
+  </div>
   <header id="ubc7-header" class="row-fluid expand" role="banner">
     <div class="span1">
       <div id="ubc7-logo">

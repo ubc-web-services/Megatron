@@ -29,24 +29,12 @@ function megatron_ubc_clf_toolbar($variables) {
     else {
         $search_text = t('Search');
     }
-  $output = '
-    <!-- UBC Global Utility Menu -->
-    <div class="collapse expand" id="ubc7-global-menu">
-        <div id="ubc7-search" class="expand">
-            <div id="ubc7-search-box">
-                <form class="form-search" method="get" action="http://www.ubc.ca/search/refine/">
-                    <input type="text" name="q" placeholder="' . $search_text . '" class="input-xlarge search-query">
-                    <input type="hidden" name="label" value="' . $subunit_text . '" />
-                    <input type="hidden" name="site" value="' . $subunit_search .'" />
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
-        </div>
-        <div id="ubc7-global-header" class="expand">
-            <!-- Global Utility Header from CDN -->
-        </div>
-    </div>
-    <!-- End of UBC Global Utility Menu -->';
+  $output = '<form class="form-search" method="get" action="http://www.ubc.ca/search/refine/">
+      <input type="text" name="q" placeholder="' . $search_text . '" class="input-xlarge search-query">
+      <input type="hidden" name="label" value="' . $subunit_text . '" />
+      <input type="hidden" name="site" value="' . $subunit_search .'" />
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>';
   return $output;
 }
 

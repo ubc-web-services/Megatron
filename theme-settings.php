@@ -309,7 +309,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#maxlength' => 128,
   );
 
-
 // Return the additional form widgets
 return $form;
 }

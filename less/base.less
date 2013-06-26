@@ -2,12 +2,35 @@
 // Custom Utility classes
 // --------------------------------------------------
 
-.ir { display:block; text-indent:-999em; overflow:hidden; background-repeat: no-repeat; }
-.floatleft, .floatl { float: left; margin: 0 10px 5px 0; }
-.floatright, .floatr { float: right; margin: 0 0 5px 10px; }
-.visuallyhidden, .element-invisible, .skip a:link, .skip a:hover, .skip a:visited {
-  position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-.skip a:active, .skip a:focus { position: static; width: auto; height: auto; } 
+.ir { 
+  display: block; 
+  text-indent: -300%; 
+  overflow: hidden; 
+  background-repeat: no-repeat; }
+.floatleft, 
+.floatl { 
+  float: left; 
+  margin: 0 10px 5px 0; }
+.floatright, 
+.floatr { 
+  float: right; 
+  margin: 0 0 5px 10px; }
+.visuallyhidden, 
+.element-invisible, 
+.skip a:link, 
+.skip a:hover, 
+.skip a:visited {
+  position: absolute; 
+  left: -300%; 
+  top: auto; 
+  width: 1px; 
+  height: 1px; 
+  overflow: hidden; }
+.skip a:active, 
+.skip a:focus { 
+  position: static; 
+  width: auto; 
+  height: auto; } 
 
 /*a:link, a:visited, button {
  -webkit-transition: color 0.2s ease, background 0.3s ease;
@@ -22,187 +45,196 @@
 #admin-menu .shortcut-toolbar a { background: inherit; }
 
 // Images - resize your images that are larger than the viewport (remove inline size declarations from markup)
-img, canvas {
-max-width: 100%;
-height: auto; } 
-.ie8 img, .ie8 canvas { max-width: none; }
+img, 
+canvas {
+  max-width: 100%;
+  height: auto; } 
+.ie8 img, 
+.ie8 canvas { max-width: none; }
 // Videos - make responsive by modifying wrapper
-.media-youtube-outer-wrapper, .embedded-video {
-position: relative;
-padding-bottom: 56.25%; /* 16/9 ratio */
-padding-top: 30px; /* IE6 workaround*/
-height: 0;
-overflow: hidden; }
+.media-youtube-outer-wrapper, 
+.embedded-video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16/9 ratio */
+  padding-top: 30px; /* IE6 workaround*/
+  height: 0;
+  overflow: hidden; }
 .media-youtube-outer-wrapper iframe,
 .media-youtube-outer-wrapper object,
 .media-youtube-outer-wrapper embed,
 .embedded-video iframe,
 .embedded-video object,
 .embedded-video embed {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%; }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
 
-// UI improvments
+/* UI improvments */
 //-------------------------
-#edit-title {
-font-size: 24px; }
-#system-themes-form img {
-width: 100px; }
+#edit-title { font-size: 24px; }
+#system-themes-form img { width: 100px; }
 .form-item .description {
-font-style: italic;
-line-height: 1.2em;
-.font-size(11);
-margin-top: 5px;
-color: #777; }
-#edit-delete {
-color: #c00; }
+  font-style: italic;
+  line-height: 1.2em;
+  .font-size(11);
+  margin-top: 5px;
+  color: #777; }
+#edit-delete { color: #c00; }
 // The word "Unpublished" displayed beneath the content.
-.node-unpublished {
-background-color: #fff; }
+.node-unpublished { background-color: #fff; }
 .node-unpublished div.unpublished {
-height: 0;
-overflow: visible;
-color: #d8d8d8;
-.font-size(75);
-line-height: 1;
-font-family: Impact, "Arial Narrow", Helvetica, sans-serif;
-font-weight: bold;
-text-transform: uppercase;
-text-align: center;
-word-wrap: break-word; }
+  height: 0;
+  overflow: visible;
+  color: #d8d8d8;
+  .font-size(75);
+  line-height: 1;
+  font-family: Impact, "Arial Narrow", Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  word-wrap: break-word; }
+
+/* Fix Pager Styles */
+.item-list .pager li { padding: 0; }
+.item-list ul li { margin: 0; }
+.pager li.pager-current {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #eee;
+  border: 1px solid #ddd; }
+
+/* Add Tab styles that aren't hideous */
 /* @group Tabs */
-/*div.tabs { margin: 0 0 5px 0; }
-ul.primary, ul.secondary { width: 99%; }
+div.tabs { margin: 0 0 5px 0; }
+ul.primary, 
+ul.secondary { width: 99%; }
 ul.primary {
-margin: 0;
-padding: 0 0 0 10px;
-border-width: 0;
-list-style: none;
-white-space: nowrap;
-line-height: normal;
-background: url(../img/tabs/tab-bar.png) repeat-x left bottom; }
+  margin: 0 0 .5em 0;
+  padding: 0;
+  border-width: 0;
+  list-style: none;
+  white-space: nowrap;
+  line-height: normal;
+  border-bottom: 1px solid @grayLighter; }
 ul.primary li {
-float: left;
-margin: 0;
-padding: 0; }
-ul.primary li.active a, ul.primary li.active a:hover {
-border-width: 0;
-color: @black;
-background-color: transparent;
-background: url(../img/tabs/tab-left.png) no-repeat left 0; }
-ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
-background: url(../img/tabs/tab-right.png) no-repeat right 0; }
+  float: left;
+  margin: 0;
+  padding: 0; }
+ul.primary li.active a, 
+ul.primary li.active a:hover {
+  border-width: 0;
+  color: @black;
+  background-color: lighten(@grayLight, 10); }
 ul.primary li a {
-display: block;
-height: 24px;
-margin: 0;
-padding: 0 0 0 5px;
-border-width: 0;
-font-weigh: bold;
-text-decoration: none;
-color: #777777;
-background-color: transparent;
-background: url(../img/tabs/tab-left.png) no-repeat left -38px; }
+  display: block;
+  height: 28px;
+  margin: 0 3px 0 0;
+  padding: 0 0 0 5px;
+  border-width: 0;
+  font-weight: bold;
+  text-decoration: none;
+  color: #777777;
+  background-color: @grayLighter;
+  .border-top-radius(4px);  }
 ul.primary li a:hover {
-border-width: 0;
-background-color: transparent;
-background: url(../img/tabs/tab-left.png) no-repeat left -76px; }
-ul.primary li a:hover .tab {
-background: url(../img/tabs/tab-right.png) no-repeat right -76px; }
+  border-width: 0;
+  background-color: lighten(@grayLight, 25); }
 ul.primary li a .tab {
-display: block;
-height: 20px;
-margin: 0;
-padding: 4px 13px 0 6px;
-border-width: 0;
-line-height: 20px;
-background: url(../img/tabs/tab-right.png) no-repeat right -38px; }
+  display: block;
+  height: 24px;
+  margin: 0;
+  padding: 4px 13px 4px 6px;
+  border-width: 0;
+  line-height: 20px; }
 ul.secondary {
-margin: 0;
-padding: 0 0 0 5px;
-border-bottom: 1px solid silver;
-list-style: none;
-white-space: nowrap;
-background: url(../img/tabs/tab-secondary-bg.png) repeat-x left bottom; }
+  margin: 0;
+  padding: 0 0 0 5px;
+  border-bottom: 1px solid silver;
+  list-style: none;
+  white-space: nowrap; }
 ul.secondary li {
-float: left;
-margin: 0 5px 0 0;
-padding: 5px 0;
-border-right: none; }
+  float: left;
+  margin: 0 5px 0 0;
+  padding: 5px 0;
+  border-right: none; }
 ul.secondary a {
-display: block;
-height: 24px;
-margin: 0;
-padding: 0;
-border: 1px solid silver;
-text-decoration: none;
-color: #777777;
-background: url(../img/tabs/tab-secondary.png) repeat-x left -56px; }
-ul.secondary a .active, .activeul.secondary a:hover {
-border: 1px solid silver;
-color: @black;
-background: url(../img/tabs/tab-secondary.png) repeat-x left top; }
-ul.secondary a:hover {
-background: url(../img/tabs/tab-secondary.png) repeat-x left bottom; }
+  display: block;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid silver;
+  text-decoration: none;
+  color: #777777; }
+ul.secondary a .active, 
+.active ul.secondary a:hover {
+  border: 1px solid silver;
+  color: @black; }
 ul.secondary a .tab {
-display: block;
-height: 18px;
-margin: 0;
-padding: 3px 8px;
-line-height: 18px; }*/
+  display: block;
+  height: 18px;
+  margin: 0;
+  padding: 3px 8px;
+  line-height: 18px; }
 /* @end */
 
 // Custom Utilities for Drupal CLF
 //-------------------------
 .inflate {
-margin-left: -15px;
-margin-right: -15px;
-padding-left: 0;
-padding-right: 0; }
+  margin-left: -15px;
+  margin-right: -15px;
+  padding-left: 0;
+  padding-right: 0; }
 .nopadding {
-padding-left: 0;
-padding-right: 0; }
+  padding-left: 0;
+  padding-right: 0; }
 
 // DEFAULTS FOR CLF
 //-------------------------
 body {
-background: #cccccc;
-font-family: @sansFontFamily;
-min-width: 240px; }
-//#ubc7-unit-menu .nav > li > a, #ubc7-unit-menu .nav > li > .btn-group > a { padding: 9px 15px 11px; }
+  background: #cccccc;
+  font-family: @sansFontFamily;
+  min-width: 240px; }
 #main { background-color: @white; }
-#ubc7-unit-identifier.no-umbrella {
-line-height: 2.25em; }
+#ubc7-unit-identifier.no-umbrella { line-height: 2.25em; }
 
 // Unit Bar link and font colour
 //-------------------------
 #ubc7-unit,
 #ubc7-unit-name a {
-color: #FFFFFF;
-text-shadow: 1px 1px 2px #333333; }
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px #333333; }
 #ubc7-unit-name a:hover,
-#ubc7-unit-name a:active {
-text-shadow: 1px 2px 2px #333333; }
+#ubc7-unit-name a:active { text-shadow: 1px 2px 2px #333333; }
 
 
 //#ubc7-unit-menu .btn-group .btn { line-height: 44px; }
 // FIX THE PRIMARY LINK ACTIVE STYLES
 //-------------------------
 #ubc7-unit-menu .nav > li > a.active {
-background:  @ubcSilver;
--webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
--moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125); }
-#ubc7-unit-menu .nav-collapse .nav > li > a:hover, #ubc7-unit-menu .nav-collapse .dropdown-menu a:hover, #ubc7-unit-alternate-navigation .nav-collapse .nav > li > a:hover, #ubc7-unit-alternate-navigation .nav-collapse .dropdown-menu a:hover {
-color:  #fff;
-text-decoration: none;
-background-color: @ubcBlue !important;
--webkit-box-shadow: none;
--moz-box-shadow: none;
-box-shadow: none; }  
+  background:  @ubcSilver;
+  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125); }
+#ubc7-unit-menu .nav-collapse .nav > li > a:hover, 
+#ubc7-unit-menu .nav-collapse .dropdown-menu a:hover, 
+#ubc7-unit-alternate-navigation .nav-collapse .nav > li > a:hover, 
+#ubc7-unit-alternate-navigation .nav-collapse .dropdown-menu a:hover {
+  color:  #fff;
+  text-decoration: none;
+  background-color: @ubcBlue !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }  
+
+// this is the fix for the clf line height issue with no dropdown
+#ubc7-unit-menu .nav > li  > a { padding: 10px 15px !important; }
+
+// target Firefox because it behaves differently @1200px
+@media screen and (min--moz-device-pixel-ratio:0) and (min-width:1200px) {
+  #ubc7-unit-menu .nav > li  > a { padding-top: 11px !important; }
+}
 
 // add box shadow to container elements
 /*#ubc7-header, div#ubc7-unit, #ubc7-unit-menu, ul.breadcrumb, #main, #ubc7-unit-footer, #ubc7-global-footer, #ubc7-minimal-footer {
@@ -213,27 +245,25 @@ box-shadow: 0px 3px 5px #444; }*/
 // FOOTER STYLES
 //-------------------------
 /** Social Icon **/
-//#ubc7-unit-social-icons i { color: @ubcBlue; }
-//#ubc7-unit-social-icons i:hover { color: @ubcLightGrey;}
+#ubc7-unit-social-icons i:hover { color: @ubcGrey;}
 
 // DEFAULT SUBNAV STYLES
 //-------------------------
-.bootstrap-sidenav ul {
-margin: 0;}
+.bootstrap-sidenav ul { margin: 0;}
 .bootstrap-sidenav ul > li > a {
-border: 1px solid #d7e0e7;
-color: #002145;
-display: block;
-margin: 0 0 -1px;
-padding: 8px 14px 8px 28px;
-text-decoration: none; }
+  border: 1px solid #d7e0e7;
+  color: #002145;
+  display: block;
+  margin: 0 0 -1px;
+  padding: 8px 14px 8px 28px;
+  text-decoration: none; }
 
 // Make inline fields behave
 .field-label-inline label { display: inline-block; }
 
 // Fix collapsibe fieldset behaviour
 html.js fieldset.collapsible .fieldset-legend,
-html.js fieldset.collapsed .fieldset-legende { background-image: none; }
+html.js fieldset.collapsed .fieldset-legend { background-image: none; }
 html.js fieldset.collapsible .fieldset-legend a:after,
 html.js fieldset.collapsed .fieldset-legend a:after {
   position: absolute;  
@@ -242,79 +272,66 @@ html.js fieldset.collapsed .fieldset-legend a:after {
 html.js fieldset.collapsible .fieldset-legend a:after { content: "-"; }
 html.js fieldset.collapsed .fieldset-legend a:after { content: "+"; }
 
-/* @group Redefine Bootstrap nav */
-/*ul.menu {
-margin-bottom: 0;
-margin-left: 0;
-list-style: none }
-.nav.menu>li>a {
-background-color: #fff;
-display: block }
-.nav.menu>li>a:hover {
-color: #555;
-text-decoration: none;
-background-color: #eee }
-.nav-tabs,.nav-pills {
-*zoom: 1 }
-.nav-tabs:before,.nav-pills:before,.nav-tabs:after,.nav-pills:after {
-display: table;
-line-height: 0;
-content: "" }
-.nav-tabs:after,.nav-pills:after {
-clear: both }
-.nav-tabs .menu>li,.nav-pills .menu>li {
-float: left }
-.nav-tabs .menu>li>a,.nav-pills .menu>li>a {
-padding-right: 12px;
-padding-left: 12px;
-margin-right: 2px;
-line-height: 14px }
-.nav-tabs .menu {
-border-bottom: 1px solid #ddd }
-.nav-tabs .menu>li {
-margin-bottom: -1px }
-.nav-tabs .menu>li>a {
-padding-top: 8px;
-padding-bottom: 8px;
-line-height: 20px;
-border: 1px solid transparent; }
-.nav-tabs .menu>li>a:hover {
-border-color: #eee #eee #ddd }
-.nav-tabs .menu>.active>a,.nav-tabs .menu>.active>a:hover {
-color: #555;
-cursor: default;
-background-color: #fff;
-border: 1px solid #ddd;
-border-bottom-color: transparent }
-.nav-stacked .menu>li {
-float: none }
-.nav-stacked .menu>li>a {
-margin-right: 0 }
-.nav-tabs.nav-stacked {
-border-bottom: 0 }
-.nav-tabs.nav-stacked .menu>li>a {
-border: 1px solid #ddd;
--webkit-border-radius: 0;
--moz-border-radius: 0;
-border-radius: 0 }
-.nav-tabs.nav-stacked .menu>li>a:hover {
-text-decoration: none; }
-.nav-tabs.nav-stacked .menu>li>a:hover {
-z-index: 2;
-border-color: #ddd }
-.nav-pills.nav-stacked .menu>li>a {
-margin-bottom: 3px }
-.nav-pills.nav-stacked .menu>li:last-child>a {
-margin-bottom: 1px }*/
-/* @end */
 
 @media screen and (max-width:979px) {
 // START 768-979 STYLES    
 .inflate {
-margin-left: 0;
-margin-right: 0;
-padding-left: 0;
-padding-right: 0; }
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0; }
 
 // END 768-979 STYLES
+}
+
+
+// fix the buttons - cant apply .btn class to primary links with children
+#ubc7-unit-menu .dropdown > .btn-group > a,
+#ubc7-unit-alternate-navigation .dropdown > .btn-group > a {
+  height: 20px;
+  color: #002145;
+  font-size: 14px;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 15px;
+  vertical-align: middle;
+  cursor: pointer; }
+  
+// apply styles for non-javascript browsers (since we add the .btn class with js)
+.no-js #ubc7-unit-menu .dropdown > .btn-group > a,
+.no-js #ubc7-unit-alternate-navigation .dropdown > .btn-group > a {
+  border: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  z-index: 1;
+  background: #e6e6e6;
+  text-shadow: none; }
+.no-js #ubc7-unit-menu .dropdown > .btn-group > a:hover,
+.no-js #ubc7-unit-alternate-navigation .dropdown > .btn-group > a:hover {
+  background: #002145;
+  color: #fff; }
+
+@media screen and (max-width: 979px) {
+  .no-js #ubc7-unit-menu .dropdown > .btn-group > a {
+    display: block;
+    margin-right: 40px;
+    padding-left: 20px;
+    text-align: left;
+    background: #fff;
+    border-bottom: 1px solid #c3d0db;
+    font-weight: 400;
+    text-shadow: none; }
+  .no-js .nav-collapse .dropdown > .btn-group > a {
+    padding: 4px 10px 4px;
+    font-weight: normal; }
+}
+
+@media screen and (min-width: 1200px) {
+  .no-js #ubc7-unit-menu .dropdown > .btn-group > a {
+    line-height: 20px;
+    padding: 12px 15px 13px; }
+}
+.crumbs {
+  background: white;
 }
