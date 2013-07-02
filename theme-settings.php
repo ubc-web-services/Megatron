@@ -101,12 +101,12 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
         'Faculty of Dentistry' => t('Faculty of Dentistry'),
         'Faculty of Education' => t('Faculty of Education'),
         'Faculty of Forestry' => t('Faculty of Forestry'),
-        'Faculty of Graduate Studies' => t('Faculty of Graduate Studies'),
         'Faculty of Land and Food Systems' => t('Faculty of Land and Food Systems'),
         'Faculty of Law' => t('Faculty of Law'),
         'Faculty of Medicine' => t('Faculty of Medicine'),
         'Faculty of Pharmaceutical Sciences' => t('Faculty of Pharmaceutical Sciences'),
         'Faculty of Science' => t('Faculty of Science'),
+        'Graduate and Postdoctoral Studies' => t('Graduate and Postdoctoral Studies'),
         'Sauder School of Business' => t('Sauder School of Business'),
       ),
   );
