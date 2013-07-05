@@ -212,7 +212,9 @@ body {
 //#ubc7-unit-menu .btn-group .btn { line-height: 44px; }
 // FIX THE PRIMARY LINK ACTIVE STYLES
 //-------------------------
-#ubc7-unit-menu .nav > li > a.active {
+#ubc7-unit-menu .nav > li > a.active,
+#ubc7-unit-menu .nav > li.active-trail > .btn-group, 
+#ubc7-unit-alternate-navigation .nav > li.active-trail > .btn-group {
   background:  @ubcSilver;
   -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
   -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
@@ -227,6 +229,11 @@ body {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }  
+#ubc7-unit-menu .nav > li.active-trail:hover > .btn-group {
+  background: @ubcBlue; }
+#ubc7-unit-menu .nav > li.active-trail > .btn-group .btn,
+#ubc7-unit-alternate-navigation .nav > li.active-trail > .btn-group .btn {
+  background: 0; }
 
 // this is the fix for the clf line height issue with no dropdown
 #ubc7-unit-menu .nav > li  > a { padding: 10px 15px !important; }
@@ -251,12 +258,22 @@ box-shadow: 0px 3px 5px #444; }*/
 //-------------------------
 .bootstrap-sidenav ul { margin: 0;}
 .bootstrap-sidenav ul > li > a {
-  border: 1px solid #d7e0e7;
-  color: #002145;
+  border: 1px solid @ubcSilver;
+  color: @ubcBlue;
   display: block;
   margin: 0 0 -1px;
   padding: 8px 14px 8px 28px;
   text-decoration: none; }
+// remove bos shadow from nested lists
+.bootstrap-sidenav .bootstrap-sidenav {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
+
+/* add active style to sidenav */
+.bootstrap-sidenav > .active > a,
+.bootstrap-sidenav a.active { background: @ubcSilver; }
+.bootstrap-sidenav .nav > li > a { padding-left: 28px; }
 
 // Make inline fields behave
 .field-label-inline label { display: inline-block; }
