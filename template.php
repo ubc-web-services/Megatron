@@ -81,7 +81,7 @@ function megatron_preprocess_html(&$vars) {
       $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
     }
     // add a body class to tell us what layout we're using
-    //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
+    $vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
     // add a body class to tell us what colours we're using
     $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
     
@@ -102,10 +102,21 @@ function megatron_preprocess_html(&$vars) {
      }
 
      // Add js libraries and scripts
+     $clfVerison = theme_get_setting('clf_clf_version');
      $options = array(
        'group' => JS_THEME,
      );
-     drupal_add_js('//cdn.ubc.ca/clf/7.0.2/js/ubc-clf.min.js?v.7.0.2', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));    
+     drupal_add_js('//cdn.ubc.ca/clf/' . $clfVerison . '/js/ubc-clf.min.js', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));  
+     
+     // Add CSS if layout is not default
+     $clfLayout = theme_get_setting('clf_layout');
+     //if (!empty($clfLayout)) {
+     if ($clfLayout == '__fluid') {
+       drupal_add_css(drupal_get_path('theme','megatron') . '/css/fluid-width.css', array('group' => CSS_THEME, 'every_page' => TRUE));  
+     }
+     if ($clfLayout == '__full') {
+       drupal_add_css(drupal_get_path('theme','megatron') . '/css/full-width.css', array('group' => CSS_THEME, 'every_page' => TRUE));  
+     }
   }
 
 
@@ -191,6 +202,7 @@ function megatron_preprocess_page(&$variables) {
   require_once('includes/template-ubc-clf-elements.inc');
   // Add template suggestions based on content type 
   if (isset($variables['node'])) {  
+    $variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
     $variables['theme_hook_suggestions'][] = 'page__type__'. $variables['node']->type;
   }
 
@@ -485,6 +497,167 @@ function megatron_button($variables) {
    '; // This line break adds inherent margin between multiple buttons
 }
 
+/** PAGER */
+/* Returns HTML for a query pager.
+ *
+ * Menu callbacks that display paged query results should call theme('pager') to
+ * retrieve a pager control so that users can view other results. Format a list
+ * of nearby pages with additional query results.
+ *
+ * @param $vars
+ *   An associative array containing:
+ *   - tags: An array of labels for the controls in the pager.
+ *   - element: An optional integer to distinguish between multiple pagers on
+ *     one page.
+ *   - parameters: An associative array of query string parameters to append to
+ *     the pager links.
+ *   - quantity: The number of pages in the list.
+ *
+ * @ingroup themeable
+ */
+function megatron_pager($variables) {
+  $output = "";
+  $tags = $variables['tags'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $quantity = $variables['quantity'];
+  global $pager_page_array, $pager_total;
+
+  // Calculate various markers within this pager piece:
+  // Middle is used to "center" pages around the current page.
+  $pager_middle = ceil($quantity / 2);
+  // current is the page we are currently paged to
+  $pager_current = $pager_page_array[$element] + 1;
+  // first is the first page listed by this pager piece (re quantity)
+  $pager_first = $pager_current - $pager_middle + 1;
+  // last is the last page listed by this pager piece (re quantity)
+  $pager_last = $pager_current + $quantity - $pager_middle;
+  // max is the maximum page number
+  $pager_max = $pager_total[$element];
+  // End of marker calculations.
+
+  // Prepare for generation loop.
+  $i = $pager_first;
+  if ($pager_last > $pager_max) {
+    // Adjust "center" if at end of query.
+    $i = $i + ($pager_max - $pager_last);
+    $pager_last = $pager_max;
+  }
+  if ($i <= 0) {
+    // Adjust "center" if at start of query.
+    $pager_last = $pager_last + (1 - $i);
+    $i = 1;
+  }
+
+  // End of generation loop preparation.
+  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('first')), 'element' => $element, 'parameters' => $parameters));
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last')), 'element' => $element, 'parameters' => $parameters));
+
+  if ($pager_total[$element] > 1) {
+    /*
+    if ($li_first) {
+      $items[] = array(
+        'class' => array('pager-first'), 
+        'data' => $li_first,
+      );
+    }
+    */
+    if ($li_previous) {
+      $items[] = array(
+        'class' => array('prev'), 
+        'data' => $li_previous,
+      );
+    }
+
+    // When there is more than one page, create the pager list.
+    if ($i != $pager_max) {
+      if ($i > 1) {
+        $items[] = array(
+          'class' => array('pager-ellipsis'), 
+          'data' => '…',
+        );
+      }
+      // Now generate the actual pager piece.
+      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
+        if ($i < $pager_current) {
+          $items[] = array(
+           // 'class' => array('pager-item'), 
+            'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
+          );
+        }
+        if ($i == $pager_current) {
+          $items[] = array(
+            'class' => array('active'), // Add the active class 
+            'data' => l($i, '#', array('fragment' => '','external' => TRUE)),
+          );
+        }
+        if ($i > $pager_current) {
+          $items[] = array(
+            //'class' => array('pager-item'), 
+            'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
+          );
+        }
+      }
+      if ($i < $pager_max) {
+        $items[] = array(
+          'class' => array('pager-ellipsis'), 
+          'data' => '…',
+        );
+      }
+    }
+    // End generation.
+    if ($li_next) {
+      $items[] = array(
+        'class' => array('next'), 
+        'data' => $li_next,
+      );
+    }
+    /*
+    if ($li_last) {
+      $items[] = array(
+        'class' => array('pager-last'), 
+        'data' => $li_last,
+      );
+    }
+    */
+
+    return '<div class="pagination">'. theme('item_list', array(
+      'items' => $items, 
+      //'attributes' => array('class' => array('pager')),
+    )) . '</div>';
+  }
+  
+  return $output;
+}
+
+/** TABLES */
+/** Add Bootstrap table class to tables added by Drupal
+---------------------------------------------------------- */
+function megatron_preprocess_table(&$variables) {
+  if(!isset($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = array('table', 'table-striped');
+  }
+  else {
+    $variables['attributes']['class'][] = 'table';
+    $variables['attributes']['class'][] = 'table-striped';
+  }
+}
+
+/** VIEWS
+Provides views theme override functions for Bootstrap themes.
+
+Add Bootstrap table class to views tables.
+---------------------------------------------------------- */
+function megatron_preprocess_views_view_table(&$vars) {
+  $vars['classes_array'][] = 'table';
+}
+
+function megatron_preprocess_views_view_grid(&$vars) {
+  $vars['class'] .= ' table';
+}
+
 
 /** STATUS MESSAGES
 Returns HTML for status and/or error messages, grouped by type.
@@ -652,105 +825,3 @@ function megatron_megatron_links($variables) {
 
   return $output;
 } 
-
-/** Returns HTML for a set of links.
----------------------------------------------------------- */
-/*function megatron_megatron_links($variables) {
-
-  $links = $variables['links'];
-  $attributes = $variables['attributes'];
-  $heading = $variables['heading'];
-
-  global $language_url;
-  $output = '';
-
-  if (count($links) > 0) {
-    $output = '';
-    $output .= '<ul' . drupal_attributes($attributes) . '>';
-    
-    // Treat the heading first if it is present to prepend it to the list of links.
-    if (!empty($heading)) {
-      if (is_string($heading)) {
-        // Prepare the array that will be used when the passed heading is a string.
-        $heading = array(
-          'text' => $heading,
-          // Set the default level of the heading. 
-          'level' => 'li',
-        );
-      }
-      $output .= '<' . $heading['level'];
-      if (!empty($heading['class'])) {
-        $output .= drupal_attributes(array('class' => $heading['class']));
-      }
-      $output .= '>' . check_plain($heading['text']) . '</' . $heading['level'] . '>';
-    }
-
-    $num_links = count($links);
-    $i = 1;
-	
-    foreach ($links as $key => $link) {
-      // to add a counter that lets us assign an id to each li
-      static $item_id = 0;
-      $children = array();
-      if(isset($link['below']))
-      $children = $link['below'];
-      
-	    $attributes = array('class' => array($key));
-	  
-      if (isset($link['href']) && ($link['href'] == $_GET['q'] || ($link['href'] == '<front>' && drupal_is_front_page()))
-           && (empty($link['language']) || $link['language']->language == $language_url->language)) {
-        $attributes['class'][] = 'active';
-      }
-	    if(count($children) > 0) {
-		    $attributes['class'][] = 'dropdown';
-		    $link['attributes']['class'][] = 'btn';
-      }
-	    
-  	  if(!isset($link['attributes']))
-  		$link['attributes'] = array();
-  	  $class = (count($children) > 0) ? 'dropdown' : NULL;
-  	  $output .= '<li id="mid-' . (++$item_id) . '"' . drupal_attributes(array('class' => array($class))) . '>';
-	  
-	    
-  	  if (isset($link['href'])) {
-  		  if(count($children) > 0) { 
-  		    $link['html'] = TRUE;
-  		    $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
-  		    $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
-  		  }else{
-  		    // Pass in $link as $options, they share the same keys.
-  		    $output .= l($link['title'], $link['href'], $link);
-  		  }
-  	  }
-  	  elseif (!empty($link['title'])) {
-  	   // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
-  	   if (empty($link['html'])) {
-  		   $link['title'] = check_plain($link['title']);
-  	   }
-  	   $span_attributes = '';
-  	   if (isset($link['attributes'])) {
-  		   $span_attributes = drupal_attributes($link['attributes']);
-  	   }
-	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
-     }
-	  
-	  $i++;
-	  
-	  if(count($children) > 0) {
-		  $attributes = array();
-      $attributes['class'] = array('dropdown-menu');
-		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
-		  $output .= '</div>';
-	  }
-	  
-	  $output .= "</li>\n";	
-    }
-
-    $output .= '</ul>';
-  }
-  //if(count($children) > 0) {
- //   $output .= '</div>';
- // }
-
-  return $output;
-} */

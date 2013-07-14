@@ -19,7 +19,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 ---------------------------------------------------------- */
   $form['clf_theme'] = array(
     '#type' => 'fieldset', 
-    '#title' => t('CLF Colour Theme Options'), 
+    '#title' => t('CLF Theme Options'), 
     '#prefix' => '<div class="clf_coloroptions">', 
     '#suffix' => '</div>',
     '#collapsible' => TRUE,
@@ -39,7 +39,30 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     ),
   );
   
- /* $form['clf_theme']['clf_layout'] = array(
+  $form['clf_theme']['clf_clf_version'] = array(
+    '#type' => 'select',
+    '#title' => t('CLF Version'),
+    '#description' => t('Select the release version of the CLF you\'d like to use.'),
+    '#default_value' => theme_get_setting('clf_clf_version'),
+    '#options' => array(
+      '7.0.2' => t('Release 7.0.2'),
+      '7.0.3' => t('Release 7.0.3'),
+      '7.0.4' => t('Release 7.0.4'),
+    ),
+  );
+  
+  $form['clf_theme']['clf_clf_package'] = array(
+    '#type' => 'select',
+    '#title' => t('CLF Package'),
+    '#description' => t('Select the package of the CLF you\'d like to use.<br /><br />Choosing a minimal version will exclude many of the default CLF styles, but may be preferable for themes with a large number of customizations. <em>Note: Minimal package is only currently available for CLF version 7.0.2</em>'),
+    '#default_value' => theme_get_setting('clf_clf_package'),
+    '#options' => array(
+      'full' => t('Full Version'),
+      'min' => t('Minimal Version'),
+    ),
+  );
+  
+  $form['clf_theme']['clf_layout'] = array(
     '#type' => 'select', 
     '#title' => t('Layout'), 
     '#description' => t('Make the CLF Fluid (100% width)'),
@@ -49,7 +72,14 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
      '__fluid' => t('Fluid Width (100%)'),
      '__full' => t('Full Width Header and Footer'),
    ),
- );*/
+ );
+ 
+  $form['clf_theme']['clf_navoption'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Primary Navigation Mobile Placement'),
+    '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
+    '#default_value' => theme_get_setting('clf_navoption'),
+);
   
   /** CLF CAMPUS IDENTITY OPTIONS
   ---------------------------------------------------------- */

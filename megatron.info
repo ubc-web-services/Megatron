@@ -1,10 +1,10 @@
-name = UBC CLF 7.0.2 Drupal Theme
+name = UBC CLF 7.0.3 Drupal Theme
 description = This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.
-version = 2.2
+version = 2.3
 core = 7.x
 
 regions[search]         = 'Search'
-;regions[navigation]     = 'Navigation'
+;regions[navigation]    = 'Navigation'
 regions[highlighted]    = 'Content: Above'
 regions[help]           = 'Help'
 regions[content]        = 'Content'
@@ -15,13 +15,14 @@ regions[prefooter]      = 'Content: Below'
 stylesheets[all][] = css/clf_drupal.css
 stylesheets[all][] = css/unit-custom.css
 
-;Scripts - concatenated modernizr and bootstrap-alert with custom js
-;scripts[] = js/lib/modernizr.custom.2.6.2.js
+;Scripts - concatenated bootstrap-alert with custom js
 ;scripts[] = js/lib/bootstrap-alert.js
 scripts[] = js/custom-min.js
 
 ;settings[toggle_name] = 0
-;settings[toggle_search] = 1
+settings[clf_clf_version] = '7.0.3'
+settings[clf_clf_package] = 'full'
+settings[clf_layout] = ''
 
 ;Excluded CSS Files
 exclude[css][] = 'misc/vertical-tabs.css'

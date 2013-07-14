@@ -51,8 +51,6 @@
   <a href="#ubc7-unit-menu" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
 </div>
 
-<div class="container">
-  <!-- UBC Global Utility Menu -->
   <div class="collapse expand" id="ubc7-global-menu">
       <div id="ubc7-search" class="expand">
           <div id="ubc7-search-box">
@@ -63,111 +61,114 @@
           <!-- Global Utility Header from CDN -->
       </div>
   </div>
-  <!-- End of UBC Global Utility Menu -->
-  <!-- UBC Header -->
   <header id="ubc7-header" class="row-fluid expand" role="banner">
-    <div class="span1">
-      <div id="ubc7-logo">
-        <a href="http://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
+    <div class="container left">
+      <div class="span1">
+        <div id="ubc7-logo">
+          <a href="http://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
+        </div>
       </div>
-    </div>
-    <div class="span2">
-      <div id="ubc7-apom">
-        <a href="http://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>                        
+      <div class="span2">
+        <div id="ubc7-apom">
+          <a href="http://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>                        
+        </div>
       </div>
-    </div>
-    <div class="span9" id="ubc7-wordmark-block">
-      <div id="ubc7-wordmark">
-        <a href="http://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
+      <div class="span9" id="ubc7-wordmark-block">
+        <div id="ubc7-wordmark">
+          <a href="http://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
+        </div>
+        <div id="ubc7-global-utility">
+          <button data-toggle="collapse" data-target="#ubc7-global-menu" tabindex="4"><span>UBC Search</span></button>
+          <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
+        </div>
       </div>
-      <div id="ubc7-global-utility">
-        <button data-toggle="collapse" data-target="#ubc7-global-menu" tabindex="4"><span>UBC Search</span></button>
-        <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
-      </div>
-    </div>
+    </div><!-- /.container -->
   </header>
-  <!-- End of UBC Header -->
-  <!-- UBC Unit Identifier -->
   <div id="ubc7-unit" class="row-fluid expand">
-    <div class="span12">
-      <div class="navbar">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target="#ubc7-unit-navigation">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
+    <div class="container full">
+      <div class="span12">
+        <div class="navbar">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target="#ubc7-unit-navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+        </div>
+        <?php print theme('ubc_clf_header'); ?>
       </div>
-      <?php print theme('ubc_clf_header'); ?>
-    </div>
+    </div><!-- /.container -->
   </div>
-  <!-- End of UBC Unit Identifier -->
-  <!-- UBC Unit Navigation -->
   <?php if ($primary_nav): ?>
   <nav id="ubc7-unit-menu" role="navigation" class="navbar expand">
-    <div class="navbar-inner expand">
-      <div class="nav-collapse collapse" id="ubc7-unit-navigation">
-        <?php print $primary_nav; ?>
+    <div class="container full">
+      <div class="navbar-inner expand">
+        <div class="nav-collapse collapse" id="ubc7-unit-navigation">
+          <?php print $primary_nav; ?>
+        </div>
       </div>
-    </div>
+    </div><!-- /.container -->
   </nav>
   <?php endif; ?>
-  <!-- End of UBC Unit Navigation -->
-  <!-- UBC Unit Breadcrumbs -->
+  	  
   <?php if (($breadcrumb) && (!$is_front)): ?>
-  <?php print $breadcrumb; ?>
+  <div class="container full">
+    <?php print $breadcrumb; ?>
+  </div><!-- /.container -->
   <?php endif; ?>  	  
-  <!-- End of UBC Unit Breadcrumbs -->
-  <!-- Content Area -->
-   <?php if ($page['highlighted']): ?>
-     <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
-   <?php endif; ?>
-  
-  <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
-    <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
-      
-      <?php if (($page['sidebar_first']) && (!$is_front)): ?>
-      <aside class="span3 region region-sidebar-first" role="complementary">
-        <?php print render($page['sidebar_first']); ?>
-      </aside>  <!-- /#sidebar-first -->
-      <?php endif; ?>
-      
-      <section class="<?php print _megatron_content_span($columns); ?>">  
-        <?php print render($title_prefix); ?>
-        <?php //if (function_exists('twitter_pull_render')) { print twitter_pull_render('@openpublish', 'OpenPublish', 10); } ?>
-        <?php if ($title): ?>
-        <h1 class="page-header"><?php print $title; ?></h1>
-        <?php endif; ?>
-        <?php print render($title_suffix); ?>
-        <?php print $messages; ?>
-        <?php if ($tabs): ?>
-        <?php print render($tabs); ?>
-        <?php endif; ?>
-        <?php if ($page['help']): ?> 
-        <div class="well"><?php print render($page['help']); ?></div>
-        <?php endif; ?>
-        <?php if ($action_links): ?>
-        <ul class="action-links"><?php print render($action_links); ?></ul>
-        <?php endif; ?>
-        <?php print render($page['content']); ?>
-      </section>
-      
-      <?php if (($page['sidebar_first']) && ($is_front)): ?>
-      <aside class="span4 region region-sidebar-first" role="complementary">
-        <?php print render($page['sidebar_first']); ?>
-      </aside>  <!-- /#sidebar-first -->
-      <?php endif; ?>
- 
-      <?php if (($page['sidebar_second']) && (!$is_front)): ?>
-      <aside class="span3 region region-sidebar-second" role="complementary">
-        <?php print render($page['sidebar_second']); ?>
-      </aside>  <!-- /#sidebar-second -->
-      <?php endif; ?>
 
-    </div><!-- /#content -->
-  </div><!-- /#main -->
+  <!-- BEGIN: UBC CLF CONTENT SPACE -->
+  <div class="container full">
+    <?php if ($page['highlighted']): ?>
+    <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
+    <?php endif; ?>
+    <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
+      <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
+      
+        <?php if (($page['sidebar_first']) && (!$is_front)): ?>
+        <aside class="span3 region region-sidebar-first" role="complementary">
+          <?php print render($page['sidebar_first']); ?>
+        </aside>  <!-- /#sidebar-first -->
+        <?php endif; ?>
+      
+        <section class="<?php print _megatron_content_span($columns); ?>">  
+          <?php print render($title_prefix); ?>
+          <?php if ($title): ?>
+          <h1 class="page-header"><?php print $title; ?></h1>
+          <?php endif; ?>
+          <?php print render($title_suffix); ?>
+          <?php print $messages; ?>
+          <?php if ($tabs): ?>
+          <?php print render($tabs); ?>
+          <?php endif; ?>
+          <?php if ($page['help']): ?> 
+          <div class="well"><?php print render($page['help']); ?></div>
+          <?php endif; ?>
+          <?php if ($action_links): ?>
+          <ul class="action-links"><?php print render($action_links); ?></ul>
+          <?php endif; ?>
+          <?php print render($page['content']); ?>
+        </section>
+      
+        <?php if (($page['sidebar_first']) && ($is_front)): ?>
+        <aside class="span4 region region-sidebar-first" role="complementary">
+          <?php print render($page['sidebar_first']); ?>
+        </aside>  <!-- /#sidebar-first -->
+        <?php endif; ?>
+ 
+        <?php if (($page['sidebar_second']) && (!$is_front)): ?>
+        <aside class="span3 region region-sidebar-second" role="complementary">
+          <?php print render($page['sidebar_second']); ?>
+        </aside>  <!-- /#sidebar-second -->
+        <?php endif; ?>
+
+      </div><!-- /#content -->
+    </div><!-- /#main -->
+  </div><!-- /.container -->
   
-  <?php if ($page['prefooter']): ?> 
-    <?php print render($page['prefooter']); ?>
+  <?php if ($page['prefooter']): ?>
+    <div class="container full">
+      <?php print render($page['prefooter']); ?>
+    </div><!-- /.container -->
   <?php endif; ?>
   
   <!-- Footer Area Unit Menu - Mobile Only -->
@@ -183,7 +184,14 @@
   <!-- End of Footer Area Unit Menu -->
     
   <footer id="ubc7-footer" role="content-info" >
-    <?php print theme('ubc_clf_visual_identity_footer'); ?>
+    <div class="nocolor">
+      <div class="container full">
+      <?php print theme('ubc_clf_visual_identity_footer'); ?>
+      </div>
+    </div>
+    <div class="container full">
     <?php print theme('ubc_clf_global_utility_footer'); ?>
+    </div>
+    
   </footer>
 </div> <!-- /#container -->
