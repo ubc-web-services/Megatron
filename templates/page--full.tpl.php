@@ -53,12 +53,16 @@
 
   <div class="collapse expand" id="ubc7-global-menu">
       <div id="ubc7-search" class="expand">
+        <div class="container">
           <div id="ubc7-search-box">
             <?php if ($page['search']): print render($page['search']); else: print theme('ubc_clf_toolbar'); endif; ?>
           </div>
+        </div>
       </div>
-      <div id="ubc7-global-header" class="expand">
+      <div class="container">
+        <div id="ubc7-global-header" class="expand">
           <!-- Global Utility Header from CDN -->
+        </div>
       </div>
   </div>
   <header id="ubc7-header" class="row-fluid expand" role="banner">
@@ -109,15 +113,13 @@
     </div><!-- /.container -->
   </nav>
   <?php endif; ?>
-  	  
-  <?php if (($breadcrumb) && (!$is_front)): ?>
-  <div class="container">
-    <?php print $breadcrumb; ?>
-  </div><!-- /.container -->
-  <?php endif; ?>  	  
+  
+  <div class="full-width-container">	  
+    <?php if (($breadcrumb) && (!$is_front)): ?>
+      <?php print $breadcrumb; ?>
+    <?php endif; ?>  	  
 
   <!-- BEGIN: UBC CLF CONTENT SPACE -->
-  <div class="container">
     <?php if ($page['highlighted']): ?>
     <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
     <?php endif; ?>
@@ -163,13 +165,12 @@
 
       </div><!-- /#content -->
     </div><!-- /#main -->
-  </div><!-- /.container -->
   
-  <?php if ($page['prefooter']): ?> 
-    <div class="container">
+    <?php if ($page['prefooter']): ?> 
       <?php print render($page['prefooter']); ?>
-    </div><!-- /.container -->
-  <?php endif; ?>
+    <?php endif; ?>
+  
+  </div><!-- /.full-width-container -->
   
   <!-- Footer Area Unit Menu - Mobile Only -->
   <?php if (($primary_nav) && (!empty($mobilenav))): ?>
@@ -183,15 +184,9 @@
   <?php endif; ?>
   <!-- End of Footer Area Unit Menu -->
     
-  <footer id="ubc7-footer" role="content-info" >
-    <div class="nocolor">
-      <div class="container">
-      <?php print theme('ubc_clf_visual_identity_footer'); ?>
-      </div>
-    </div>
-    <div class="container">
+  <footer id="ubc7-footer" class="expand" role="content-info" >
+    <?php print theme('ubc_clf_visual_identity_footer'); ?>
     <?php print theme('ubc_clf_global_utility_footer'); ?>
-    </div>
     
   </footer>
 </div> <!-- /#container -->

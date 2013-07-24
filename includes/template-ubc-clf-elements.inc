@@ -79,7 +79,15 @@ return $output;
 /** Return the UBC CLF visual identity footer
 ---------------------------------------------------------- */
 function megatron_ubc_clf_visual_identity_footer($variables) {
+    $clf_layout = theme_get_setting('clf_layout');
+    $containerstart = '';
+    $containerend = '';
+    if ($clf_layout == '__full') {
+        $containerstart = '<div class="container">';
+        $containerend = '</div>';
+    } 
     $output = '<div id="ubc7-unit-footer" class="row-fluid expand">';
+    $output .= $containerstart;
     $output .= '<div class="span10">'; 
     $output .= '<div class="ubc7-address-unit-name"><strong>' . theme_get_setting('clf_unitname') . '</strong></div>' . theme_get_setting('clf_campus') . ''; 
     if (theme_get_setting('clf_faculty')) {
@@ -128,32 +136,45 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
       $output .= '</div>';
     } 
     else { $output .= ''; }
-    $output .= '
-      </div></div>
-      <div class="row-fluid expand ubc7-back-to-top">
-        <div class="span2">
+    $output .= '</div>';
+    $output .= $containerend;
+    $output .= '</div><div class="row-fluid expand ubc7-back-to-top">';
+    $output .= $containerstart;
+    $output .= '<div class="span2">
           <a href="#" title="Back to top">Back to top <div class="ubc7-arrow up-arrow grey"></div></a>
-        </div>
-      </div>';
+        </div>';
+    $output .= $containerend;    
+    $output .= '</div>';
     return $output;
   }
   
   /** Return the UBC CLF visual identity footer
   ---------------------------------------------------------- */
   function megatron_ubc_clf_global_utility_footer($variables) {
-    $output = '<div class="row-fluid expand" id="ubc7-global-footer">
-         <div class="span5" id="ubc7-signature"><a href="http://www.ubc.ca/">The University of British Columbia</a></div>
-         <div class="span7" id="ubc7-footer-menu"></div>
-      </div>
-      <div class="row-fluid expand" id="ubc7-minimal-footer">
-         <div class="span12">
+    $clf_layout = theme_get_setting('clf_layout');
+    $containerstart = '';
+    $containerend = '';
+    if ($clf_layout == '__full') {
+        $containerstart = '<div class="container">';
+        $containerend = '</div>';
+    } 
+    $output = '<div class="row-fluid expand" id="ubc7-global-footer">';
+    $output .= $containerstart;
+    $output .= '<div class="span5" id="ubc7-signature"><a href="http://www.ubc.ca/">The University of British Columbia</a></div>
+         <div class="span7" id="ubc7-footer-menu"></div>';
+    $output .= $containerend;   
+    $output .= '</div>
+      <div class="row-fluid expand" id="ubc7-minimal-footer">';
+    $output .= $containerstart;
+    $output .= '<div class="span12">
            <ul>
              <li><a href="https://cdn.ubc.ca/clf/ref/emergency">Emergency Procedures</a> <span class="divider">|</span></li>
              <li><a href="https://cdn.ubc.ca/clf/ref/terms">Terms of Use</a> <span class="divider">|</span></li>
              <li><a href="https://cdn.ubc.ca/clf/ref/copyright">Copyright</a> <span class="divider">|</span></li>
              <li><a href="https://cdn.ubc.ca/clf/ref/accessibility">Accessibility</a></li>
            </ul>
-         </div>
-      </div>';
+         </div>';
+     $output .= $containerend;   
+     $output .= '</div>';
     return $output;
   }

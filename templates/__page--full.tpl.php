@@ -44,7 +44,8 @@
 	*/
 
 ?>
-<?php require_once(path_to_theme() . '/includes/config.php'); ?>
+<?php require_once(drupal_get_path('theme','megatron') . '/includes/config.php'); ?>
+<?php $mobilenav = theme_get_setting('clf_navoption'); ?>
 <div class="skip">
   <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   <a href="#ubc7-unit-menu" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
@@ -64,17 +65,17 @@
     <div class="container">
       <div class="span1">
         <div id="ubc7-logo">
-          <a href="http://www.ubc.ca" tabindex="1">The University of British Columbia</a>
+          <a href="http://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
         </div>
       </div>
       <div class="span2">
         <div id="ubc7-apom">
-          <a href="http://aplaceofmind.ubc.ca" tabindex="2">UBC - A Place of Mind</a>                        
+          <a href="http://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>                        
         </div>
       </div>
       <div class="span9" id="ubc7-wordmark-block">
         <div id="ubc7-wordmark">
-          <a href="http://www.ubc.ca" tabindex="3">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
+          <a href="http://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
         </div>
         <div id="ubc7-global-utility">
           <button data-toggle="collapse" data-target="#ubc7-global-menu" tabindex="4"><span>UBC Search</span></button>
@@ -117,6 +118,9 @@
 
   <!-- BEGIN: UBC CLF CONTENT SPACE -->
   <div class="container">
+    <?php if ($page['highlighted']): ?>
+    <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
+    <?php endif; ?>
     <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
       <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
       
@@ -127,10 +131,6 @@
         <?php endif; ?>
       
         <section class="<?php print _megatron_content_span($columns); ?>">  
-          <?php if ($page['highlighted']): ?>
-          <div class="highlighted hero-unit"><?php print render($page['highlighted']); ?></div>
-          <?php endif; ?>
-          <a id="main-content"></a>
           <?php print render($title_prefix); ?>
           <?php if ($title): ?>
           <h1 class="page-header"><?php print $title; ?></h1>
@@ -170,6 +170,18 @@
       <?php print render($page['prefooter']); ?>
     </div><!-- /.container -->
   <?php endif; ?>
+  
+  <!-- Footer Area Unit Menu - Mobile Only -->
+  <?php if (($primary_nav) && (!empty($mobilenav))): ?>
+  <div id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
+    <div class="navbar-inner expand">
+      <div class="nav-collapse collapse">
+        <?php print $primary_nav; ?>
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
+  <!-- End of Footer Area Unit Menu -->
     
   <footer id="ubc7-footer" role="content-info" >
     <div class="nocolor">

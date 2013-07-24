@@ -65,12 +65,12 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_theme']['clf_layout'] = array(
     '#type' => 'select', 
     '#title' => t('Layout'), 
-    '#description' => t('Make the CLF Fluid (100% width)'),
+    '#description' => t('Make the CLF Full Width'),
     '#default_value' => theme_get_setting('clf_layout'),
     '#options' => array(
      '' => t('Default'),
-     '__fluid' => t('Fluid Width (100%)'),
-     '__full' => t('Full Width Header and Footer'),
+     //'__fluid' => t('Fluid Width (100%)'),
+     '__full' => t('Full Width CLF (must use CLF version 7.0.4+)'),
    ),
  );
  
@@ -79,6 +79,13 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('Primary Navigation Mobile Placement'),
     '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
     '#default_value' => theme_get_setting('clf_navoption'),
+);
+
+  $form['clf_theme']['clf_jqueryoption'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Do not load updated jQuery (1.8.x) from theme'),
+    '#description' => t('If you would like to use a module such as jQuery Update, you can enable this option to prevent jQuery from loading with the theme.<br /><br />Please note that jQuery version 1.8+ is required for the CLF. Enabling this can cause issues with CTools / Views (see readme)'),
+    '#default_value' => theme_get_setting('clf_jqueryoption'),
 );
   
   /** CLF CAMPUS IDENTITY OPTIONS

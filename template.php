@@ -81,7 +81,7 @@ function megatron_preprocess_html(&$vars) {
       $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
     }
     // add a body class to tell us what layout we're using
-    $vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
+    //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
     // add a body class to tell us what colours we're using
     $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
     
@@ -111,12 +111,15 @@ function megatron_preprocess_html(&$vars) {
      // Add CSS if layout is not default
      $clfLayout = theme_get_setting('clf_layout');
      //if (!empty($clfLayout)) {
-     if ($clfLayout == '__fluid') {
+     if ($clfLayout == '__full') {
+       $vars['classes_array'][] = drupal_html_class('full-width');  
+     }
+     /*if ($clfLayout == '__fluid') {
        drupal_add_css(drupal_get_path('theme','megatron') . '/css/fluid-width.css', array('group' => CSS_THEME, 'every_page' => TRUE));  
      }
      if ($clfLayout == '__full') {
        drupal_add_css(drupal_get_path('theme','megatron') . '/css/full-width.css', array('group' => CSS_THEME, 'every_page' => TRUE));  
-     }
+     }*/
   }
 
 
@@ -707,10 +710,15 @@ Replace jQuery with updated version
 ---------------------------------------------------------- */
 function megatron_js_alter(&$javascript) {
   // Swap out jQuery to use an external version of the library (a requirement of the Twitter Bootstrap framework).
-  $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
-  $javascript['misc/jquery.js']['type'] = 'external';
-  $javascript['misc/jquery.js']['version'] = '1.8.1';
-  //if (isset($javascript['jquery.form.js'])) {
+  $clf_jqueryoption = theme_get_setting('clf_jqueryoption');
+  //if (!empty($clfLayout)) {
+  if (empty($clf_jqueryoption)) {
+    $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+    $javascript['misc/jquery.js']['type'] = 'external';
+    $javascript['misc/jquery.js']['version'] = '1.8.1'; 
+  }
+  
+  //if (isset($javascript['misc/jquery.form.js'])) {
   //  $javascript['misc/jquery.form.js']['data'] = path_to_theme() . '/js/lib/jquery.form.js';
   //  $javascript['misc/jquery.form.js']['version'] = '3.27.0';
   //}
