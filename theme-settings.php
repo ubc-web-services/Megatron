@@ -69,7 +69,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('clf_layout'),
     '#options' => array(
      '' => t('Default'),
-     //'__fluid' => t('Fluid Width (100%)'),
+     '__fluid' => t('Left Aligned Full Width CLF (must use CLF version 7.0.4+)'),
      '__full' => t('Full Width CLF (must use CLF version 7.0.4+)'),
    ),
  );

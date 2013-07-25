@@ -82,7 +82,7 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     $clf_layout = theme_get_setting('clf_layout');
     $containerstart = '';
     $containerend = '';
-    if ($clf_layout == '__full') {
+    if (($clf_layout == '__full') || ($clf_layout == '__fluid')) {
         $containerstart = '<div class="container">';
         $containerend = '</div>';
     } 
@@ -154,7 +154,7 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     $clf_layout = theme_get_setting('clf_layout');
     $containerstart = '';
     $containerend = '';
-    if ($clf_layout == '__full') {
+    if (($clf_layout == '__full') || ($clf_layout == '__fluid')) {
         $containerstart = '<div class="container">';
         $containerend = '</div>';
     } 

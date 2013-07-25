@@ -8,3 +8,4 @@ theme-settings 2.php
 views-view--news-views--block.tpl.php
 __page--full.tpl.php
 __page--fluid.tpl.php
+unused/

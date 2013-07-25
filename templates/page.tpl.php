@@ -46,26 +46,45 @@
 ?>
 <?php require_once(drupal_get_path('theme','megatron') . '/includes/config.php'); ?>
 <?php $mobilenav = theme_get_setting('clf_navoption'); ?>
+<?php 
+$clf_layout = theme_get_setting('clf_layout');
+$containerstart = '';
+$containerend = '';
+$fluidcontainerstart = '';
+$fluidcontainerend = '';
+if (($clf_layout == '__full') || ($clf_layout == '__fluid')) {
+    $fluidcontainerstart = '<div class="container">';
+    $fluidcontainerend = '</div>';
+}
+if ($clf_layout == '') {
+    $containerstart = '<div class="container">';
+    $containerend = '</div>';
+} ?>
 <div class="skip">
   <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   <a href="#ubc7-unit-menu" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
 </div>
 
-<div class="container">
+<?php print $containerstart; ?>
   <!-- UBC Global Utility Menu -->
   <div class="collapse expand" id="ubc7-global-menu">
       <div id="ubc7-search" class="expand">
+        <?php print $fluidcontainerstart; ?>
           <div id="ubc7-search-box">
             <?php if ($page['search']): print render($page['search']); else: print theme('ubc_clf_toolbar'); endif; ?>
           </div>
+        <?php print $fluidcontainerend; ?>
       </div>
+      <?php print $fluidcontainerstart; ?>
       <div id="ubc7-global-header" class="expand">
           <!-- Global Utility Header from CDN -->
       </div>
+      <?php print $fluidcontainerend; ?>
   </div>
   <!-- End of UBC Global Utility Menu -->
   <!-- UBC Header -->
   <header id="ubc7-header" class="row-fluid expand" role="banner">
+    <?php print $fluidcontainerstart; ?>
     <div class="span1">
       <div id="ubc7-logo">
         <a href="http://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
@@ -85,10 +104,12 @@
         <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
       </div>
     </div>
+    <?php print $fluidcontainerend; ?>
   </header>
   <!-- End of UBC Header -->
   <!-- UBC Unit Identifier -->
   <div id="ubc7-unit" class="row-fluid expand">
+    <?php print $fluidcontainerstart; ?>
     <div class="span12">
       <div class="navbar">
         <a class="btn btn-navbar" data-toggle="collapse" data-target="#ubc7-unit-navigation">
@@ -99,23 +120,29 @@
       </div>
       <?php print theme('ubc_clf_header'); ?>
     </div>
+    <?php print $fluidcontainerend; ?>
   </div>
   <!-- End of UBC Unit Identifier -->
   <!-- UBC Unit Navigation -->
   <?php if ($primary_nav): ?>
   <nav id="ubc7-unit-menu" role="navigation" class="navbar expand">
     <div class="navbar-inner expand">
+      <?php print $fluidcontainerstart; ?>
       <div class="nav-collapse collapse" id="ubc7-unit-navigation">
         <?php print $primary_nav; ?>
       </div>
+      <?php print $fluidcontainerend; ?>
     </div>
   </nav>
   <?php endif; ?>
   <!-- End of UBC Unit Navigation -->
   <!-- UBC Unit Breadcrumbs -->
+  <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
+  <div class="full-width-container">
+  <?php endif; ?>
   <?php if (($breadcrumb) && (!$is_front)): ?>
   <?php print $breadcrumb; ?>
-  <?php endif; ?>  	  
+  <?php endif; ?> 
   <!-- End of UBC Unit Breadcrumbs -->
   <!-- Content Area -->
    <?php if ($page['highlighted']): ?>
@@ -169,14 +196,19 @@
   <?php if ($page['prefooter']): ?> 
     <?php print render($page['prefooter']); ?>
   <?php endif; ?>
+  <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
+  </div>
+  <?php endif; ?>
   
   <!-- Footer Area Unit Menu - Mobile Only -->
   <?php if (($primary_nav) && (!empty($mobilenav))): ?>
   <div id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
     <div class="navbar-inner expand">
+      <?php print $fluidcontainerstart; ?>
       <div class="nav-collapse collapse">
         <?php print $primary_nav; ?>
       </div>
+      <?php print $fluidcontainerend; ?>
     </div>
   </div>
   <?php endif; ?>
@@ -186,4 +218,4 @@
     <?php print theme('ubc_clf_visual_identity_footer'); ?>
     <?php print theme('ubc_clf_global_utility_footer'); ?>
   </footer>
-</div> <!-- /#container -->
+<?php print $containerend; ?> <!-- /#container -->

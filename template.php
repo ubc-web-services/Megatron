@@ -111,8 +111,12 @@ function megatron_preprocess_html(&$vars) {
      // Add CSS if layout is not default
      $clfLayout = theme_get_setting('clf_layout');
      //if (!empty($clfLayout)) {
-     if ($clfLayout == '__full') {
+     if (($clfLayout == '__full') || ($clfLayout == '__fluid')) {
        $vars['classes_array'][] = drupal_html_class('full-width');  
+     }
+     if ($clfLayout == '__fluid') {
+       $vars['classes_array'][] = drupal_html_class('full-width-left');
+         
      }
      /*if ($clfLayout == '__fluid') {
        drupal_add_css(drupal_get_path('theme','megatron') . '/css/fluid-width.css', array('group' => CSS_THEME, 'every_page' => TRUE));  
@@ -205,7 +209,7 @@ function megatron_preprocess_page(&$variables) {
   require_once('includes/template-ubc-clf-elements.inc');
   // Add template suggestions based on content type 
   if (isset($variables['node'])) {  
-    $variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
+    //$variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
     $variables['theme_hook_suggestions'][] = 'page__type__'. $variables['node']->type;
   }
 
