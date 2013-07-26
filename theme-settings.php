@@ -84,7 +84,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_theme']['clf_jqueryoption'] = array(
     '#type' => 'checkbox', 
     '#title' => t('Do not load updated jQuery (1.8.x) from theme'),
-    '#description' => t('If you would like to use a module such as jQuery Update, you can enable this option to prevent jQuery from loading with the theme.<br /><br />Please note that jQuery version 1.8+ is required for the CLF. Enabling this can cause issues with CTools / Views (see readme)'),
+    '#description' => t('If you would like to use a module such as jQuery Update, you can enable this option to prevent jQuery from loading with the theme.<br /><br />Please note that jQuery version 1.8+ is required for the CLF.'),
     '#default_value' => theme_get_setting('clf_jqueryoption'),
 );
   
