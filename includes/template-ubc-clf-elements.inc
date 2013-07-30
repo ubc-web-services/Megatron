@@ -115,9 +115,8 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
         $output .= '<div class="ubc7-address-website">Website <a href="http://' . theme_get_setting('clf_website') . '" title="' . theme_get_setting('clf_unitname') . '">' . theme_get_setting('clf_website') . '</a></div>';
     }
     $output .= '</div>';
-    $output .= '<div class="span2">';
     if (theme_get_setting('clf_social_facebook') || theme_get_setting('clf_social_twitter') || theme_get_setting('clf_social_linkedin') || theme_get_setting('clf_social_googleplus') || theme_get_setting('clf_social_youtube'))  {
-      $output .= '<strong>Find us on</strong><div id="ubc7-unit-social-icons">';
+      $output .= '<strong>Find us on</strong><div id="ubc7-unit-social-icons"><div class="span2">';
         if (theme_get_setting('clf_social_facebook')) {
           $output .= '<a href="' . theme_get_setting('clf_social_facebook') . '"><i class="icon-facebook-sign"></i></a>&nbsp;';
         }
@@ -133,10 +132,9 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
         if (theme_get_setting('clf_social_youtube')) {
           $output .= '<a href="' . theme_get_setting('clf_social_youtube') . '"><i class="icon-youtube"></i></a>&nbsp;';
         }
-      $output .= '</div>';
+      $output .= '</div></div>';
     } 
     else { $output .= ''; }
-    $output .= '</div>';
     $output .= $containerend;
     $output .= '</div><div class="row-fluid expand ubc7-back-to-top">';
     $output .= $containerstart;
