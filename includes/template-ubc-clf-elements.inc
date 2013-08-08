@@ -116,7 +116,7 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     }
     $output .= '</div>';
     if (theme_get_setting('clf_social_facebook') || theme_get_setting('clf_social_twitter') || theme_get_setting('clf_social_linkedin') || theme_get_setting('clf_social_googleplus') || theme_get_setting('clf_social_youtube'))  {
-      $output .= '<strong>Find us on</strong><div id="ubc7-unit-social-icons"><div class="span2">';
+      $output .= '<div class="span2"><strong>Find us on</strong><div id="ubc7-unit-social-icons">';
         if (theme_get_setting('clf_social_facebook')) {
           $output .= '<a href="' . theme_get_setting('clf_social_facebook') . '"><i class="icon-facebook-sign"></i></a>&nbsp;';
         }
