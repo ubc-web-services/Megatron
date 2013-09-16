@@ -179,8 +179,14 @@ function megatron_preprocess_node(&$vars, $hook) {
   else {
     $vars['unpublished'] = FALSE;
   }
-  if($vars['teaser'])
+  if($vars['teaser']) {
       $vars['classes_array'][] = 'row-fluid';
+  }
+  // add node template suggestions for teasers!
+  if($vars['view_mode'] == 'teaser') {
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__teaser';   
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__teaser';
+  }
 }
 
 
