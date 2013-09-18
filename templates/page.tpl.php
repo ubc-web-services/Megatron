@@ -71,7 +71,7 @@ if ($clf_layout == '') {
       <div id="ubc7-search" class="expand">
         <?php print $fluidcontainerstart; ?>
           <div id="ubc7-search-box">
-            <?php if ($page['search']): print render($page['search']); else: print theme('ubc_clf_toolbar'); endif; ?>
+            <?php if (!empty($page['search'])): print render($page['search']); else: print theme('ubc_clf_toolbar'); endif; ?>
           </div>
         <?php print $fluidcontainerend; ?>
       </div>
@@ -160,7 +160,6 @@ if ($clf_layout == '') {
       
       <section class="<?php print _megatron_content_span($columns); ?>">  
         <?php print render($title_prefix); ?>
-        <?php //if (function_exists('twitter_pull_render')) { print twitter_pull_render('@openpublish', 'OpenPublish', 10); } ?>
         <?php if ($title): ?>
         <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>
