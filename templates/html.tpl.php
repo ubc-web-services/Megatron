@@ -49,12 +49,12 @@
   <head<?php print $rdf->profile; ?>>
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="cleartype" content="on">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <!--[if lte IE 7]>
+    <!--[if lte IE 7]>
   <link href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/css/font-awesome-ie7.css" rel="stylesheet">
   <![endif]-->
   <link rel="shortcut icon" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/favicon.ico">
