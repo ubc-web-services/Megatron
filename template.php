@@ -653,8 +653,8 @@ function megatron_preprocess_table(&$variables) {
     $variables['attributes']['class'] = array('table', 'table-striped');
   }
   else {
-    $variables['attributes']['class'][] = 'table';
-    $variables['attributes']['class'][] = 'table-striped';
+    $variables['attributes']['class'] = 'table';
+    $variables['attributes']['class'] = 'table-striped';
   }
 }
 
@@ -842,4 +842,6 @@ function megatron_megatron_links($variables) {
  // }
 
   return $output;
+} 
+
 } 

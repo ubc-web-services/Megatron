@@ -124,7 +124,7 @@ if ($clf_layout == '') {
   </div>
   <!-- End of UBC Unit Identifier -->
   <!-- UBC Unit Navigation -->
-  <?php if ($primary_nav): ?>
+  <?php if (!empty($primary_nav)): ?>
   <nav id="ubc7-unit-menu" role="navigation" class="navbar expand">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>
@@ -140,19 +140,19 @@ if ($clf_layout == '') {
   <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
   <div class="full-width-container">
   <?php endif; ?>
-  <?php if (($breadcrumb) && (!$is_front)): ?>
+  <?php if (!empty($breadcrumb) && (!$is_front)): ?>
   <?php print $breadcrumb; ?>
   <?php endif; ?> 
   <!-- End of UBC Unit Breadcrumbs -->
   <!-- Content Area -->
-   <?php if ($page['highlighted']): ?>
+   <?php if (!empty($page['highlighted'])): ?>
      <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
    <?php endif; ?>
   
   <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
     <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
       
-      <?php if (($page['sidebar_first']) && (!$is_front)): ?>
+      <?php if (!empty($page['sidebar_first']) && (!$is_front)): ?>
       <aside class="span3 region region-sidebar-first" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
@@ -160,30 +160,30 @@ if ($clf_layout == '') {
       
       <section class="<?php print _megatron_content_span($columns); ?>">  
         <?php print render($title_prefix); ?>
-        <?php if ($title): ?>
+        <?php if (!empty($title)): ?>
         <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>
         <?php print render($title_suffix); ?>
         <?php print $messages; ?>
-        <?php if ($tabs): ?>
+        <?php if (!empty($tabs)): ?>
         <?php print render($tabs); ?>
         <?php endif; ?>
-        <?php if ($page['help']): ?> 
+        <?php if (!empty($page['help'])): ?> 
         <div class="well"><?php print render($page['help']); ?></div>
         <?php endif; ?>
-        <?php if ($action_links): ?>
+        <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
         <?php endif; ?>
         <?php print render($page['content']); ?>
       </section>
       
-      <?php if (($page['sidebar_first']) && ($is_front)): ?>
+      <?php if (!empty($page['sidebar_first']) && ($is_front)): ?>
       <aside class="span4 region region-sidebar-first" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
       <?php endif; ?>
  
-      <?php if (($page['sidebar_second']) && (!$is_front)): ?>
+      <?php if (!empty($page['sidebar_second']) && (!$is_front)): ?>
       <aside class="span3 region region-sidebar-second" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
@@ -192,7 +192,7 @@ if ($clf_layout == '') {
     </div><!-- /#content -->
   </div><!-- /#main -->
   
-  <?php if ($page['prefooter']): ?> 
+  <?php if (!empty($page['prefooter'])): ?> 
     <?php print render($page['prefooter']); ?>
   <?php endif; ?>
   <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
@@ -200,7 +200,7 @@ if ($clf_layout == '') {
   <?php endif; ?>
   
   <!-- Footer Area Unit Menu - Mobile Only -->
-  <?php if (($primary_nav) && (!empty($mobilenav))): ?>
+  <?php if (!empty($primary_nav) && (!empty($mobilenav))): ?>
   <div id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>

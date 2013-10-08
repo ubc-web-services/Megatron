@@ -1,0 +1,46 @@
+/* base-grid.css --- 
+   Copyright (C) 2010 António P. P. Almeida <appa@perusio.net>
+
+   Author: António P. P. Almeida <appa@perusio.net>
+
+   This program is free software, you can redistribute it and/or
+   modify it under the terms of the new-style BSD license.
+   You should have received a copy of the BSD license along with this
+   program. If not, see <http://www.debian.org/misc/bsd.license>.
+
+   Inspired & stolen from Nicole Sullivan's OOCSS http://oocss.org
+   This file is the base grid for the tinycss framework. */
+
+@media screen and (max-width: 319px) {
+.unit {
+    float: none !important; 
+    width: auto !important;
+  }
+}
+
+.line:after, .lastUnit:after {
+  clear: both;
+  display: block;
+  visibility: hidden; 
+  overflow:hidden;
+  height:0 !important;
+  line-height: 0;
+  font-size: xx-large;
+  content: " x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x ";
+}
+.unit { float: left; }
+.lastUnit { display: table-cell; float: none; width: auto; }
+.span3 { width: 25%; }
+.span4 { width: 33%; }
+.span6 { width: 50%; }
+.span8 { width: 66%; }
+.span9 { width: 75%; }
+.span12 { width: 100%; }
+.one-sidebar .panel-display .container,
+.two-sidebars .panel-display .container { width: auto; }
+
+/* Margins taken from the Panels module plugins 
+
+.lastUnit .inside { margin: 0 0 1em .5em; }
+.firstUnit .inside { margin: 0 .5em 1em 0; }
+.unit .inside { margin: 0 .5em 1em .5em; }*/

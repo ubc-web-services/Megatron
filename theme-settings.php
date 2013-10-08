@@ -87,6 +87,17 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('If you would like to use a module such as jQuery Update, you can enable this option to prevent jQuery from loading with the theme.<br /><br />Please note that jQuery version 1.8+ is required for the CLF.'),
     '#default_value' => theme_get_setting('clf_jqueryoption'),
 );
+
+  $form['clf_theme']['clf_scriptsoption'] = array(
+    '#type' => 'select', 
+    '#title' => t('Script Location'),
+    '#description' => t('Include scripts in the page head or footer'),
+    '#default_value' => theme_get_setting('clf_scriptsoption'),
+    '#options' => array(
+      'footer' => t('Footer'),
+      'head' => t('Head'),
+    ),
+);
   
   /** CLF CAMPUS IDENTITY OPTIONS
   ---------------------------------------------------------- */
