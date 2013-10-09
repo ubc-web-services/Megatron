@@ -843,5 +843,3 @@ function megatron_megatron_links($variables) {
 
   return $output;
 } 
-
-} 
