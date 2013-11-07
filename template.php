@@ -506,11 +506,12 @@ function megatron_button($variables) {
   if (!empty($element['#attributes']['disabled'])) {
     $element['#attributes']['class'][] = 'form-button-disabled';
   }
- return '<button' . drupal_attributes($element['#attributes']) . '>'. $label .'</button>
+ return '<input' . drupal_attributes($element['#attributes']) . '>'. $label .'</input>
    '; // This line break adds inherent margin between multiple buttons
 }
 
 /** PAGER */
+// REMOVED AS WAS CAUSING VIEWS AJAX FORM ERROR - JOTOOLE - NOV7/13
 /* Returns HTML for a query pager.
  *
  * Menu callbacks that display paged query results should call theme('pager') to
@@ -528,7 +529,7 @@ function megatron_button($variables) {
  *
  * @ingroup themeable
  */
-function megatron_pager($variables) {
+/*function megatron_pager($variables) {
   $output = "";
   $tags = $variables['tags'];
   $element = $variables['element'];
@@ -569,14 +570,12 @@ function megatron_pager($variables) {
   $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last')), 'element' => $element, 'parameters' => $parameters));
 
   if ($pager_total[$element] > 1) {
-    /*
-    if ($li_first) {
-      $items[] = array(
-        'class' => array('pager-first'), 
-        'data' => $li_first,
-      );
-    }
-    */
+    //if ($li_first) {
+    //  $items[] = array(
+    //    'class' => array('pager-first'), 
+    //    'data' => $li_first,
+    //  );
+    //}
     if ($li_previous) {
       $items[] = array(
         'class' => array('prev'), 
@@ -627,14 +626,12 @@ function megatron_pager($variables) {
         'data' => $li_next,
       );
     }
-    /*
-    if ($li_last) {
-      $items[] = array(
-        'class' => array('pager-last'), 
-        'data' => $li_last,
-      );
-    }
-    */
+    //if ($li_last) {
+    //  $items[] = array(
+    //    'class' => array('pager-last'), 
+    //    'data' => $li_last,
+    //  );
+    //}
 
     return '<div class="pagination">'. theme('item_list', array(
       'items' => $items, 
@@ -643,7 +640,7 @@ function megatron_pager($variables) {
   }
   
   return $output;
-}
+}*/
 
 /** TABLES */
 /** Add Bootstrap table class to tables added by Drupal
