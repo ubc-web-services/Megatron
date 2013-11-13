@@ -21,7 +21,10 @@ Drupal / Theme level:
 
 Usage:
  - you MUST use an alternate admin theme or jQuery will be break. It is also recommended to use the 'edit / create content in admin theme' option on the /admin/appearance page. An option to toggle on or off the updated jQuery has been added to the theme options if you would prefer to use the jQuery Update module. The required version is 1.8.1+
-
+ - unzip the content to your Drupal installation, ie for Linux RHEL6.x.
+/var/www/html/your_drupal_site/themes/
+chown -R root:apache ubc_clf_drupal_template_7.0.2
+- login to your Drupal website as admin --> Appearance --> Enable and Set as Default for UBC-CLF
 
 RECOMMENDED MODULES
 ___________________
