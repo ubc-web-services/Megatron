@@ -44,7 +44,7 @@
   <!--[if IEMobile 7]><html class="no-js iem7 oldie" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
   <!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
   <!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
-  <!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
+  <!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
   <!--[[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><!--<![endif]-->
   <head<?php print $rdf->profile; ?>>
   <?php print $head; ?>
