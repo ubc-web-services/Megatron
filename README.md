@@ -17,6 +17,7 @@ Drupal / Theme level:
 - body classes to indicate page section and path for easier theming
 - HTML5 markup
 - ability to add / exclude css in .info file
+- built in support for Breakpoint module, mapping default CLF breakpoints
 - adaptive panels layouts (thanks Jens)
 
 Usage:
@@ -29,7 +30,7 @@ chown -R root:apache ubc_clf_drupal_template_7.0.2
 RECOMMENDED MODULES
 ___________________
 
-- AIS (Adaptive Image Styles) - for automating the creation of alternate image sizes that scale with the detected viewport
+- Picture + Breakpoints - for assigning alternate image styles to Media Query breakpoints 
 - Media - for inserting adaptive images into textarea fields (allows you to choose image style per image)
 - Block Class - allows you to easily use ‘visible-phone / visible-tablet / visible-desktop’ type bootstrap styles on blocks of content
 
@@ -39,4 +40,3 @@ _______________________
 
 - Environment Indicator - breaks in jQuery versions 1.8+
 
-sion should be 1.8.x.
