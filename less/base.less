@@ -109,6 +109,11 @@ canvas {
   padding: 5px 14px;
   background-color: #eee;
   border: 1px solid #ddd; }
+  
+/* Fix ugly article footer styles */
+article footer {
+  background-color: inherit;
+}
 
 /* Add Tab styles that aren't hideous */
 /* @group Tabs */
@@ -242,6 +247,23 @@ body {
 
 // this is the fix for the clf line height issue with no dropdown
 #ubc7-unit-menu .nav > li  > a { padding: 10px 15px !important; }
+
+// Fix form styles to adjust for Drupal default markup
+.form-type-radio,
+.form-type-checkbox {
+  margin-bottom: 5px;
+}
+.form-type-radio input[type="radio"],
+.form-type-checkbox input[type="checkbox"] {
+  margin: 0;
+}
+.form-type-radio > label,
+.form-type-checkbox > label {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-left: 10px;
+  line-height: 20px;
+}
 
 // target Firefox because it behaves differently @1200px
 @media screen and (min--moz-device-pixel-ratio:0) and (min-width:1200px) {
