@@ -29,7 +29,7 @@ function megatron_ubc_clf_toolbar($variables) {
     else {
         $search_text = t('Search');
     }
-  $output = '<form class="form-search" method="get" action="http://www.ubc.ca/search/refine/">
+  $output = '<form class="form-search" method="get" action="//www.ubc.ca/search/refine/">
       <input type="text" name="q" placeholder="' . $search_text . '" class="input-xlarge search-query">
       <input type="hidden" name="label" value="' . $subunit_text . '" />
       <input type="hidden" name="site" value="' . $subunit_search .'" />
