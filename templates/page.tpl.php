@@ -213,7 +213,7 @@ if ($clf_layout == '') {
   <?php endif; ?>
   <!-- End of Footer Area Unit Menu -->
     
-  <footer id="ubc7-footer" role="content-info" >
+  <footer id="ubc7-footer" role="contentinfo" >
     <?php print theme('ubc_clf_visual_identity_footer'); ?>
     <?php print theme('ubc_clf_global_utility_footer'); ?>
   </footer>
