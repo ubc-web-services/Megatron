@@ -96,6 +96,7 @@ function megatron_preprocess_html(&$vars) {
        $vars['rdf']->profile = ' profile="' . $vars['grddl_profile'] . '"';
      } else {
        $vars['doctype'] = '<!DOCTYPE html>' . "\n";
+       $vars['rdf'] = new StdClass;
        $vars['rdf']->version = '';
        $vars['rdf']->namespaces = '';
        $vars['rdf']->profile = '';
