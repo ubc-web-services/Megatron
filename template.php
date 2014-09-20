@@ -497,18 +497,24 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
   }
 }  
 
-/** BUTTONS */
+/** BUTTONS
+Implements theme_button().
+---------------------------------------------------------- */
 function megatron_button($variables) {
   $element = $variables['element'];
-  $label = check_plain($element['#value']);
+  //$label = check_plain($element['#value']);
   $element['#attributes']['type'] = 'submit';
   element_set_attributes($element, array('id', 'name', 'value'));
-  $element['#attributes']['class'][] = 'btn form-' . $element['#button_type'];
+  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+  $element['#attributes']['class'][] = 'btn';
   if (!empty($element['#attributes']['disabled'])) {
     $element['#attributes']['class'][] = 'form-button-disabled';
   }
- return '<input' . drupal_attributes($element['#attributes']) . '>'. $label .'</input>
-   '; // This line break adds inherent margin between multiple buttons
+  // Add a btn-primary class if submit button.
+  if (isset($element['#parents']) && ($element['#parents'][0] == 'submit')) {
+    $element['#attributes']['class'][] = 'btn-primary';
+  }
+ return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
 
 /** PAGER */
