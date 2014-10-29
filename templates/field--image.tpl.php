@@ -52,7 +52,7 @@
     <?php foreach ($items as $delta => $item): ?>
       <figure class="field-item <?php print $delta % 2 ? 'odd' : 'even'; ?>"<?php print $item_attributes[$delta]; ?>>
         <?php print render($item); ?>
-         <?php if($item['#item']['title']){ ?>
+         <?php if(isset($item['#item']['title'])){ ?>
            <figcaption><?php print $item['#item']['title']; ?></figcaption>
           <?php } ?></figure>
     <?php endforeach; ?>
