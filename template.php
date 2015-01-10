@@ -20,7 +20,11 @@ function megatron_theme() {
       'variables' => array('element' => NULL)    
     ),
     'megatron_links' => array(
-      'variables' => array('links' => array(), 'attributes' => array(), 'heading' => NULL),
+      'variables' => array(
+        'links' => array(), 
+        'attributes' => array(), 
+        'heading' => NULL
+      ),
     ),
     'megatron_btn_dropdown' => array(
       'variables' => array('links' => array(), 'attributes' => array(), 'type' => NULL),
@@ -786,7 +790,7 @@ function megatron_megatron_links($variables) {
 
   if (count($links) > 0) {
     $output = '';
-    $output .= '<ul' . drupal_attributes($attributes) . '>';
+    
     
     // Treat the heading first if it is present to prepend it to the list of links.
     if (!empty($heading)) {
@@ -795,15 +799,20 @@ function megatron_megatron_links($variables) {
         $heading = array(
           'text' => $heading,
           // Set the default level of the heading. 
-          'level' => 'li',
+          //'level' => 'li',
         );
       }
-      $output .= '<' . $heading['level'];
+      $output .= '<h3';
       if (!empty($heading['class'])) {
         $output .= drupal_attributes(array('class' => $heading['class']));
       }
-      $output .= '>' . check_plain($heading['text']) . '</' . $heading['level'] . '>';
+      $output .= '>' . check_plain($heading['text']) . '</h3>';
     }
+    
+    $output .= '<ul' . drupal_attributes($attributes) . '>';
+    
+    $num_links = count($links);
+    $i = 1;
 
 	
     foreach ($links as $key => $link) {

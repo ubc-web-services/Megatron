@@ -4,13 +4,25 @@
 ---------------------------------------------------------- */
 function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 
+  $form['core'] = array(
+    '#type' => 'vertical_tabs',
+    '#prefix' => '<h2><small>' . t('Override Global Settings') . '</small></h2>',
+    //'#attributes' => array('class' => array('entity-meta')),
+    '#weight' => 0,
+  );
+  
+  $form['theme_settings']['#group'] = 'core';
+  $form['logo']['#group'] = 'core';
+  $form['favicon']['#group'] = 'core';
+
+
   $form['clf_credits'] = array(
     '#type' => 'fieldset', 
     '#title' => t('UBC CLF 7.0 Drupal Theme Information'), 
     '#prefix' => '<div class="clf_credits">', 
     '#suffix' => '</div>',
     '#weight' => -10,
-    '#description' => t('<strong> The CLF 7.0 Drupal theme is a responsive theme, developed by the <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services Department</a>.<br /><br />The <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">CLF</a> is developed and distributed by Communications &amp; Marketing. For support or to report and issue with this theme, <a href="http://clf.ubc.ca/support/" title="Contact UBC Communications & Marketing" target="_blank">please contact us</a>.'),
+    '#description' => t('<strong> The CLF 7.0 Drupal theme</strong> is a responsive theme, developed by the <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services Department</a>.<br /><br />The <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">CLF</a> is developed and distributed by Communications &amp; Marketing. For support <a href="http://clf.ubc.ca/support/" title="Contact UBC Communications & Marketing" target="_blank">please contact us</a>.<br /><br />To report an issue with this theme, please visit <a href="https://github.com/ubc-web-services/Megatron" target="_bank">the repository on Github</a>.'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );  
@@ -21,9 +33,12 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'fieldset', 
     '#title' => t('CLF Theme Options'), 
     '#prefix' => '<div class="clf_coloroptions">', 
+    
     '#suffix' => '</div>',
+    '#description' => t('Basic theme options.'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#weight' => -8,
   );
 
   $form['clf_theme']['clf_clf_theme_new'] = array(
@@ -108,6 +123,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#suffix' => '</div>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#weight' => -7,
   );
   
   $form['clf_identity']['clf_unit_campus'] = array(
@@ -131,6 +147,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#suffix' => '</div>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#weight' => -6,
   );
   
   $form['clf_unit_info']['clf_faculty'] = array(
@@ -174,7 +191,8 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       '#description' => t('See design specifications for <a href="http://clf.ubc.ca/parts-of-the-clf/#unit-colors" title="Learn more about the Unit Name background colours" target="_blank">Unit Name background colours</a>. Use HEX colour (do not include the #)'),
       '#size' => 7,
       '#maxlength' => 7,
-      '#suffix' => '<div id="colourpicker"></div>',
+      '#prefix' => '<div id="colourpicker">',
+      '#suffix' => '</div>',
       '#default_value' => theme_get_setting('colourpicker'),
   );
  
@@ -192,6 +210,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 /*  $form['clf_general']['clf_unitinfohelp'] = array('#type' => 'markup', '#value' => '<p>Fill in your unit\'s information here.  Only the unit name field is required.  The field values are used to generate a <a href="http://microformats.org/wiki/hcard" target="_blank">microformats hCard</a> in the CLF footer.</p>');
 
 */
+
 
   $form['clf_unit_info']['clf_streetaddr'] = array(
     '#type' => 'textfield', 
@@ -275,8 +294,10 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       '#title' => t('Unit Social Media Links'), 
       '#prefix' => '<div class="clf_general">', 
       '#suffix' => '</div>',
+      '#suffix' => '</div>',
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
+      '#weight' => -5,
     );
     
     $form['clf_social']['clf_social_facebook'] = array(
@@ -328,8 +349,10 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#prefix' => '<div class="clf_header">', 
     '#suffix' => '</div>',
     '#description' => t('See search tool configuration <a href="http://clf.ubc.ca/implementing-the-clf/#search-tool" title="Learn more about the Search Tool Guidelines" target="_blank">guidelines</a>.'),
+    '#suffix' => '</div>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#weight' => -4,
   );
 
   $form['clf_utility']['clf_searchlabel'] = array(
