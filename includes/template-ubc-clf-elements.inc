@@ -29,7 +29,7 @@ function megatron_ubc_clf_toolbar($variables) {
     else {
         $search_text = t('');
     }
-  $output = '<form class="form-search" method="get" action="http://www.ubc.ca/search/refine/">
+  $output = '<form class="form-search" method="get" action="//www.ubc.ca/search/refine/">
       <input type="text" name="q" placeholder="Search ' . $search_text . '" class="input-xlarge search-query">
       <input type="hidden" name="label" value="' . $subunit_text . '" />
       <input type="hidden" name="site" value="' . $subunit_search .'" />
@@ -112,11 +112,11 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
         $output .= '<div class="ubc7-address-email">E-mail <a href="mailto:' . theme_get_setting('clf_email') . '">' . theme_get_setting('clf_email') . '</a></div>';
     }
     if (theme_get_setting('clf_website')) {
-        $output .= '<div class="ubc7-address-website">Website <a href="http://' . theme_get_setting('clf_website') . '" title="' . theme_get_setting('clf_unitname') . '">' . theme_get_setting('clf_website') . '</a></div>';
+        $output .= '<div class="ubc7-address-website">Website <a href="//' . theme_get_setting('clf_website') . '" title="' . theme_get_setting('clf_unitname') . '">' . theme_get_setting('clf_website') . '</a></div>';
     }
     $output .= '</div>';
     if (theme_get_setting('clf_social_facebook') || theme_get_setting('clf_social_twitter') || theme_get_setting('clf_social_linkedin') || theme_get_setting('clf_social_googleplus') || theme_get_setting('clf_social_youtube'))  {
-      $output .= '<strong>Find us on</strong><div id="ubc7-unit-social-icons"><div class="span2">';
+      $output .= '<div class="span2"><strong>Find us on</strong><div id="ubc7-unit-social-icons">';
         if (theme_get_setting('clf_social_facebook')) {
           $output .= '<a href="' . theme_get_setting('clf_social_facebook') . '"><i class="icon-facebook-sign"></i></a>&nbsp;';
         }
