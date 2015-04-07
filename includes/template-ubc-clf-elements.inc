@@ -88,7 +88,10 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
     } 
     $output = '<div id="ubc7-unit-footer" class="row-fluid expand">';
     $output .= $containerstart;
-    $output .= '<div class="span10" id="ubc7-unit-address">'; 
+    if (theme_get_setting('custom_signature')) {
+      $output .= '<div class="row-fluid"><div class="span12"><a class="faculty-identifier ir" href="/">' . theme_get_setting('clf_faculty_name') . '</a></div></div>';
+    }
+    $output .= '<div class="row-fluid"><div class="span10" id="ubc7-unit-address">'; 
     $output .= '<div class="ubc7-address-unit-name"><strong>' . theme_get_setting('clf_unitname') . '</strong></div>' . theme_get_setting('clf_campus') . ''; 
     if (theme_get_setting('clf_faculty')) {
         $output .= '<div class="ubc7-address-faculty-name">' . theme_get_setting('clf_faculty_name') . '</div>'; }

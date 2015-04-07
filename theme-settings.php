@@ -210,6 +210,16 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 /*  $form['clf_general']['clf_unitinfohelp'] = array('#type' => 'markup', '#value' => '<p>Fill in your unit\'s information here.  Only the unit name field is required.  The field values are used to generate a <a href="http://microformats.org/wiki/hcard" target="_blank">microformats hCard</a> in the CLF footer.</p>');
 
 */
+  $form['clf_unit_info']['custom_signature'] = array(
+   '#type' => 'select',
+   '#title' => t('Custom Signature Display Option'),
+   '#description' => t('Add a custom signature to the footer (Requires Custom CSS and an image from Communications and Marketing)'),
+   '#default_value' => theme_get_setting('custom_signature'),
+   '#options' => array(
+     'no' => t('No'),
+     'yes' => t('Yes'),
+   ),
+  );
 
 
   $form['clf_unit_info']['clf_streetaddr'] = array(
