@@ -168,7 +168,7 @@ function megatron_ubc_clf_visual_identity_footer($variables) {
            <ul>
              <li><a href="https://cdn.ubc.ca/clf/ref/emergency">Emergency Procedures</a> <span class="divider">|</span></li>
              <li><a href="https://cdn.ubc.ca/clf/ref/terms">Terms of Use</a> <span class="divider">|</span></li>
-             <li><a href="https://cdn.ubc.ca/clf/ref/copyright">Copyright</a> <span class="divider">|</span></li>
+             <li><a href="https://cdn.ubc.ca/clf/ref/copyright">UBC Copyright</a> <span class="divider">|</span></li>
              <li><a href="https://cdn.ubc.ca/clf/ref/accessibility">Accessibility</a></li>
            </ul>
          </div>';
