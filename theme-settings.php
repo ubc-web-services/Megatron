@@ -211,14 +211,10 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 
 */
   $form['clf_unit_info']['custom_signature'] = array(
-   '#type' => 'select',
+   '#type' => 'checkbox', 
    '#title' => t('Custom Signature Display Option'),
    '#description' => t('Add a custom signature to the footer (Requires Custom CSS and an image from Communications and Marketing)'),
    '#default_value' => theme_get_setting('custom_signature'),
-   '#options' => array(
-     'no' => t('No'),
-     'yes' => t('Yes'),
-   ),
   );
 
 
