@@ -67,7 +67,7 @@
   <?php $clf_scriptsoption = theme_get_setting('clf_scriptsoption');
   if ($clf_scriptsoption == 'head') { print $scripts; }
  ?>
-  <script src="<?php print base_path() . path_to_theme();?>/js/lib/modernizr.custom.2.6.2.js"></script>
+  <script src="<?php print base_path() . drupal_get_path('theme', 'megatron');?>/js/lib/modernizr.custom.2.6.2.js"></script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>
