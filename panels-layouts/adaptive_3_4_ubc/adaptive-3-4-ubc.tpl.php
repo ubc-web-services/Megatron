@@ -5,7 +5,7 @@
  <?php if ($content['full-width']): ?>
  <!-- full width content -->
  <div class="panel-panel line inflate">
-   <div class="panel-panel panels-layouts-unit span12">
+   <div class="panel-panel unit span12">
      <?php print $content['full-width']; ?>
    </div>
  </div>
@@ -31,13 +31,13 @@
   
   <?php if ($h == 3 || $h == 5): ?><!-- 33/66% - 2 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span4">
+    <div class="panel-panel unit span4">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span8">
+    <div class="panel-panel unit span8">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
@@ -47,13 +47,13 @@
   
   <?php if ($h == 4): ?><!-- 66/33% - 2 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span8">
+    <div class="panel-panel unit span8">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span4">
+    <div class="panel-panel unit span4">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
@@ -63,19 +63,19 @@
   
   <?php if ($h == 6): ?><!-- 33/33/33% - 3 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span4">
+    <div class="panel-panel unit span4">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span4">
+    <div class="panel-panel unit span4">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span4">
+    <div class="panel-panel unit span4">
       <div class="inside">
         <?php print $content[$keys[2]]; ?>
       </div>
@@ -88,7 +88,7 @@
  <?php if ($content['full-width-middle']): ?>
  <!-- full width content -->
  <div class="panel-panel line inflate">
-   <div class="panel-panel panels-layouts-unit span12">
+   <div class="panel-panel unit span12">
      <?php print $content['full-width-middle']; ?>
    </div>
  </div>
@@ -107,7 +107,7 @@
   <div class="container">
   <?php if ($h == 1): ?><!-- 100% - 1 column -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span12">
+    <div class="panel-panel unit span12">
       <?php print $content[$keys[0]]; ?>
     </div>
   </div>
@@ -115,13 +115,13 @@
   
   <?php if ($h == 3): ?><!-- 25/75% - 2 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span9">
+    <div class="panel-panel unit span9">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
@@ -131,13 +131,13 @@
   
   <?php if ($h == 4): ?><!-- 50/50% - 2 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span6">
+    <div class="panel-panel unit span6">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span6">
+    <div class="panel-panel unit span6">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
@@ -147,13 +147,13 @@
   
   <?php if ($h == 5): ?><!-- 75/25% - 2 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span9">
+    <div class="panel-panel unit span9">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
@@ -163,19 +163,19 @@
   
   <?php if ($h ==6 || $h == 9): ?><!-- 25/25/50% - 3 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span6">
+    <div class="panel-panel unit span6">
       <div class="inside">
         <?php print $content[$keys[2]]; ?>
       </div>
@@ -185,19 +185,19 @@
   
   <?php if ($h == 7): ?><!-- 25/50/25% - 3 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span6">
+    <div class="panel-panel unit span6">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[2]]; ?>
       </div>
@@ -207,19 +207,19 @@
   
   <?php if ($h == 8): ?><!-- 50/25/25% - 3 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span6">
+    <div class="panel-panel unit span6">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[2]]; ?>
       </div>
@@ -229,25 +229,25 @@
   
   <?php if ($h == 10): ?><!-- 25/25/25/25% - 4 columns -->
   <div class="panel-panel line">
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[0]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[1]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[2]]; ?>
       </div>
     </div>
 
-    <div class="panel-panel panels-layouts-unit span3">
+    <div class="panel-panel unit span3">
       <div class="inside">
         <?php print $content[$keys[3]]; ?>
       </div>
@@ -259,7 +259,7 @@
  <?php if ($content['full-width-lower']): ?>
  <!-- full width content -->
  <div class="panel-panel line inflate">
-   <div class="panel-panel panels-layouts-unit span12">
+   <div class="panel-panel unit span12">
      <?php print $content['full-width-lower']; ?>
    </div>
  </div>
