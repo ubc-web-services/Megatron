@@ -12,7 +12,7 @@
    This file is the base grid for the tinycss framework. */
 
 @media screen and (max-width: 319px) {
-.unit {
+.panels-layouts-unit {
     float: none !important; 
     width: auto !important;
   }
@@ -28,8 +28,8 @@
   font-size: xx-large;
   content: " x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x ";
 }
-.unit { float: left; }
-.lastUnit { display: table-cell; float: none; width: auto; }
+.panels-layouts-unit { float: left; }
+.last-panels-layouts-unit { display: table-cell; float: none; width: auto; }
 .span3 { width: 25%; }
 .span4 { width: 33%; }
 .span6 { width: 50%; }
