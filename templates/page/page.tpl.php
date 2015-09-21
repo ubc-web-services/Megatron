@@ -117,6 +117,11 @@ if ($clf_layout == '') {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
+        <?php if (!empty($secondary_nav)): ?>
+        <a class="btn btn-navbar secondary" data-toggle="collapse" data-target="#ubc7-unit-navigation-secondary">
+          <span class="icon-user"></span>
+        </a>
+        <?php endif; ?>
       </div>
       <?php print theme('ubc_clf_header'); ?>
     </div>
@@ -130,6 +135,17 @@ if ($clf_layout == '') {
       <?php print $fluidcontainerstart; ?>
       <div class="nav-collapse collapse" id="ubc7-unit-navigation">
         <?php print $primary_nav; ?>
+      </div>
+      <?php print $fluidcontainerend; ?>
+    </div>
+  </nav>
+  <?php endif; ?>
+  <?php if (!empty($secondary_nav)): ?>
+  <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
+    <div class="navbar-inner expand">
+      <?php print $fluidcontainerstart; ?>
+      <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
+        <?php print $secondary_nav; ?>
       </div>
       <?php print $fluidcontainerend; ?>
     </div>
@@ -201,7 +217,7 @@ if ($clf_layout == '') {
   
   <!-- Footer Area Unit Menu - Mobile Only -->
   <?php if (!empty($primary_nav) && (!empty($mobilenav))): ?>
-  <div id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
+  <nav id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>
       <div class="nav-collapse collapse">
@@ -209,7 +225,18 @@ if ($clf_layout == '') {
       </div>
       <?php print $fluidcontainerend; ?>
     </div>
-  </div>
+  </nav>
+  <?php endif; ?>
+  <?php if (!empty($secondary_nav)): ?>
+  <nav id="ubc7-unit-menu-second-mobile" role="navigation" class="navbar expand ubc-unit-styled visible-phone">
+    <div class="navbar-inner expand">
+      <?php print $fluidcontainerstart; ?>
+      <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary-mobile">
+        <?php print $secondary_nav; ?>
+      </div>
+      <?php print $fluidcontainerend; ?>
+    </div>
+  </nav>
   <?php endif; ?>
   <!-- End of Footer Area Unit Menu -->
     

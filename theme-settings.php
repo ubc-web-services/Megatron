@@ -66,6 +66,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     ),
   );
   
+  
   $form['clf_theme']['clf_clf_package'] = array(
     '#type' => 'select',
     '#title' => t('CLF Package'),
@@ -96,6 +97,16 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('clf_navoption'),
 );
 
+$form['clf_theme']['clf_secondarynavoption'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Add a second row to the Primary Navigation?'),
+    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="/admin/structure/menu/settings">Admin > Structure > Menu > Settings</a>'),
+    '#default_value' => theme_get_setting('clf_secondarynavoption'),
+);
+
+
+/*
+REMOVED - Now handled in template.php by checking for the jQuery Update module - if not found, it loads jQuery 1.8 from the Google CDN
   $form['clf_theme']['clf_jqueryoption'] = array(
     '#type' => 'checkbox', 
     '#title' => t('Do not load updated jQuery (1.8.x) from theme'),
@@ -103,6 +114,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('clf_jqueryoption'),
 );
 
+REMOVED - was interfering with proper SCOPE declarations - if the functionality is desired, it can be replacted with modules like AdvAgg (advanced aggregation) or by adjusting the script's scope directly - see megatron_js_alter in template.php for an example
   $form['clf_theme']['clf_scriptsoption'] = array(
     '#type' => 'select', 
     '#title' => t('Script Location'),
@@ -113,6 +125,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
       'head' => t('Head'),
     ),
 );
+*/
   
   /** CLF CAMPUS IDENTITY OPTIONS
   ---------------------------------------------------------- */
@@ -216,6 +229,19 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
    '#description' => t('Add a custom signature to the footer (Requires Custom CSS and an image from Communications and Marketing)'),
    '#default_value' => theme_get_setting('custom_signature'),
   );
+  
+  /*
+  $form['clf_unit_info']['clf_unit_signature'] = array(
+      '#title'        => t('Custom Unit Signature'),
+      '#type'         => 'managed_file',
+      '#description'  => t('Upload a custom Unit Signature file. This should be in <strong>SVG</strong> file format, obtainable from UBC Web Communications.'),
+      '#default_value' => theme_get_setting('clf_unit_signature'),
+      '#upload_location' => 'public://unit_signature/',
+      '#upload_validators' => array(
+          'file_validate_extensions' => array("svg"),
+      ),
+  );
+  */
 
 
   $form['clf_unit_info']['clf_streetaddr'] = array(

@@ -64,15 +64,12 @@
   <link rel="apple-touch-icon-precomposed" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-57-precomposed.png">
   <link href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/css/ubc-clf-<?php print theme_get_setting('clf_clf_package'); ?><?php print theme_get_setting('clf_clf_theme_new'); ?>.min.css" rel="stylesheet">
   <?php print $styles; ?>
-  <?php $clf_scriptsoption = theme_get_setting('clf_scriptsoption');
-  if ($clf_scriptsoption == 'head') { print $scripts; }
- ?>
+  <?php print $scripts; ?>
   <script src="<?php print base_path() . drupal_get_path('theme', 'megatron');?>/js/lib/modernizr.custom.2.6.2.js"></script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>
   <?php print $page; ?> 
-  <?php if ($clf_scriptsoption == 'footer') { print $scripts; } ?>
   <?php print $page_bottom; ?>
 </body>
 </html>
