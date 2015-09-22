@@ -114,7 +114,7 @@ REMOVED - Now handled in template.php by checking for the jQuery Update module -
     '#default_value' => theme_get_setting('clf_jqueryoption'),
 );
 
-REMOVED - was interfering with proper SCOPE declarations - if the functionality is desired, it can be replacted with modules like AdvAgg (advanced aggregation) or by adjusting the script's scope directly - see megatron_js_alter in template.php for an example
+REMOVED - was interfering with proper SCOPE declarations - if the functionality is desired, it can be replaced with modules like AdvAgg (advanced aggregation) or by adjusting the script's scope directly - see megatron_js_alter in template.php for an example
   $form['clf_theme']['clf_scriptsoption'] = array(
     '#type' => 'select', 
     '#title' => t('Script Location'),
