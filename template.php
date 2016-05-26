@@ -552,7 +552,7 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
     //$form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
   }
   if ($form_id == 'search_form') {
-  	dpm($form); // print the messages
+	//dpm($form); // print the messages
   	//$form['#attributes']['class'][] = '';
     $form['basic']['#attributes']['class'][] = 'form-inline input-append clearfix'; 
     $form['advanced']['#title'] =  t('Refine your search'); 
