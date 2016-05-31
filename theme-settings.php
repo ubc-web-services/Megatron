@@ -100,7 +100,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
 $form['clf_theme']['clf_secondarynavoption'] = array(
     '#type' => 'checkbox', 
     '#title' => t('Add a second row to the Primary Navigation?'),
-    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="/admin/structure/menu/settings">Admin > Structure > Menu > Settings</a>'),
+    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
     '#default_value' => theme_get_setting('clf_secondarynavoption'),
 );
 
