@@ -1,4 +1,4 @@
-<?php require_once(drupal_get_path('theme','megatron') . '/includes/panels-inc.php'); ?>
+<?php include_once drupal_get_path('theme','megatron') . '/includes/panels-inc.php'; ?>
 <!-- -*- mode: html-helper; before-save-hook: nil -*- -->
 
 <div class="panel-display panel-three-four-adaptive clear-block" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 3 || $h == 5): ?><!-- 33/66% - 2 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span4">
@@ -44,7 +44,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 4): ?><!-- 66/33% - 2 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span8">
@@ -60,7 +60,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 6): ?><!-- 33/33/33% - 3 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span4">
@@ -83,7 +83,7 @@
   </div>
   <?php endif; ?>
  <?php endfor; ?>
- 
+
  <?php if ($content['full-width-middle']): ?>
  <!-- full width content -->
  <div class="panel-panel line inflate">
@@ -92,10 +92,10 @@
    </div>
  </div>
  <?php endif ?>
-  
+
  <!-- 4x4 grid -->
  <?php
-   for ($j = 9; $j < 25; $j += 4): 
+   for ($j = 9; $j < 25; $j += 4):
      // Get the $content array keys of all non empty entries.
      $keys = array_keys(array_filter(array_slice($content, $j, 4, TRUE)));
      $h = megatron_hash($keys, 4, 'megatron_get_digit');
@@ -111,7 +111,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 3): ?><!-- 25/75% - 2 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span3">
@@ -127,7 +127,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 4): ?><!-- 50/50% - 2 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span6">
@@ -143,7 +143,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 5): ?><!-- 75/25% - 2 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span9">
@@ -159,7 +159,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h ==6 || $h == 9): ?><!-- 25/25/50% - 3 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span3">
@@ -181,7 +181,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 7): ?><!-- 25/50/25% - 3 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span3">
@@ -203,7 +203,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 8): ?><!-- 50/25/25% - 3 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span6">
@@ -225,7 +225,7 @@
     </div>
   </div>
   <?php endif; ?>
-  
+
   <?php if ($h == 10): ?><!-- 25/25/25/25% - 4 columns -->
   <div class="panel-panel line">
     <div class="panel-panel unit span3">
