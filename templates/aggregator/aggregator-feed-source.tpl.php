@@ -33,4 +33,4 @@
   <p class="feed-updated">
     <em><?php print t('Updated:'); ?></em> <?php print $last_checked; ?>
   </p>
-</header> <!-- /.feed-source -->
+</header><!-- /.feed-source -->

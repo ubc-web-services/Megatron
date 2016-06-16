@@ -6,13 +6,13 @@ function megatron_preprocess_page(&$variables) {
 
   // Secondary nav
   $variables['secondary_nav'] = FALSE;
-  if($variables['secondary_menu']) {
+  if ($variables['secondary_menu']) {
     $secondary_menu = menu_load(variable_get('menu_secondary_links_source', 'user-menu'));
-    
+
     // Build links
     $tree = menu_tree_page_data($secondary_menu['menu_name']);
     $variables['secondary_menu'] = megatron_menu_navigation_links($tree);
-    
+
     // Build list
     $variables['secondary_nav'] = theme('megatron_btn_dropdown', array(
       'links' => $variables['secondary_menu'],
@@ -29,63 +29,59 @@ function megatron_preprocess_page(&$variables) {
       ),
     ));
   }
-  
+
   // Replace tabs with dropdown version
   $variables['tabs']['#primary'] = _megatron_local_tasks($variables['tabs']['#primary']);
 }
 
-
 /** GENERAL
 A wrapper function for megatron_theme_get_settings().
- * 
+ *
  * @param $name
- *   The name of the setting that you want to retrieve. 
+ *   The name of the setting that you want to retrieve.
  * @param $default (optional)
  *   The name (key) of the theme that you want to fetch the
- *   setting for. Defaults to NULL.   
+ *   setting for. Defaults to NULL.
  * @param $theme (optional)
  *   The key (machine-readable name) of a theme. Defaults to the key of the
  *   current theme if not defined.
- *   
- * @see 
- *   megatron_theme_get_setting().
+ *
+ * @see megatron_theme_get_setting().
  */
-/*function megatron_theme_get_setting($name, $theme = NULL) {
-  switch($name){
-	case 'exclude':
-		$setting = megatron_theme_get_info($name, $theme);
-		break;
-	default:
-	  $setting = theme_get_setting($name, $theme);
-		break;
+/*
+function megatron_theme_get_setting($name, $theme = NULL) {
+  switch($name) {
+    case 'exclude':
+      $setting = megatron_theme_get_info($name, $theme);
+      break;
+    default:
+      $setting = theme_get_setting($name, $theme);
+      break;
   }
 
-  return isset($setting) ? $setting : NULL; 
+  return isset($setting) ? $setting : NULL;
 }
-
 
 function megatron_get_settings($theme = NULL) {
 
   if (!isset($theme)) {
     $theme = !empty($GLOBALS['theme_key']) ? $GLOBALS['theme_key'] : '';
   }
-	if($theme) {
-		$themes = list_themes();
+  if ($theme) {
+    $themes = list_themes();
     $theme_object = $themes[$theme];
-	}
-	return $theme_object->info['settings'];
+  }
+  return $theme_object->info['settings'];
 }*/
-
 
 /** theme_megatron_progress_bar
 ---------------------------------------------------------- */
 function megatron_megatron_progress_bar($variables) {
   $variables['attributes']['class'][] = 'progress';
-  
-  return "<div". drupal_attributes($variables['attributes']) .">
-  <div class=\"bar\"
-       style=\"width: ". $variables['percent'] ."%;\"></div>
-  </div>";
+
+  return '<div' . drupal_attributes($variables['attributes']) . '>
+    <div class="bar" style="width: ' . $variables['percent'] . '%;"></div>
+    </div>';
 }
 
 /** MENUS
@@ -108,7 +104,6 @@ function megatron_menu_local_tasks(&$vars) {
 
   return $output;
 }
-
 
 /** Returns HTML for primary and secondary local tasks.
 ---------------------------------------------------------- */
@@ -136,77 +131,74 @@ function megatron_menu_local_task($variables) {
   $children = '';
   if (element_children($variables['element'])) {
     $link['localized_options']['attributes']['class'][] = 'dropdown-toggle';
-	  $link['localized_options']['attributes']['data-toggle'][] = 'dropdown';
+    $link['localized_options']['attributes']['data-toggle'][] = 'dropdown';
     $classes[] = 'dropdown';
 
     $children = drupal_render_children($variables['element']);
     $children = '</b><ul class="secondary-tabs dropdown-menu">' . $children . "</ul>";
 
-	return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<div class="ubc7-arrow down-arrow"></div>' . $children . "</li>\n";
-  }else{
-	return '<li class="' . implode(' ', $classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
+    return '<li class="' . implode(' ', $classes) . '"><a href="#"' . drupal_attributes($link['localized_options']['attributes']) .'>' . $link_text . '<div class="ubc7-arrow down-arrow"></div>' . $children . "</li>\n";
+  }
+  else {
+    return '<li class="' . implode(' ', $classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . $children . "</li>\n";
   }
 }
-
 
 /** Get all primary tasks including subsets
 ---------------------------------------------------------- */
 function _megatron_local_tasks($tabs = FALSE) {
-  if($tabs == '')
-	return $tabs;
-  
-  if(!$tabs)
-	$tabs = menu_primary_local_tasks();
-  
+  if ($tabs == '')
+  return $tabs;
+
+  if (!$tabs)
+  $tabs = menu_primary_local_tasks();
+
   foreach($tabs as $key => $element) {
-	$result = db_select('menu_router', NULL, array('fetch' => PDO::FETCH_ASSOC))
-	  ->fields('menu_router')
-	  ->condition('tab_parent', $element['#link']['path'])
-	  ->condition('context', MENU_CONTEXT_INLINE, '<>')
-	  ->condition('type', array(MENU_DEFAULT_LOCAL_TASK, MENU_LOCAL_TASK), 'IN')
-	  ->orderBy('weight')
-	  ->orderBy('title')
-	  ->execute();
-  
-	$router_item = menu_get_item($element['#link']['path']);
-	$map = $router_item['original_map'];
-  
-	$i = 0;
-	foreach ($result as $item) {
-	  _menu_translate($item, $map, TRUE);
-  
-	  //only add items that we have access to
-	  if ($item['tab_parent'] && $item['access']) {
-		//set path to that of parent for the first item
-		if ($i === 0) {
-		  $item['href'] = $item['tab_parent'];
-		}
-  
-		if (current_path() == $item['href']) {
-		  $tabs[$key][] = array(
-			'#theme' => 'menu_local_task',
-			'#link' => $item,
-			'#active' => TRUE,
-		  );
-		}
-		else {
-		  $tabs[$key][] = array(
-			'#theme' => 'menu_local_task',
-			'#link' => $item,
-		  );
-		}
-  
-		//only count items we have access to.
-		$i++;
-	  }
-	}
+  $result = db_select('menu_router', NULL, array('fetch' => PDO::FETCH_ASSOC))
+    ->fields('menu_router')
+    ->condition('tab_parent', $element['#link']['path'])
+    ->condition('context', MENU_CONTEXT_INLINE, '<>')
+    ->condition('type', array(MENU_DEFAULT_LOCAL_TASK, MENU_LOCAL_TASK), 'IN')
+    ->orderBy('weight')
+    ->orderBy('title')
+    ->execute();
+
+  $router_item = menu_get_item($element['#link']['path']);
+  $map = $router_item['original_map'];
+
+  $i = 0;
+  foreach ($result as $item) {
+    _menu_translate($item, $map, TRUE);
+
+    //only add items that we have access to
+    if ($item['tab_parent'] && $item['access']) {
+      //set path to that of parent for the first item
+      if ($i === 0) {
+        $item['href'] = $item['tab_parent'];
+      }
+
+      if (current_path() == $item['href']) {
+        $tabs[$key][] = array(
+        '#theme' => 'menu_local_task',
+        '#link' => $item,
+        '#active' => TRUE,
+        );
+      }
+      else {
+        $tabs[$key][] = array(
+        '#theme' => 'menu_local_task',
+        '#link' => $item,
+        );
+      }
+
+      //only count items we have access to.
+      $i++;
+      }
+    }
   }
-  
+
   return $tabs;
 }
-
-
-
 
 /** FORMS
 Implements hook_form_alter().
@@ -219,11 +211,12 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
     'system_site_information_settings',
     'user_profile_form',
   );
-  
+
   // Only wrap in container for certain form
-  if(isset($form['#form_id']) && !in_array($form['#form_id'], $form_ids) && !isset($form['#node_edit_form']))
+  if (isset($form['#form_id']) && !in_array($form['#form_id'], $form_ids) && !isset($form['#node_edit_form'])) {
     $form['actions']['#theme_wrappers'] = array();
-}  
+  }
+}
 
 /** Returns HTML for a form element.
 ---------------------------------------------------------- */
@@ -349,12 +342,6 @@ function megatron_form_element_label(&$variables) {
   return ' <label' . drupal_attributes($attributes) . '>' . $output . "</label>\n";
 }
 
-
-
-
-
-
-
 /** Preprocessor for theme('button').
 ---------------------------------------------------------- */
 function megatron_preprocess_button(&$vars) {
@@ -362,7 +349,7 @@ function megatron_preprocess_button(&$vars) {
 
   if (isset($vars['element']['#value'])) {
     $classes = array(
-      //specifics
+      // Specifics.
       t('Save and add') => 'btn-info',
       t('Add another item') => 'btn-info',
       t('Add effect') => 'btn-primary',
@@ -370,7 +357,7 @@ function megatron_preprocess_button(&$vars) {
       t('Update style') => 'btn-primary',
       t('Download feature') => 'btn-primary',
 
-      //generals
+      // Generals.
       t('Save') => 'btn-primary',
       t('Apply') => 'btn-primary',
       t('Create') => 'btn-primary',
@@ -406,13 +393,9 @@ function megatron_button($variables) {
   if (!empty($element['#attributes']['disabled'])) {
     $element['#attributes']['class'][] = 'form-button-disabled';
   }
-
-  return '<button' . drupal_attributes($element['#attributes']) . '>'. $label .'</button>
-  '; // This line break adds inherent margin between multiple buttons
+  // The ending line break adds inherent margin between multiple buttons.
+  return '<button' . drupal_attributes($element['#attributes']) . '>'. $label .'</button>' . "\n";
 }
-
-
-
 
 /** PAGER */
 /* Returns HTML for a query pager.
@@ -476,14 +459,14 @@ function megatron_pager($variables) {
     /*
     if ($li_first) {
       $items[] = array(
-        'class' => array('pager-first'), 
+        'class' => array('pager-first'),
         'data' => $li_first,
       );
     }
     */
     if ($li_previous) {
       $items[] = array(
-        'class' => array('prev'), 
+        'class' => array('prev'),
         'data' => $li_previous,
       );
     }
@@ -492,7 +475,7 @@ function megatron_pager($variables) {
     if ($i != $pager_max) {
       if ($i > 1) {
         $items[] = array(
-          'class' => array('pager-ellipsis'), 
+          'class' => array('pager-ellipsis'),
           'data' => '…',
         );
       }
@@ -500,26 +483,26 @@ function megatron_pager($variables) {
       for (; $i <= $pager_last && $i <= $pager_max; $i++) {
         if ($i < $pager_current) {
           $items[] = array(
-           // 'class' => array('pager-item'), 
+           // 'class' => array('pager-item'),
             'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
           );
         }
         if ($i == $pager_current) {
           $items[] = array(
-            'class' => array('active'), // Add the active class 
-            'data' => l($i, '#', array('fragment' => '','external' => TRUE)),
+            'class' => array('active'), // Add the active class
+            'data' => l($i, '#', array('fragment' => '', 'external' => TRUE)),
           );
         }
         if ($i > $pager_current) {
           $items[] = array(
-            //'class' => array('pager-item'), 
+            //'class' => array('pager-item'),
             'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
           );
         }
       }
       if ($i < $pager_max) {
         $items[] = array(
-          'class' => array('pager-ellipsis'), 
+          'class' => array('pager-ellipsis'),
           'data' => '…',
         );
       }
@@ -527,29 +510,31 @@ function megatron_pager($variables) {
     // End generation.
     if ($li_next) {
       $items[] = array(
-        'class' => array('next'), 
+        'class' => array('next'),
         'data' => $li_next,
       );
     }
     /*
     if ($li_last) {
       $items[] = array(
-        'class' => array('pager-last'), 
+        'class' => array('pager-last'),
         'data' => $li_last,
       );
     }
     */
 
     return '<div class="pagination">'. theme('item_list', array(
-      'items' => $items, 
+      'items' => $items,
       //'attributes' => array('class' => array('pager')),
     )) . '</div>';
   }
-  
+
   return $output;
 }
 
-
+/**
+ * Implements theme_item_list().
+ */
 function megatron_item_list($variables) {
   $items = $variables['items'];
   $title = $variables['title'];
@@ -598,15 +583,14 @@ function megatron_item_list($variables) {
     }
     $output .= "</$type>";
   }
- 
+
   return $output;
 }
-
 
 /** Add Bootstrap table class to tables added by Drupal
 ---------------------------------------------------------- */
 function megatron_preprocess_table(&$variables) {
-  if(!isset($variables['attributes']['class'])) {
+  if (!isset($variables['attributes']['class'])) {
     $variables['attributes']['class'] = array('table', 'table-striped');
   }
   else {

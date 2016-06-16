@@ -26,7 +26,7 @@
     </h3>
     <p class="submitted">
       <?php if ($source_url) : ?>
-        <a href="<?php print $source_url; ?>" class="feed-item-source"><?php print $source_title; ?></a> - 
+        <a href="<?php print $source_url; ?>" class="feed-item-source"><?php print $source_title; ?></a> -
       <?php endif; ?>
       <span class="feed-item-date"><?php print $source_date; ?></span>
     </p>
@@ -44,4 +44,4 @@
     </footer>
   <?php endif; ?>
 
-</article> <!-- /.feed-item -->
+</article><!-- /.feed-item -->

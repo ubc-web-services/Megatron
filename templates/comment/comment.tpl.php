@@ -1,5 +1,4 @@
 <article class="<?php print $classes . ' ' . $zebra; ?>"<?php print $attributes; ?>>
-  
   <header>
     <p class="submitted">
       <?php print $picture; ?>
@@ -22,9 +21,9 @@
   </header>
 
   <?php
-    // We hide the comments and links now so that we can render them later.
-    hide($content['links']);
-    print render($content);
+  // We hide the comments and links now so that we can render them later.
+  hide($content['links']);
+  print render($content);
   ?>
 
   <?php if ($signature): ?>
@@ -34,4 +33,4 @@
   <?php endif; ?>
 
   <?php print render($content['links']) ?>
-</article> <!-- /.comment -->
+</article><!-- /.comment -->

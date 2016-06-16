@@ -1,36 +1,36 @@
 <?php
 
-/** hook_theme()
+/** Implements hook_theme().
 ---------------------------------------------------------- */
 function megatron_theme() {
   return array(
     'ubc_clf_toolbar' => array(
-      'variables' => array('element' => NULL)
+      'variables' => array('element' => NULL),
     ),
     'ubc_clf_header' => array(
-      'variables' => array('element' => NULL)
+      'variables' => array('element' => NULL),
     ),
     'ubc_clf_unit' => array(
-      'variables' => array('element' => NULL)
+      'variables' => array('element' => NULL),
     ),
     'ubc_clf_visual_identity_footer' => array(
-      'variables' => array('element' => NULL)
+      'variables' => array('element' => NULL),
     ),
     'ubc_clf_global_utility_footer' => array(
-      'variables' => array('element' => NULL)
+      'variables' => array('element' => NULL),
     ),
     'megatron_links' => array(
       'variables' => array(
         'links' => array(),
         'attributes' => array(),
-        'heading' => NULL
+        'heading' => NULL,
       ),
     ),
     'megatron_secondary_links' => array(
       'variables' => array(
         'links' => array(),
         'attributes' => array(),
-        'heading' => NULL
+        'heading' => NULL,
       ),
     ),
     'megatron_btn_dropdown' => array(
@@ -38,7 +38,6 @@ function megatron_theme() {
     ),
   );
 }
-
 
 /** SANITIZE STRING FOR INJECTION
 ---------------------------------------------------------- */
@@ -51,7 +50,6 @@ function megatron_id_safe($string) {
   }
   return $string;
 }
-
 
 /** CHANGE DEFAULT META CONTENT-TYPE TAG TO HTML5 VERSION
 ---------------------------------------------------------- */
@@ -66,7 +64,6 @@ function megatron_html_head_alter(&$head_elements) {
 function megatron_preprocess_search_block_form(&$vars) {
   $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
 }
-
 
 /**
  * Override or insert variables into the page template for HTML output.
@@ -92,71 +89,77 @@ function megatron_preprocess_search_block_form(&$vars) {
 /** HTML.TPL.PHP PREPROCESS VARIABLES
 ---------------------------------------------------------- */
 function megatron_preprocess_html(&$vars) {
-    // Classes for body element. Allows advanced theming based on context
-    // (home page, node of certain type, etc.)
-    if (!$vars['is_front']) {
-      // Add unique class for each page.
-      $path = drupal_get_path_alias($_GET['q']);
-      // Add unique class for each website section.
-      list($section, ) = explode('/', $path, 2);
-      if (arg(0) == 'node') {
-        if (arg(1) == 'add') {
-          $section = 'node-add';
-        }
-        elseif (is_numeric(arg(1)) && (arg(2) == 'edit' || arg(2) == 'delete')) {
-          $section = 'node-' . arg(2);
-        }
+  // Classes for body element. Allows advanced theming based on context
+  // (home page, node of certain type, etc.)
+  if (!$vars['is_front']) {
+    // Add unique class for each page.
+    $path = drupal_get_path_alias($_GET['q']);
+    // Add unique class for each website section.
+    list($section, ) = explode('/', $path, 2);
+    if (arg(0) == 'node') {
+      if (arg(1) == 'add') {
+        $section = 'node-add';
       }
-      // add a body class that reflects content placement
-      $vars['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
-      $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
+      elseif (is_numeric(arg(1)) && (arg(2) == 'edit' || arg(2) == 'delete')) {
+        $section = 'node-' . arg(2);
+      }
     }
-    // add a body class to tell us what layout we're using
-    //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
-    // add a body class to tell us what colours we're using
-    $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
+    // add a body class that reflects content placement
+    $vars['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
+    $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
+  }
+  // add a body class to tell us what layout we're using
+  //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
+  // add a body class to tell us what colours we're using
+  $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
 
+  //Uses RDFa attributes if the RDF module is enabled
+  //Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
+  // Add rdf info
+  $vars['doctype'] = '<!DOCTYPE html>' . "\n";
+  $vars['rdf'] = new stdClass;
+  $vars['rdf']->version = '';
+  $vars['rdf']->namespaces = '';
+  $vars['rdf']->profile = '';
 
-    //Uses RDFa attributes if the RDF module is enabled
-    //Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
-    // Add rdf info
-    $vars['doctype'] = '<!DOCTYPE html>' . "\n";
-    $vars['rdf'] = new stdClass;
-    $vars['rdf']->version = '';
-    $vars['rdf']->namespaces = '';
-    $vars['rdf']->profile = '';
-
-     if (module_exists('rdf')) {
-       $vars['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">' . "\n";
-       $vars['rdf']->version = 'version="HTML+RDFa 1.1"';
-       $vars['rdf']->namespaces = $vars['rdf_namespaces'];
-       $vars['rdf']->profile = ' profile="' . $vars['grddl_profile'] . '"';
-     }
-
-     // Add js libraries and scripts
-     $clfVerison = theme_get_setting('clf_clf_version');
-     $options = array(
-       'group' => JS_THEME,
-     );
-     drupal_add_js('//cdn.ubc.ca/clf/' . $clfVerison . '/js/ubc-clf.min.js', array('type' => 'external', 'group'=>JS_LIBRARY, 'weight' => 0));
-
-     $showSecondary = theme_get_setting('clf_secondarynavoption');
-     if ($showSecondary) {
-       drupal_add_css(path_to_theme('megatron') . '/css/secondary-nav.css', array('group' => CSS_THEME, 'weight' => 115, 'every_page' => TRUE, 'preprocess' => FALSE));
-     }
-
-     // Add CSS if layout is not default
-     $clfLayout = theme_get_setting('clf_layout');
-     //if (!empty($clfLayout)) {
-     if (($clfLayout == '__full') || ($clfLayout == '__fluid')) {
-       $vars['classes_array'][] = drupal_html_class('full-width');
-     }
-     if ($clfLayout == '__fluid') {
-       $vars['classes_array'][] = drupal_html_class('full-width-left');
-
-     }
+  if (module_exists('rdf')) {
+    $vars['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">' . "\n";
+    $vars['rdf']->version = 'version="HTML+RDFa 1.1"';
+    $vars['rdf']->namespaces = $vars['rdf_namespaces'];
+    $vars['rdf']->profile = ' profile="' . $vars['grddl_profile'] . '"';
   }
 
+  // Add js libraries and scripts
+  $clfVerison = theme_get_setting('clf_clf_version');
+  $options = array(
+    'group' => JS_THEME,
+  );
+  drupal_add_js('//cdn.ubc.ca/clf/' . $clfVerison . '/js/ubc-clf.min.js', array(
+    'type' => 'external',
+    'group' => JS_LIBRARY,
+    'weight' => 0,
+  ));
+
+  $showSecondary = theme_get_setting('clf_secondarynavoption');
+  if ($showSecondary) {
+    drupal_add_css(path_to_theme('megatron') . '/css/secondary-nav.css', array(
+      'group' => CSS_THEME,
+      'weight' => 115,
+      'every_page' => TRUE,
+      'preprocess' => FALSE,
+    ));
+  }
+
+  // Add CSS if layout is not default
+  $clfLayout = theme_get_setting('clf_layout');
+  //if (!empty($clfLayout)) {
+  if (($clfLayout == '__full') || ($clfLayout == '__fluid')) {
+    $vars['classes_array'][] = drupal_html_class('full-width');
+  }
+  if ($clfLayout == '__fluid') {
+    $vars['classes_array'][] = drupal_html_class('full-width-left');
+  }
+}
 
 /** BREADCRUMB ALTERATIONS
 Return a themed breadcrumb trail
@@ -179,11 +182,11 @@ function megatron_breadcrumb($variables) {
     $array_size = count($breadcrumb);
     $i = 0;
     while ( $i < $array_size) {
-      if(drupal_get_title()) {
+      if (drupal_get_title()) {
         $pos = strpos($breadcrumb[$i], drupal_get_title());
       }
       //we stop duplicates entering where there is a sub nav based on page jumps
-      if ($pos === false){
+      if ($pos === FALSE) {
         $crumbs .= '<li class="breadcrumb-' . $i;
         $crumbs .=  '">' . $breadcrumb[$i] . '</li> » ';
       }
@@ -210,11 +213,11 @@ function megatron_preprocess_node(&$vars, $hook) {
   else {
     $vars['unpublished'] = FALSE;
   }
-  if($vars['teaser']) {
+  if ($vars['teaser']) {
       $vars['classes_array'][] = 'row-fluid';
   }
   // add node template suggestions for teasers!
-  if($vars['view_mode'] == 'teaser') {
+  if ($vars['view_mode'] == 'teaser') {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__teaser';
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__teaser';
   }
@@ -266,7 +269,7 @@ function megatron_preprocess_page(&$variables) {
 
   // Primary nav
   $variables['primary_nav'] = FALSE;
-  if($variables['main_menu']) {
+  if ($variables['main_menu']) {
     // Build links
     $tree = menu_tree_page_data(variable_get('menu_main_links_source', 'main-menu'));
     $variables['main_menu'] = megatron_menu_navigation_links($tree);
@@ -291,7 +294,7 @@ function megatron_preprocess_page(&$variables) {
   $showSecondary = theme_get_setting('clf_secondarynavoption');
   $variables['secondary_nav'] = FALSE;
   if ($showSecondary) {
-    if($variables['secondary_menu']) {
+    if ($variables['secondary_menu']) {
       // Build links
       $tree = menu_tree_page_data(variable_get('menu_secondary_links_source', 'user-menu'));
       $variables['secondary_menu'] = megatron_menu_navigation_links($tree);
@@ -396,12 +399,12 @@ function megatron_menu_navigation_links($tree, $lvl = 0) {
           'href' => $item['link']['href'],
         );
 
-    	  // Don't use levels deeper than 1
-    	  if($lvl < 1) {
-    		  $new_item['below'] = megatron_menu_navigation_links($item['below'], $lvl+1);
-    	  }
-    	  $result['menu-'. $item['link']['mlid'] . $class . ' ' .$classtwo] = $new_item;
-    	}
+        // Don't use levels deeper than 1
+        if ($lvl < 1) {
+          $new_item['below'] = megatron_menu_navigation_links($item['below'], $lvl+1);
+        }
+        $result['menu-'. $item['link']['mlid'] . $class . ' ' .$classtwo] = $new_item;
+      }
     }
   }
   return $result;
@@ -418,13 +421,13 @@ function megatron_preprocess_megatron_btn_dropdown(&$variables) {
   $variables['attributes']['class'][] = 'btn-group';
 
   // Check if its a array of links so we need to theme it first here.
-  if(is_array($variables['links'])) {
-	$variables['links'] = theme('links', array(
-	  'links' => $variables['links'],
-	  'attributes' => array(
-		'class' => array('dropdown-menu'),
-	  ),
-	));
+  if (is_array($variables['links'])) {
+  $variables['links'] = theme('links', array(
+    'links' => $variables['links'],
+    'attributes' => array(
+    'class' => array('dropdown-menu'),
+    ),
+  ));
   }
 }
 
@@ -436,30 +439,30 @@ function megatron_megatron_btn_dropdown($variables) {
   $type_class = '';
 
   // Type class
-  if(isset($variables['type'])) {
-	  $type_class = ' btn-'. $variables['type'];
+  if (isset($variables['type'])) {
+    $type_class = ' btn-'. $variables['type'];
   }
 
   // Start markup
   $output = '<div'. drupal_attributes($variables['attributes']) .'>';
 
   // Add as string if its not a link
-  if(is_array($variables['label'])) {
-	  $output .= l($variables['label']['title'], $$variables['label']['href'], $variables['label']);
+  if (is_array($variables['label'])) {
+    $output .= l($variables['label']['title'], $$variables['label']['href'], $variables['label']);
   }
 
   $output .= '<a class="btn '. $type_class .' dropdown-toggle" data-toggle="dropdown" href="#">';
 
   // Its a link so create one
-  if(is_string($variables['label'])) {
-	  $output .= check_plain($variables['label']);
+  if (is_string($variables['label'])) {
+    $output .= check_plain($variables['label']);
   }
 
   // Finish markup
   $output .= '
   <div class="ubc7-arrow down-arrow"></div>
-	</a>
-	' . $variables['links'] . '
+  </a>
+  ' . $variables['links'] . '
   </div>';
 
   return $output;
@@ -505,7 +508,7 @@ function megatron_menu_local_task($variables) {
 function megatron_menu_local_tasks() {
   $output = array();
   if ($primary = menu_primary_local_tasks()) {
-    if(menu_secondary_local_tasks()) {
+    if (menu_secondary_local_tasks()) {
       $primary['#prefix'] = '<ul class="tabs primary with-secondary clearfix">';
     }
     else {
@@ -546,11 +549,10 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
     //$form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Search';}";
     //$form['search_block_form']['#attributes']['onfocus'] = "if (this.value == 'Search') {this.value = '';}";
     // Prevent user from searching the default text
-    //$form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
+    //$form['#attributes']['onsubmit'] = "if (this.search_block_form.value=='Search') { alert('Please enter a search'); return FALSE; }";
   }
   if ($form_id == 'search_form') {
-	//dpm($form); // print the messages
-  	//$form['#attributes']['class'][] = '';
+    //$form['#attributes']['class'][] = '';
     $form['basic']['#attributes']['class'][] = 'form-inline input-append clearfix';
     $form['advanced']['#title'] =  t('Refine your search');
     //$form['advanced']['#type'] =  'accordion';
@@ -561,7 +563,7 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
     //$form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Search';}";
     //$form['search_block_form']['#attributes']['onfocus'] = "if (this.value == 'Search') {this.value = '';}";
     // Prevent user from searching the default text
-    //$form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
+    //$form['#attributes']['onsubmit'] = "if (this.search_block_form.value=='Search') { alert('Please enter a search'); return FALSE; }";
   }
 }
 
@@ -886,7 +888,7 @@ function megatron_button($variables) {
 /** Add Bootstrap table class to tables added by Drupal
 ---------------------------------------------------------- */
 function megatron_preprocess_table(&$variables) {
-  if(!isset($variables['attributes']['class'])) {
+  if (!isset($variables['attributes']['class'])) {
     $variables['attributes']['class'] = array('table', 'table-striped');
   }
   else {
@@ -907,7 +909,6 @@ function megatron_preprocess_views_view_table(&$vars) {
 function megatron_preprocess_views_view_grid(&$vars) {
   $vars['class'] .= ' table';
 }
-
 
 /** STATUS MESSAGES
 Returns HTML for status and/or error messages, grouped by type.
@@ -948,7 +949,6 @@ function megatron_status_messages($vars) {
   return $output;
 }
 
-
 /** EXCLUDE CSS
 Allow css files to be excluded in the .info file
 ---------------------------------------------------------- */
@@ -969,12 +969,12 @@ function megatron_js_alter(&$javascript) {
 
   }
   else {
-  	$javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
-  	$javascript['misc/jquery.js']['type'] = 'external';
-  	$javascript['misc/jquery.js']['group'] = JS_LIBRARY;
-  	$javascript['misc/jquery.js']['weight'] = -100;
-  	//$javascript['misc/jquery.js']['scope'] = 'footer';
-  	$javascript['misc/jquery.js']['version'] = '1.8.1';
+    $javascript['misc/jquery.js']['data'] = '//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js';
+    $javascript['misc/jquery.js']['type'] = 'external';
+    $javascript['misc/jquery.js']['group'] = JS_LIBRARY;
+    $javascript['misc/jquery.js']['weight'] = -100;
+    //$javascript['misc/jquery.js']['scope'] = 'footer';
+    $javascript['misc/jquery.js']['version'] = '1.8.1';
   }
 }
 
@@ -983,10 +983,10 @@ function _megatron_alter($files, $type) {
   $output = array();
 
   foreach($files as $key => $value) {
-    if(isset($files[$key][$type])) {
-	  foreach($files[$key][$type] as $file => $name) {
-		  $output[$name] = FALSE;
-	  }
+    if (isset($files[$key][$type])) {
+      foreach($files[$key][$type] as $file => $name) {
+        $output[$name] = FALSE;
+      }
     }
   }
   return $output;
@@ -995,7 +995,6 @@ function _megatron_alter($files, $type) {
 /** Returns HTML for a set of links.
 ---------------------------------------------------------- */
 function megatron_megatron_links($variables) {
-
   $links = $variables['links'];
   $attributes = $variables['attributes'];
   $heading = $variables['heading'];
@@ -1005,7 +1004,6 @@ function megatron_megatron_links($variables) {
 
   if (count($links) > 0) {
     $output = '';
-
 
     // Treat the heading first if it is present to prepend it to the list of links.
     if (!empty($heading)) {
@@ -1029,66 +1027,66 @@ function megatron_megatron_links($variables) {
     $num_links = count($links);
     $i = 1;
 
-
     foreach ($links as $key => $link) {
       $children = array();
-      if(isset($link['below']))
-      $children = $link['below'];
+      if (isset($link['below'])) {
+        $children = $link['below'];
+      }
 
-	    $attributes = array('class' => array($key));
-
+      $attributes = array('class' => array($key));
       if (isset($link['href']) && ($link['href'] == $_GET['q'] || ($link['href'] == '<front>' && drupal_is_front_page()))
            && (empty($link['language']) || $link['language']->language == $language_url->language)) {
         $attributes['class'][] = 'active';
       }
-	    if(count($children) > 0) {
-		    $attributes['class'][] = 'dropdown';
-		    $link['attributes']['class'][] = 'btn';
+      if (count($children) > 0) {
+        $attributes['class'][] = 'dropdown';
+        $link['attributes']['class'][] = 'btn';
       }
 
-  	  if(!isset($link['attributes']))
-  		$link['attributes'] = array();
-  	  $class = (count($children) > 0) ? 'dropdown' : NULL;
-  	  $output .= '<li ' . drupal_attributes($attributes) . '>';
+      if (!isset($link['attributes'])) {
+        $link['attributes'] = array();
+      }
+      $class = (count($children) > 0) ? 'dropdown' : NULL;
+      $output .= '<li ' . drupal_attributes($attributes) . '>';
 
-
-  	  if (isset($link['href'])) {
-  		  if(count($children) > 0) {
-  		    $link['html'] = TRUE;
-  		    $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
-  		    $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
-  		  }else{
-  		    // Pass in $link as $options, they share the same keys.
-  		    $output .= l($link['title'], $link['href'], $link);
-  		  }
-  	  }
-  	  elseif (!empty($link['title'])) {
-  	   // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
-  	   if (empty($link['html'])) {
-  		   $link['title'] = check_plain($link['title']);
-  	   }
-  	   $span_attributes = '';
-  	   if (isset($link['attributes'])) {
-  		   $span_attributes = drupal_attributes($link['attributes']);
-  	   }
-	     $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
+      if (isset($link['href'])) {
+        if (count($children) > 0) {
+          $link['html'] = TRUE;
+          $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
+          $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
+        }else{
+          // Pass in $link as $options, they share the same keys.
+          $output .= l($link['title'], $link['href'], $link);
+        }
+      }
+      elseif (!empty($link['title'])) {
+       // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
+       if (empty($link['html'])) {
+         $link['title'] = check_plain($link['title']);
+       }
+       $span_attributes = '';
+       if (isset($link['attributes'])) {
+         $span_attributes = drupal_attributes($link['attributes']);
+       }
+       $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
      }
 
-	  if(count($children) > 0) {
-		  $attributes = array();
+    if (count($children) > 0) {
+      $attributes = array();
       $attributes['class'] = array('dropdown-menu');
-		  $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
-		  $output .= '</div>';
-	  }
+      $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
+      $output .= '</div>';
+    }
 
-	  $output .= "</li>\n";
+    $output .= "</li>\n";
     }
 
     $output .= '</ul>';
   }
-  //if(count($children) > 0) {
- //   $output .= '</div>';
- // }
+
+  // if (count($children) > 0) {
+  //   $output .= '</div>';
+  // }
 
   return $output;
 }
