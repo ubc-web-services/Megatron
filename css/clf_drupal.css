@@ -300,7 +300,7 @@ ul.primary {
   list-style: none;
   white-space: nowrap;
   line-height: normal;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
 }
 ul.primary li {
   float: left;
@@ -310,7 +310,7 @@ ul.primary li {
 ul.primary li.active a,
 ul.primary li.active a:hover {
   border-width: 0;
-  color: #000000;
+  color: #000;
   background-color: #b3b3b3;
 }
 ul.primary li a {
@@ -322,7 +322,7 @@ ul.primary li a {
   font-weight: bold;
   text-decoration: none;
   color: #777777;
-  background-color: #eeeeee;
+  background-color: #eee;
   -webkit-border-top-right-radius: 4px;
   -moz-border-radius-topright: 4px;
   border-top-right-radius: 4px;
@@ -367,7 +367,7 @@ ul.secondary a {
 ul.secondary a .active,
 .active ul.secondary a:hover {
   border: 1px solid silver;
-  color: #000000;
+  color: #000;
 }
 ul.secondary a .tab {
   display: block;
@@ -393,7 +393,7 @@ body {
   min-width: 240px;
 }
 #main {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 #ubc7-unit-identifier.no-umbrella {
   line-height: 2.25em;
@@ -529,6 +529,23 @@ html.js fieldset.collapsed .fieldset-legend a:after {
 #panels-dnd-main div.panel-region h2.label {
   background-color: inherit;
   margin: .25em 0 .5em 0;
+}
+.alert .close {
+  text-decoration: none;
+}
+.alert-danger a,
+.alert-error a {
+  color: #fff;
+}
+@media screen and (min-width: 1200px) {
+}
+@media screen and (max-width: 979px) {
+}
+@media screen and (max-width: 767px) {
+}
+@media screen and (max-width: 720px) {
+}
+@media screen and (max-width: 520px) {
 }
 .pull-right {
   float: right;

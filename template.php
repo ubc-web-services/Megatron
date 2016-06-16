@@ -921,24 +921,30 @@ function megatron_status_messages($vars) {
     'error' => t('Error message'),
     'warning' => t('Warning message'),
   );
+  $status_alert_types = array(
+    'status' => 'info',
+    'error' => 'error',
+    'warning' => 'warning',
+  );
   foreach (drupal_get_messages($display) as $type => $messages) {
-    $output .= "<div class=\"alert alert-block alert-$type\">\n";
-    $output .= "  <a class=\"close\" data-dismiss=\"alert\" href=\"#\">x</a>\n";
+    $output .= '<div class="alert alert-block alert-' . $status_alert_types[$type] . '">';
+    $output .= '<a class="close" data-dismiss="alert" href="#">×</a>';
     if (!empty($status_heading[$type])) {
-      $output .= '<h4 class="alert-heading">' . $status_heading[$type] . "</h4>\n";
+      $output .= '<h4 class="alert-heading">' . $status_heading[$type] . '</h4>';
     }
     if (count($messages) > 1) {
-      $output .= " <ul>\n";
+      $output .= ' <ul>';
       foreach ($messages as $message) {
-        $output .= '  <li>' . $message . "</li>\n";
+        $output .= '  <li>' . $message . '</li>';
       }
-      $output .= " </ul>\n";
+      $output .= ' </ul>';
     }
     else {
       $output .= $messages[0];
     }
-    $output .= "</div>\n";
+    $output .= '</div>';
   }
+
   return $output;
 }
 
