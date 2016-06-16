@@ -54,6 +54,7 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="cleartype" content="on">
+  <link rel="dns-prefetch" href="//cdn.ubc.ca">
     <!--[if lte IE 7]>
   <link href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/css/font-awesome-ie7.css" rel="stylesheet">
   <![endif]-->
