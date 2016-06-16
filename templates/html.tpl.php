@@ -68,9 +68,9 @@
   <?php print $scripts; ?>
   <script src="<?php print base_path() . drupal_get_path('theme', 'megatron');?>/js/lib/modernizr.custom.2.6.2.js"></script>
 </head>
-<body class="<?php print $classes; ?>" <?php print $attributes;?>>
+<body class="<?php print $classes; ?>" <?php print $attributes; ?>>
   <?php print $page_top; ?>
-  <?php print $page; ?> 
+  <?php print $page; ?>
   <?php print $page_bottom; ?>
 </body>
 </html>
