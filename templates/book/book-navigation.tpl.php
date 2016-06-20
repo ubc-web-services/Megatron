@@ -47,5 +47,5 @@
     </p>
     <?php endif; ?>
 
-  </footer> <!-- /.book-navigation -->
-<?php endif; ?>
+  </footer>
+<?php endif; ?><!-- /.book-navigation -->

@@ -16,7 +16,7 @@
     <?php endif; ?>
   </header>
   <?php endif; ?>
-  
+
   <div class="content"<?php print $content_attributes; ?>>
   <?php if ($unpublished): ?>
     <div class="unpublished"><?php print t('Unpublished'); ?></div>

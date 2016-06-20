@@ -121,10 +121,10 @@
 
 #font {
   #family {
-    .serif() {
+    .serif () {
       font-family: @serifFontFamily;
     }
-    .sans-serif() {
+    .sans-serif () {
       font-family: @sansFontFamily;
     }
     .monospace() {
@@ -136,11 +136,11 @@
     font-weight: @weight;
     line-height: @lineHeight;
   }
-  .serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+  .serif (@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
     #font > #family > .serif;
     #font > .shorthand(@size, @weight, @lineHeight);
   }
-  .sans-serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+  .sans-serif (@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
     #font > #family > .sans-serif;
     #font > .shorthand(@size, @weight, @lineHeight);
   }
@@ -153,14 +153,15 @@
 // CUSTOM MIXINS
 // type - rems with px fallback, or ems with no fallback
 // REMs - http://snook.ca/archives/html_and_css/font-size-with-rem
-/*.font-size(@font-size: 16){
+/*.font-size(@font-size: 16) {
 @rem: (@font-size / 10);
 font-size: @font-size * 1px;
 font-size: ~"@{rem}rem"; }*/
 
-.font-size(@font-size){
-@em: (@font-size / 16); /* 16px is our base size - divide target size by 16 for a declaration of ems - but remember, unlike rems, they cascade */
-font-size: ~"@{em}em"; }
+.font-size(@font-size) {
+  @em: (@font-size / 16); /* 16px is our base size - divide target size by 16 for a declaration of ems - but remember, unlike rems, they cascade */
+  font-size: ~"@{em}em";
+}
 
 
 // FORMS
@@ -312,10 +313,10 @@ font-size: ~"@{em}em"; }
 // Prevent browsers from flickering when using CSS 3D transforms.
 // Default value is `visible`, but can be changed to `hidden
 // See git pull https://github.com/dannykeane/bootstrap.git backface-visibility for examples
-.backface-visibility(@visibility){
-	-webkit-backface-visibility: @visibility;
-	   -moz-backface-visibility: @visibility;
-	        backface-visibility: @visibility;
+.backface-visibility(@visibility) {
+  -webkit-backface-visibility: @visibility;
+     -moz-backface-visibility: @visibility;
+          backface-visibility: @visibility;
 }
 
 // Background clipping
@@ -327,7 +328,7 @@ font-size: ~"@{em}em"; }
 }
 
 // Background sizing
-.background-size(@size){
+.background-size(@size) {
   -webkit-background-size: @size;
      -moz-background-size: @size;
        -o-background-size: @size;
@@ -617,7 +618,7 @@ font-size: ~"@{em}em"; }
 
     .offset (@columns) {
       margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) + (@fluidGridGutterWidth*2);
-	  *margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%) + (@fluidGridGutterWidth*2) - (.5 / @gridRowWidth * 100 * 1%);
+      *margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%) + (@fluidGridGutterWidth*2) - (.5 / @gridRowWidth * 100 * 1%);
     }
 
     .offsetFirstChild (@columns) {

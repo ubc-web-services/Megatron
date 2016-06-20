@@ -1,4 +1,4 @@
-<?php include_once drupal_get_path('theme','megatron') . '/includes/panels-inc.php'; ?>
+<?php include_once drupal_get_path('theme', 'megatron') . '/includes/panels-inc.php'; ?>
 <!-- -*- mode: html-helper; before-save-hook: nil -*- -->
 
 <div class="panel-display panel-four-three-adaptive clear-block" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
