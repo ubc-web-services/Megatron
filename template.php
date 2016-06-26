@@ -694,14 +694,15 @@ function megatron_form_element_label(&$variables) {
 /** BUTTONS
 ---------------------------------------------------------- */
 
-/** Preprocessor for theme('button').
----------------------------------------------------------- */
-function megatron_preprocess_button(&$vars) {
-  $vars['element']['#attributes']['class'][] = 'btn';
-
-  if (isset($vars['element']['#value'])) {
-    $classes = array(
-      //specifics
+/**
+ * Implements hook_preprocess_button().
+ */
+function megatron_preprocess_button(&$variables) {
+  // Static storage of button class mapping to avoid excessive t() calls.
+  static $button_classes;
+  if (!isset($button_classes)) {
+    $button_classes = array(
+      // Specific buttons first to be caught first in the loop below.
       t('Save and add') => 'btn-info',
       t('Add another item') => 'btn-info',
       t('Add effect') => 'btn-primary',
@@ -709,7 +710,7 @@ function megatron_preprocess_button(&$vars) {
       t('Update style') => 'btn-primary',
       t('Download feature') => 'btn-primary',
 
-      //generals
+      // General buttons.
       t('Save') => 'btn-primary',
       t('Apply') => 'btn-primary',
       t('Create') => 'btn-primary',
@@ -725,9 +726,13 @@ function megatron_preprocess_button(&$vars) {
       t('Delete') => 'btn-danger',
       t('Remove') => 'btn-danger',
     );
-    foreach ($classes as $search => $class) {
-      if (strpos($vars['element']['#value'], $search) !== FALSE) {
-        $vars['element']['#attributes']['class'][] = $class;
+  }
+  $variables['element']['#attributes']['class'][] = 'btn';
+
+  if (isset($variables['element']['#value'])) {
+    foreach ($button_classes as $search => $class) {
+      if (strpos($variables['element']['#value'], $search) !== FALSE) {
+        $variables['element']['#attributes']['class'][] = $class;
         break;
       }
     }
