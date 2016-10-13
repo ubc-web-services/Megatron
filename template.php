@@ -934,7 +934,7 @@ function megatron_status_messages($vars) {
   );
   foreach (drupal_get_messages($display) as $type => $messages) {
     $output .= '<div class="alert alert-block alert-' . $status_alert_types[$type] . '">';
-    $output .= '<a class="close" data-dismiss="alert" href="#">×</a>';
+    $output .= '<a class="close" data-dismiss="alert" href="#">&times;</a>';
     if (!empty($status_heading[$type])) {
       $output .= '<h4 class="alert-heading">' . $status_heading[$type] . '</h4>';
     }
