@@ -87,19 +87,19 @@ function megatron_megatron_progress_bar($variables) {
 /** MENUS
 Returns HTML for primary and secondary local tasks.
 ---------------------------------------------------------- */
-function megatron_menu_local_tasks(&$vars) {
+function megatron_menu_local_tasks(&$variables) {
   $output = '';
 
-  if ( !empty($vars['primary']) ) {
-    $vars['primary']['#prefix'] = '<ul class="nav nav-tabs">';
-    $vars['primary']['#suffix'] = '</ul>';
-    $output .= drupal_render($vars['primary']);
+  if ( !empty($variables['primary']) ) {
+    $variables['primary']['#prefix'] = '<ul class="nav nav-tabs">';
+    $variables['primary']['#suffix'] = '</ul>';
+    $output .= drupal_render($variables['primary']);
   }
 
-  if ( !empty($vars['secondary']) ) {
-    $vars['secondary']['#prefix'] = '<ul class="nav nav-pills">';
-    $vars['secondary']['#suffix'] = '</ul>';
-    $output .= drupal_render($vars['secondary']);
+  if ( !empty($variables['secondary']) ) {
+    $variables['secondary']['#prefix'] = '<ul class="nav nav-pills">';
+    $variables['secondary']['#suffix'] = '</ul>';
+    $output .= drupal_render($variables['secondary']);
   }
 
   return $output;
@@ -344,10 +344,10 @@ function megatron_form_element_label(&$variables) {
 
 /** Preprocessor for theme('button').
 ---------------------------------------------------------- */
-function megatron_preprocess_button(&$vars) {
-  $vars['element']['#attributes']['class'][] = 'btn';
+function megatron_preprocess_button(&$variables) {
+  $variables['element']['#attributes']['class'][] = 'btn';
 
-  if (isset($vars['element']['#value'])) {
+  if (isset($variables['element']['#value'])) {
     $classes = array(
       // Specifics.
       t('Save and add') => 'btn-info',
@@ -374,8 +374,8 @@ function megatron_preprocess_button(&$vars) {
       t('Remove') => 'btn-danger',
     );
     foreach ($classes as $search => $class) {
-      if (strpos($vars['element']['#value'], $search) !== FALSE) {
-        $vars['element']['#attributes']['class'][] = $class;
+      if (strpos($variables['element']['#value'], $search) !== FALSE) {
+        $variables['element']['#attributes']['class'][] = $class;
         break;
       }
     }
@@ -404,7 +404,7 @@ function megatron_button($variables) {
  * retrieve a pager control so that users can view other results. Format a list
  * of nearby pages with additional query results.
  *
- * @param $vars
+ * @param $variables
  *   An associative array containing:
  *   - tags: An array of labels for the controls in the pager.
  *   - element: An optional integer to distinguish between multiple pagers on
@@ -604,11 +604,11 @@ Provides views theme override functions for Bootstrap themes.
 
 Add Bootstrap table class to views tables.
 ---------------------------------------------------------- */
-function megatron_preprocess_views_view_table(&$vars) {
-  $vars['classes_array'][] = 'table';
+function megatron_preprocess_views_view_table(&$variables) {
+  $variables['classes_array'][] = 'table';
 }
 
-function megatron_preprocess_views_view_grid(&$vars) {
-  $vars['class'] .= ' table';
+function megatron_preprocess_views_view_grid(&$variables) {
+  $variables['class'] .= ' table';
 }
 

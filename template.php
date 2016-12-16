@@ -61,8 +61,8 @@ function megatron_html_head_alter(&$head_elements) {
 
 /**Changes the search form to use the HTML5 "search" input attribute
 ---------------------------------------------------------- */
-function megatron_preprocess_search_block_form(&$vars) {
-  $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
+function megatron_preprocess_search_block_form(&$variables) {
+  $variables['search_form'] = str_replace('type="text"', 'type="search"', $variables['search_form']);
 }
 
 /**
@@ -88,10 +88,10 @@ function megatron_preprocess_search_block_form(&$vars) {
 
 /** HTML.TPL.PHP PREPROCESS VARIABLES
 ---------------------------------------------------------- */
-function megatron_preprocess_html(&$vars) {
+function megatron_preprocess_html(&$variables) {
   // Classes for body element. Allows advanced theming based on context
   // (home page, node of certain type, etc.)
-  if (!$vars['is_front']) {
+  if (!$variables['is_front']) {
     // Add unique class for each page.
     $path = drupal_get_path_alias($_GET['q']);
     // Add unique class for each website section.
@@ -105,28 +105,28 @@ function megatron_preprocess_html(&$vars) {
       }
     }
     // add a body class that reflects content placement
-    $vars['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
-    $vars['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
+    $variables['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
+    $variables['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
   }
   // add a body class to tell us what layout we're using
-  //$vars['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
+  //$variables['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
   // add a body class to tell us what colours we're using
-  $vars['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
+  $variables['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
 
   //Uses RDFa attributes if the RDF module is enabled
   //Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
   // Add rdf info
-  $vars['doctype'] = '<!DOCTYPE html>' . "\n";
-  $vars['rdf'] = new stdClass;
-  $vars['rdf']->version = '';
-  $vars['rdf']->namespaces = '';
-  $vars['rdf']->profile = '';
+  $variables['doctype'] = '<!DOCTYPE html>' . "\n";
+  $variables['rdf'] = new stdClass;
+  $variables['rdf']->version = '';
+  $variables['rdf']->namespaces = '';
+  $variables['rdf']->profile = '';
 
   if (module_exists('rdf')) {
-    $vars['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">' . "\n";
-    $vars['rdf']->version = 'version="HTML+RDFa 1.1"';
-    $vars['rdf']->namespaces = $vars['rdf_namespaces'];
-    $vars['rdf']->profile = ' profile="' . $vars['grddl_profile'] . '"';
+    $variables['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">' . "\n";
+    $variables['rdf']->version = 'version="HTML+RDFa 1.1"';
+    $variables['rdf']->namespaces = $variables['rdf_namespaces'];
+    $variables['rdf']->profile = ' profile="' . $variables['grddl_profile'] . '"';
   }
 
   // Add js libraries and scripts
@@ -154,10 +154,10 @@ function megatron_preprocess_html(&$vars) {
   $clfLayout = theme_get_setting('clf_layout');
   //if (!empty($clfLayout)) {
   if (($clfLayout == '__full') || ($clfLayout == '__fluid')) {
-    $vars['classes_array'][] = drupal_html_class('full-width');
+    $variables['classes_array'][] = drupal_html_class('full-width');
   }
   if ($clfLayout == '__fluid') {
-    $vars['classes_array'][] = drupal_html_class('full-width-left');
+    $variables['classes_array'][] = drupal_html_class('full-width-left');
   }
 }
 
@@ -202,24 +202,24 @@ function megatron_breadcrumb($variables) {
 /** NODE.TPL.PHP PREPROCESS VARIABLES
 stripe and add 'Unpublished' div.
 ---------------------------------------------------------- */
-function megatron_preprocess_node(&$vars, $hook) {
+function megatron_preprocess_node(&$variables, $hook) {
   // Add a striping class.
-   $vars['classes_array'][] = 'node-' . $vars['zebra'];
+   $variables['classes_array'][] = 'node-' . $variables['zebra'];
   // Add 'node-unpublished' class to unpublished nodes.
-  if (!$vars['status']) {
-    $vars['classes_array'][] = 'node-unpublished';
-    $vars['unpublished'] = TRUE;
+  if (!$variables['status']) {
+    $variables['classes_array'][] = 'node-unpublished';
+    $variables['unpublished'] = TRUE;
   }
   else {
-    $vars['unpublished'] = FALSE;
+    $variables['unpublished'] = FALSE;
   }
-  if ($vars['teaser']) {
-      $vars['classes_array'][] = 'row-fluid';
+  if ($variables['teaser']) {
+      $variables['classes_array'][] = 'row-fluid';
   }
   // add node template suggestions for teasers!
-  if ($vars['view_mode'] == 'teaser') {
-    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__teaser';
-    $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__teaser';
+  if ($variables['view_mode'] == 'teaser') {
+    $variables['theme_hook_suggestions'][] = 'node__' . $variables['node']->type . '__teaser';
+    $variables['theme_hook_suggestions'][] = 'node__' . $variables['node']->nid . '__teaser';
   }
 }
 
@@ -765,7 +765,7 @@ function megatron_button($variables) {
  * retrieve a pager control so that users can view other results. Format a list
  * of nearby pages with additional query results.
  *
- * @param $vars
+ * @param $variables
  *   An associative array containing:
  *   - tags: An array of labels for the controls in the pager.
  *   - element: An optional integer to distinguish between multiple pagers on
@@ -907,19 +907,19 @@ Provides views theme override functions for Bootstrap themes.
 
 Add Bootstrap table class to views tables.
 ---------------------------------------------------------- */
-function megatron_preprocess_views_view_table(&$vars) {
-  $vars['classes_array'][] = 'table';
+function megatron_preprocess_views_view_table(&$variables) {
+  $variables['classes_array'][] = 'table';
 }
 
-function megatron_preprocess_views_view_grid(&$vars) {
-  $vars['class'] .= ' table';
+function megatron_preprocess_views_view_grid(&$variables) {
+  $variables['class'] .= ' table';
 }
 
 /** STATUS MESSAGES
 Returns HTML for status and/or error messages, grouped by type.
 ---------------------------------------------------------- */
-function megatron_status_messages($vars) {
-  $display = $vars['display'];
+function megatron_status_messages($variables) {
+  $display = $variables['display'];
   $output = '';
 
   $status_heading = array(
