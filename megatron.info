@@ -27,7 +27,7 @@ breakpoints[widescreen] = (min-width: 1200px)
 
 ;settings[toggle_name] = 0
 settings[clf_clf_theme_new] = '-bw'
-settings[clf_clf_version] = '7.0.5'
+settings[clf_clf_version] = '7.0.4'
 settings[clf_layout] = ''
 settings[clf_nogradient] = TRUE
 settings[clf_unit_campus] = ''
