@@ -1,10 +1,9 @@
-name = UBC CLF 7.0.4 Drupal Theme
+name = UBC CLF 7.0.5 Drupal Theme
 description = This is a responsive <a href="http://clf.ubc.ca/" title="Discover the UBC CLF" target="_blank">UBC CLF</a> (Common Look and Feel) theme, developed by UBC IT Web Services Department. The CLF is developed, managed and distributed by UBC Communications & Marketing. To find out more about the CLF, requirements and possible customizations please see <a href="http://brand.ubc.ca/clf" title="Discover the UBC CLF Brand" target="_blank">brand.ubc.ca/clf</a>.<br /><br />For more information, support or to report an issue with this theme, please contact <a href="http://web.it.ubc.ca/forms/webservices/" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services</a>.
-version = 3.0
+version = 4.0
 core = 7.x
 
 regions[search]         = 'Search'
-;regions[navigation]    = 'Navigation'
 regions[highlighted]    = 'Content: Above'
 regions[help]           = 'Help'
 regions[content]        = 'Content'
@@ -12,11 +11,11 @@ regions[sidebar_first]  = 'First Sidebar'
 regions[sidebar_second] = 'Second Sidebar'
 regions[prefooter]      = 'Content: Below'
 
-stylesheets[all][] = css/clf_drupal.css
+;Styles - add your custom css here
 stylesheets[all][] = css/unit-custom.css
 
-;Scripts - concatenated bootstrap-alert with custom js
-scripts[] = js/custom-min.js
+;Scripts - add your custom js here
+scripts[] = js/custom.js
 
 plugins[panels][layouts] = panels-layouts
 
@@ -27,10 +26,18 @@ breakpoints[desktop] = (min-width: 980px)
 breakpoints[widescreen] = (min-width: 1200px)
 
 ;settings[toggle_name] = 0
-settings[clf_clf_version] = '7.0.4'
-settings[clf_clf_package] = 'full'
+settings[clf_clf_theme_new] = '-bw'
+settings[clf_clf_version] = '7.0.5'
 settings[clf_layout] = ''
-settings[clf_scriptsoption] = 'footer'
+settings[clf_nogradient] = TRUE
+settings[clf_unit_campus] = ''
+settings[clf_unitname] = 'Unit Name'
+settings[colourpicker] = '0093c9'
+settings[breadcrumb_display] = 'yes'
+settings[clf_streetaddr] = '123 Main St.'
+settings[clf_locality] = 'Vancouver'
+settings[clf_region] = 'BC'
+settings[clf_country] = 'Canada'
 
 ;Excluded CSS Files
 exclude[css][] = 'misc/vertical-tabs.css'
@@ -54,7 +61,6 @@ exclude[css][] = 'modules/system/admin.css'
 exclude[css][] = 'modules/system/maintenance.css'
 exclude[css][] = 'modules/system/system.css'
 exclude[css][] = 'modules/system/system.admin.css'
-;exclude[css][] = 'modules/system/system.base.css'
 exclude[css][] = 'modules/system/system.maintenance.css'
 exclude[css][] = 'modules/system/system.menus.css'
 exclude[css][] = 'modules/system/system.messages.css'
