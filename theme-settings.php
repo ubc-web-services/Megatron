@@ -54,13 +54,13 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_theme']['clf_clf_version'] = array(
     '#type' => 'select',
     '#title' => t('CLF Version'),
-    '#description' => t('Included for legacy purposes. All current and future themes should be using at least 7.0.5.'),
+    '#description' => t('Included for legacy purposes. All current and future themes should be using at least 7.0.4.'),
     '#default_value' => theme_get_setting('clf_clf_version'),
     '#options' => array(
 			/* DEPRECATED - should now be using 7.0.5 */
       //'7.0.2' => t('Release 7.0.2'),
       //'7.0.3' => t('Release 7.0.3'),
-      '7.0.5' => t('Release 7.0.5'),
+      '7.0.4' => t('Release 7.0.4'),
     ),
   );
 

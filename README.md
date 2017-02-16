@@ -44,3 +44,4 @@ conditional IE stylesheets.
 ## MODULES NOT RECOMMENDED
 
 - Environment Indicator - breaks in jQuery versions 1.8+
+

@@ -156,7 +156,7 @@ function megatron_preprocess_html(&$variables) {
   }
 
 	// ADD CSS
-	$packageprefix = '7.0.5/css/ubc-clf';
+	$packageprefix = '7.0.4/css/ubc-clf';
 	$minversion = '';
 	$packagesuffix = '.min';
 	$minlayout = '-full';
