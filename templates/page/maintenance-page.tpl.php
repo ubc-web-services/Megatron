@@ -22,11 +22,12 @@
   <head>
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="cleartype" content="on">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="dns-prefetch" href="//cdn.ubc.ca">
   <!--[if lte IE 7]>
   <link href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/css/font-awesome-ie7.css" rel="stylesheet">
   <![endif]-->
@@ -35,11 +36,8 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-57-precomposed.png">
-  <link href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/css/ubc-clf-<?php print theme_get_setting('clf_clf_package'); ?><?php print theme_get_setting('clf_clf_theme_new'); ?>.min.css" rel="stylesheet">
   <?php print $styles; ?>
-  <?php $clf_scriptsoption = theme_get_setting('clf_scriptsoption');
-  if ($clf_scriptsoption == 'head') { print $scripts; }
- ?>
+	<?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes; ?>>
 <?php include_once drupal_get_path('theme', 'megatron') . '/includes/template-ubc-clf-elements.inc'; ?>
@@ -117,7 +115,5 @@
       <?php print theme('ubc_clf_global_utility_footer'); ?>
     </footer>
   </div><!-- /#container -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-  <script src="//cdn.ubc.ca/clf/7.0.4/js/ubc-clf.min.js"></script>
 </body>
 </html>

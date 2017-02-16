@@ -1,10 +1,71 @@
-.alert .close {
-  text-decoration: none;
-}
+/* UNIT Alert Styles
+-------------------------------------------------- */
 
-.alert-danger,
-.alert-error {
+/*
+
+  SAMPLE MARKUP:
+  --------------------------------------------------
+  
+  see: http://getbootstrap.com/2.3.2/components.html#alerts
+
+  VARIABLES
+  --------------------------------------------------
+  @unit-warning:          #f39c12;
+  @unit-danger:           #e74c3c;
+  @unit-error:            #e74c3c;
+  @unit-success:          #18bc9c;
+  @unit-info:             #3498db;
+  @unit-status:           #3498db;
+  
+*/
+@unit-warning:          #f39c12;
+@unit-danger:           #e74c3c;
+@unit-error:            #e74c3c;
+@unit-success:          #18bc9c;
+@unit-info:             #3498db;
+@unit-status:           #3498db;
+/* GENERAL STYLES 
+*/
+.alert {
+  padding: 15px 35px 15px 15px;
+  margin-bottom: 21px;
+  border-radius: 4px;
+  color: #fff;
   a {
     color: #fff;
   }
+}
+a.close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: white !important;
+  text-decoration: none;
+  opacity: 0.4;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  float: right;
+  font-size: 22.5px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    opacity: 1;
+  }
+}
+.alert h4.alert-heading {
+  margin-top: 0;
+  color: white;
+}
+.alert-warning {
+  background-color: @unit-warning;
+}
+.alert-danger, .alert-error {
+  background-color: @unit-danger;
+}
+.alert-success {
+  background-color: @unit-success;
+}
+.alert-info, .alert-status {
+  background-color: @unit-info;
 }

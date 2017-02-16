@@ -54,35 +54,45 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['clf_theme']['clf_clf_version'] = array(
     '#type' => 'select',
     '#title' => t('CLF Version'),
-    '#description' => t('Select the release version of the CLF you\'d like to use.'),
+    '#description' => t('Included for legacy purposes. All current and future themes should be using at least 7.0.5.'),
     '#default_value' => theme_get_setting('clf_clf_version'),
     '#options' => array(
-      '7.0.2' => t('Release 7.0.2'),
-      '7.0.3' => t('Release 7.0.3'),
-      '7.0.4' => t('Release 7.0.4'),
+			/* DEPRECATED - should now be using 7.0.5 */
+      //'7.0.2' => t('Release 7.0.2'),
+      //'7.0.3' => t('Release 7.0.3'),
+      '7.0.5' => t('Release 7.0.5'),
     ),
   );
 
+	/* DEPRECATED - now should use $form['clf_theme']['clf_clf_minimal'] below
   $form['clf_theme']['clf_clf_package'] = array(
     '#type' => 'select',
     '#title' => t('CLF Package'),
-    '#description' => t('Select the package of the CLF you\'d like to use.<br /><br />Choosing a minimal version will exclude many of the default CLF styles, but may be preferable for themes with a large number of customizations. <em>Note: Minimal package is only currently available for CLF version 7.0.2</em>'),
+    '#description' => t('Select the package of the CLF you\'d like to use.<br /><br />Choosing a minimal version will exclude most of the default CLF styles, but may be preferable for themes with a large number of customizations. <em>Note: Minimal package is only available for CLF version 7.0.2</em>'),
     '#default_value' => theme_get_setting('clf_clf_package'),
     '#options' => array(
       'full' => t('Full Version'),
       'min' => t('Minimal Version'),
     ),
   );
+*/
+
+	$form['clf_theme']['clf_clf_minimal'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Minimal CLF Distribution'),
+    '#description' => t('This is a distribution of the CLF that <strong>only</strong> includes required CLF styles.<br /><br />This is provided for advanced themers only, who don\'t wish to use the full Bootstrap 2.x framework that the CLF is build upon. Extensive theming is required.'),
+    '#default_value' => theme_get_setting('clf_clf_minimal'),
+  );
 
   $form['clf_theme']['clf_layout'] = array(
     '#type' => 'select',
     '#title' => t('Layout'),
-    '#description' => t('Make the CLF Full Width'),
+    '#description' => t('Make the CLF Full Width. <em>*Note: <strong>Full Width Left Aligned</strong> is not available with minimal distribution - when set, defaults to <strong>Full Width Centered</strong> layout.</em>'),
     '#default_value' => theme_get_setting('clf_layout'),
     '#options' => array(
-     '' => t('Default'),
-     '__fluid' => t('Left Aligned Full Width CLF (must use CLF version 7.0.4+)'),
-     '__full' => t('Full Width CLF (must use CLF version 7.0.4+)'),
+     '' => t('Default (1200px Centered with Grey Background)'),
+     '__fluid' => t('Full Width Left Aligned CLF'),
+     '__full' => t('Full Width Centered CLF'),
    ),
  );
 
@@ -98,6 +108,13 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('Add a second row to the Primary Navigation?'),
     '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
     '#default_value' => theme_get_setting('clf_secondarynavoption'),
+  );
+
+	$form['clf_theme']['clf_nogradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
+    '#description' => t('Create a flat version of the CLF by removing the gradients in the Unit Name region.'),
+    '#default_value' => theme_get_setting('clf_nogradient'),
   );
 
 /*
@@ -398,6 +415,19 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#default_value' => theme_get_setting('clf_subunit_override'),
     '#size' => 60,
     '#maxlength' => 128,
+  );
+
+	$form['clf_environment'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Do <em>not</em> allow the site to be indexed'),
+    '#description' => t('If this is <strong>not</strong> a production website, this checkbox will add a "nofollow" meta tag to all pages.'),
+    '#default_value' => theme_get_setting('clf_environment'),
+  );
+  $form['clf_modernizr'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Load the modernizr library'),
+    '#description' => t('Enable the <a href="https://modernizr.com" target="_blank">modernizr library</a> to allow feature detection.<br /><br />The included build detects support for fontface, backgroundsize, borderimage, borderradius, boxshadow, flexbox, flexboxlegacy, hsla, multiplebgs, opacity, rgba, textshadow, cssanimations, csscolumns, generatedcontent, cssgradients, cssreflections, csstransforms, csstransforms3d, csstransitions, applicationcache, localstorage, sessionstorage, websqldatabase, webworkers, geolocation, svg, touch, shiv, mq.<br /><br />To include additional features or exclude some of the ones listed, please create a custom build and include it using an alternative method (either in your theme <em>.info</em> file, your theme\'s <em>html.tpl.php</em> template or via <em>theme_preprocess_html</em>).'),
+    '#default_value' => theme_get_setting('clf_modernizr'),
   );
 
   // Return the additional form widgets.
