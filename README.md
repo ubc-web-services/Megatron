@@ -1,4 +1,4 @@
-UBC CLF 7.0.4 DRUPAL THEME (aka Megatron)
+UBC CLF 7.0.5 DRUPAL THEME (aka Megatron)
 =======================================
 
 A responsive UBC CLF (Common Look and Feel) theme for Drupal 7. Created by the
@@ -12,7 +12,8 @@ compatible with default bootstrap markup, and no need for
 conditional IE stylesheets.
 
 ### Drupal / Theme level
-- Modernizr
+- Minimal CLF (optional) - for heavily-themed sites, you can load the minimal required CSS and leave the rest of the bootstrap framework behind
+- Modernizr (optional)
 - Unit LESS files (and uncompressed CSS for everyone else)
 - Page / content type template suggestions (beyond page and blog)
 - Body classes to indicate page section and path for easier theming
@@ -39,12 +40,7 @@ conditional IE stylesheets.
   Media Query breakpoints.
 - Media - for inserting adaptive images into textarea fields
   (allows you to choose image style per image).
-- Block Class - allows you to easily use
-  ‘visible-phone / visible-tablet / visible-desktop’ type bootstrap styles on
-  blocks of content.
-
 
 ## MODULES NOT RECOMMENDED
 
 - Environment Indicator - breaks in jQuery versions 1.8+
-
