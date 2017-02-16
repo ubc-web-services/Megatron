@@ -1,4 +1,40 @@
 //
+// Add support for HTML5 elements
+// --------------------------------------------------
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+mark,
+nav,
+section,
+summary,
+time {
+  display: block;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+audio,
+video {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+//
 // Custom Utility classes
 // --------------------------------------------------
 
@@ -31,12 +67,6 @@
   position: static; 
   width: auto; 
   height: auto; } 
-
-/*a:link, a:visited, button {
- -webkit-transition: color 0.2s ease, background 0.3s ease;
- -moz-transition: color 0.2s ease, background 0.3s ease;
- -o-transition: color 0.2s ease, background 0.3s ease;
- transition: color 0.2s ease, background 0.3s ease; }*/
 
 // Make sure ckeditor behaves and doesn't display a background image or colour
 #cke_contents_edit-body-und-0-value body { background: none !important; }
@@ -203,52 +233,33 @@ ul.secondary a .tab {
 // DEFAULTS FOR CLF
 //-------------------------
 body {
-  background: #cccccc;
+  background-color: #ccc;
   font-family: @sansFontFamily;
   min-width: 240px; }
+body.full-width {
+  background-color: @white;
+}
 #main { background-color: @white; }
 #ubc7-unit-identifier.no-umbrella { line-height: 2.25em; }
+.no-gradient {
+  #ubc7-unit {
+    box-shadow: none;
+  }
+  #ubc7-unit-name a,
+  #ubc7-unit-name a:hover {
+    text-shadow: none;
+  }
+} 
 
 // Unit Bar link and font colour
 //-------------------------
 #ubc7-unit,
 #ubc7-unit-name a {
-  color: #FFFFFF;
+  color: @white;
   text-shadow: 1px 1px 2px #333333; }
-#ubc7-unit-name a:hover,
-#ubc7-unit-name a:active { text-shadow: 1px 2px 2px #333333; }
+//#ubc7-unit-name a:hover,
+//#ubc7-unit-name a:active { text-shadow: 1px 2px 2px #333333; }
 
-
-//#ubc7-unit-menu .btn-group .btn { line-height: 44px; }
-// FIX THE PRIMARY LINK ACTIVE STYLES
-//-------------------------
-/*
-#ubc7-unit-menu .nav > li > a.active,
-#ubc7-unit-menu .nav > li.active-trail > .btn-group, 
-#ubc7-unit-alternate-navigation .nav > li.active-trail > .btn-group {
-  background:  @ubcSilver;
-  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125); }
-#ubc7-unit-menu .nav-collapse .nav > li > a:hover, 
-#ubc7-unit-menu .nav-collapse .dropdown-menu a:hover, 
-#ubc7-unit-alternate-navigation .nav-collapse .nav > li > a:hover, 
-#ubc7-unit-alternate-navigation .nav-collapse .dropdown-menu a:hover {
-  color:  #fff;
-  text-decoration: none; 
-  background-color: @ubcBlue !important;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none; }  
-#ubc7-unit-menu .nav > li.active-trail:hover > .btn-group {
-  background: @ubcBlue; }
-#ubc7-unit-menu .nav > li.active-trail > .btn-group .btn,
-#ubc7-unit-alternate-navigation .nav > li.active-trail > .btn-group .btn {
-  background: 0; }
-
-// this is the fix for the clf line height issue with no dropdown
-#ubc7-unit-menu .nav > li  > a { padding: 10px 15px !important; }
-*/
 
 // Fix form styles to adjust for Drupal default markup
 .form-type-radio,
@@ -271,12 +282,6 @@ body {
 @media screen and (min--moz-device-pixel-ratio:0) and (min-width:1200px) {
   #ubc7-unit-menu .nav > li  > a { padding-top: 11px !important; }
 }
-
-// add box shadow to container elements
-/*#ubc7-header, div#ubc7-unit, #ubc7-unit-menu, ul.breadcrumb, #main, #ubc7-unit-footer, #ubc7-global-footer, #ubc7-minimal-footer {
--moz-box-shadow: 0px 3px 5px #444;
--webkit-box-shadow: 0px 3px 5px #444;
-box-shadow: 0px 3px 5px #444; }*/
 
 // FOOTER STYLES
 //-------------------------
@@ -326,7 +331,6 @@ html.js fieldset.collapsed .fieldset-legend a:after { content: "+"; }
   background-color: inherit;
   border-top: none; }
 #ubc7-search #block-search-form input[type="search"] { margin-bottom: 0; }
-
 
 @media screen and (max-width:979px) {
 // START 768-979 STYLES    

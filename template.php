@@ -65,27 +65,6 @@ function megatron_preprocess_search_block_form(&$variables) {
   $variables['search_form'] = str_replace('type="text"', 'type="search"', $variables['search_form']);
 }
 
-/**
- * Override or insert variables into the page template for HTML output.
- */
-/*function megatron_process_html(&$variables) {
-  // Hook into color.module.
-  if (module_exists('color')) {
-    _color_html_alter($variables);
-  }
-}*/
-
-/**
- * Override or insert variables into the page template.
- */
-/*function megatron_process_page(&$variables) {
-  // Hook into color.module.
-  if (module_exists('color')) {
-    _color_page_alter($variables);
-  }
-}*/
-
-
 /** HTML.TPL.PHP PREPROCESS VARIABLES
 ---------------------------------------------------------- */
 function megatron_preprocess_html(&$variables) {
@@ -108,8 +87,6 @@ function megatron_preprocess_html(&$variables) {
     $variables['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
     $variables['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
   }
-  // add a body class to tell us what layout we're using
-  //$variables['classes_array'][] = drupal_html_class('layout' . theme_get_setting('clf_layout'));
   // add a body class to tell us what colours we're using
   $variables['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
 
@@ -150,15 +127,57 @@ function megatron_preprocess_html(&$variables) {
     ));
   }
 
-  // Add CSS if layout is not default
+  // Add body classes if layout is not default
   $clfLayout = theme_get_setting('clf_layout');
-  //if (!empty($clfLayout)) {
   if (($clfLayout == '__full') || ($clfLayout == '__fluid')) {
     $variables['classes_array'][] = drupal_html_class('full-width');
   }
   if ($clfLayout == '__fluid') {
     $variables['classes_array'][] = drupal_html_class('full-width-left');
   }
+	// Add body class if theme_get_setting('clf_nogradient') is set to true
+  if (theme_get_setting('clf_nogradient') == TRUE) {
+    $variables['classes_array'][] = drupal_html_class('no-gradient');
+  }
+
+	/* ADD A NOFOLLOW META TAG TO PREVENT SITE INDEXING IF IT IS NOT A PRODUCTION WEBSITE */
+	// Setup meta tag
+  if (theme_get_setting('clf_environment')) {
+    $nofollow = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' =>  'robots',
+        'content' => 'noindex, nofollow',
+      )
+    );
+    // Add header meta tag
+    drupal_add_html_head($nofollow, '$nofollow');
+  }
+
+	// ADD CSS
+	$packageprefix = '7.0.5/css/ubc-clf';
+	$minversion = '';
+	$packagesuffix = '.min';
+	$minlayout = '-full';
+	if (theme_get_setting('clf_clf_minimal') == TRUE) {
+		$packageprefix = '7.0.4-minimal/css/minimal-clf';
+		$minversion = '-7.0.4';
+		$minlayout = '';
+		$packagesuffix = '';
+		if ((theme_get_setting('clf_layout') == '__full') || (theme_get_setting('clf_layout') == '__fluid')) {
+		  $minlayout = '-full';
+		}
+	}
+	drupal_add_css('https://cdn.ubc.ca/clf/' . $packageprefix . $minlayout . $minversion . theme_get_setting('clf_clf_theme_new') . $packagesuffix . '.css', array('type' => 'external', 'group'=>CSS_THEME, 'every_page' => TRUE, 'weight' => -2));
+	drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/clf_drupal.css', array('group' => CSS_THEME, 'every_page' => TRUE, 'weight' => -1));
+	// ADD JAVASCRIPT
+	// Load modernizr if requested
+  if (theme_get_setting('clf_modernizr')) {
+    drupal_add_js(drupal_get_path('theme', 'megatron') .'/js/lib/modernizr/modernizr.custom.2.6.2.js', array('group' => JS_THEME, 'every_page' => TRUE, 'weight' => 1000));
+  }
+	drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/bootstrap/bootstrap-alert-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -99));
+	drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/megatron/megatron-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -98));
 }
 
 /** BREADCRUMB ALTERATIONS
@@ -533,37 +552,17 @@ function megatron_form_alter(&$form, &$form_state, $form_id) {
   // Customize the search block form
   if ($form_id == 'search_block_form') {
     $form['#attributes']['class'][] = 'form-inline input-append';
-    //$form['search_block_form']['#title'] = t('Search'); // Change the text on the label element
     $form['search_block_form']['#attributes']['title'] = t('enter your search terms...');
     $form['search_block_form']['#attributes']['placeholder'] = t('Enter your search terms...');
     $form['search_block_form']['#attributes']['class'][] = 'nomargin';
     $form['search_block_form']['#theme_wrappers'] = NULL;
-    //$form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibilty
-    //$form['search_block_form']['#size'] = 40;  // define size of the textfield
-    //$form['search_block_form']['#default_value'] = t('Search'); // Set a default value for the textfield
     $form['actions']['#theme_wrappers'] = NULL; // remove the div around the button
     $form['actions']['submit']['#value'] = t('Go'); // Change the text on the submit button
-    //$form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/images/search-button.png');
-
-    // Add extra attributes to the text box
-    //$form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Search';}";
-    //$form['search_block_form']['#attributes']['onfocus'] = "if (this.value == 'Search') {this.value = '';}";
-    // Prevent user from searching the default text
-    //$form['#attributes']['onsubmit'] = "if (this.search_block_form.value=='Search') { alert('Please enter a search'); return FALSE; }";
   }
   if ($form_id == 'search_form') {
-    //$form['#attributes']['class'][] = '';
     $form['basic']['#attributes']['class'][] = 'form-inline input-append clearfix';
     $form['advanced']['#title'] =  t('Refine your search');
-    //$form['advanced']['#type'] =  'accordion';
     $form['actions']['submit']['#value'] = t('Go'); // Change the text on the submit button
-    //$form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/images/search-button.png');
-
-    // Add extra attributes to the text box
-    //$form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Search';}";
-    //$form['search_block_form']['#attributes']['onfocus'] = "if (this.value == 'Search') {this.value = '';}";
-    // Prevent user from searching the default text
-    //$form['#attributes']['onsubmit'] = "if (this.search_block_form.value=='Search') { alert('Please enter a search'); return FALSE; }";
   }
 }
 
@@ -757,138 +756,6 @@ function megatron_button($variables) {
  return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
 
-/** PAGER */
-// REMOVED AS WAS CAUSING VIEWS AJAX FORM ERROR - JOTOOLE - NOV7/13
-/* Returns HTML for a query pager.
- *
- * Menu callbacks that display paged query results should call theme('pager') to
- * retrieve a pager control so that users can view other results. Format a list
- * of nearby pages with additional query results.
- *
- * @param $variables
- *   An associative array containing:
- *   - tags: An array of labels for the controls in the pager.
- *   - element: An optional integer to distinguish between multiple pagers on
- *     one page.
- *   - parameters: An associative array of query string parameters to append to
- *     the pager links.
- *   - quantity: The number of pages in the list.
- *
- * @ingroup themeable
- */
-/*function megatron_pager($variables) {
-  $output = "";
-  $tags = $variables['tags'];
-  $element = $variables['element'];
-  $parameters = $variables['parameters'];
-  $quantity = $variables['quantity'];
-  global $pager_page_array, $pager_total;
-
-  // Calculate various markers within this pager piece:
-  // Middle is used to "center" pages around the current page.
-  $pager_middle = ceil($quantity / 2);
-  // current is the page we are currently paged to
-  $pager_current = $pager_page_array[$element] + 1;
-  // first is the first page listed by this pager piece (re quantity)
-  $pager_first = $pager_current - $pager_middle + 1;
-  // last is the last page listed by this pager piece (re quantity)
-  $pager_last = $pager_current + $quantity - $pager_middle;
-  // max is the maximum page number
-  $pager_max = $pager_total[$element];
-  // End of marker calculations.
-
-  // Prepare for generation loop.
-  $i = $pager_first;
-  if ($pager_last > $pager_max) {
-    // Adjust "center" if at end of query.
-    $i = $i + ($pager_max - $pager_last);
-    $pager_last = $pager_max;
-  }
-  if ($i <= 0) {
-    // Adjust "center" if at start of query.
-    $pager_last = $pager_last + (1 - $i);
-    $i = 1;
-  }
-
-  // End of generation loop preparation.
-  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('first')), 'element' => $element, 'parameters' => $parameters));
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last')), 'element' => $element, 'parameters' => $parameters));
-
-  if ($pager_total[$element] > 1) {
-    //if ($li_first) {
-    //  $items[] = array(
-    //    'class' => array('pager-first'),
-    //    'data' => $li_first,
-    //  );
-    //}
-    if ($li_previous) {
-      $items[] = array(
-        'class' => array('prev'),
-        'data' => $li_previous,
-      );
-    }
-
-    // When there is more than one page, create the pager list.
-    if ($i != $pager_max) {
-      if ($i > 1) {
-        $items[] = array(
-          'class' => array('pager-ellipsis'),
-          'data' => '…',
-        );
-      }
-      // Now generate the actual pager piece.
-      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
-        if ($i < $pager_current) {
-          $items[] = array(
-           // 'class' => array('pager-item'),
-            'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
-          );
-        }
-        if ($i == $pager_current) {
-          $items[] = array(
-            'class' => array('active'), // Add the active class
-            'data' => l($i, '#', array('fragment' => '','external' => TRUE)),
-          );
-        }
-        if ($i > $pager_current) {
-          $items[] = array(
-            //'class' => array('pager-item'),
-            'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
-          );
-        }
-      }
-      if ($i < $pager_max) {
-        $items[] = array(
-          'class' => array('pager-ellipsis'),
-          'data' => '…',
-        );
-      }
-    }
-    // End generation.
-    if ($li_next) {
-      $items[] = array(
-        'class' => array('next'),
-        'data' => $li_next,
-      );
-    }
-    //if ($li_last) {
-    //  $items[] = array(
-    //    'class' => array('pager-last'),
-    //    'data' => $li_last,
-    //  );
-    //}
-
-    return '<div class="pagination">'. theme('item_list', array(
-      'items' => $items,
-      //'attributes' => array('class' => array('pager')),
-    )) . '</div>';
-  }
-
-  return $output;
-}*/
-
 /** TABLES */
 /** Add Bootstrap table class to tables added by Drupal
 ---------------------------------------------------------- */
@@ -967,9 +834,6 @@ function megatron_css_alter(&$css) {
 Replace jQuery with updated version
 ---------------------------------------------------------- */
 function megatron_js_alter(&$javascript) {
-  // Swap out jQuery to use an external version of the library (a requirement of the Twitter Bootstrap framework).
-  //$clf_jqueryoption = theme_get_setting('clf_jqueryoption');
-  //if (empty($clf_jqueryoption)) {
   if (module_exists('jquery_update')) {
 
   }
@@ -978,7 +842,6 @@ function megatron_js_alter(&$javascript) {
     $javascript['misc/jquery.js']['type'] = 'external';
     $javascript['misc/jquery.js']['group'] = JS_LIBRARY;
     $javascript['misc/jquery.js']['weight'] = -100;
-    //$javascript['misc/jquery.js']['scope'] = 'footer';
     $javascript['misc/jquery.js']['version'] = '1.8.1';
   }
 }
@@ -1016,8 +879,6 @@ function megatron_megatron_links($variables) {
         // Prepare the array that will be used when the passed heading is a string.
         $heading = array(
           'text' => $heading,
-          // Set the default level of the heading.
-          //'level' => 'li',
         );
       }
       $output .= '<h3';
@@ -1060,12 +921,10 @@ function megatron_megatron_links($variables) {
           $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
           $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
         }else{
-          // Pass in $link as $options, they share the same keys.
           $output .= l($link['title'], $link['href'], $link);
         }
       }
       elseif (!empty($link['title'])) {
-       // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
        if (empty($link['html'])) {
          $link['title'] = check_plain($link['title']);
        }
@@ -1088,10 +947,6 @@ function megatron_megatron_links($variables) {
 
     $output .= '</ul>';
   }
-
-  // if (count($children) > 0) {
-  //   $output .= '</div>';
-  // }
 
   return $output;
 }

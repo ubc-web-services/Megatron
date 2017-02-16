@@ -6,7 +6,6 @@ Unit Bar background gradient and box shadow */
 #ubc7-unit {
   background: #245b7b;
   /* replace with unit colour (or use theme settings) */
-
   box-shadow: inset 0px -10px 10px -10px #333333;
   -moz-box-shadow: inset 0px -10px 10px -10px #333333;
   -webkit-box-shadow: inset 0px -10px 10px -10px #333333;
@@ -14,28 +13,48 @@ Unit Bar background gradient and box shadow */
 /* UNIT SPECIFIC
 Typography
 -------------------------------------------------- */
-/* MEDIA QUERIES 
-(these are example queries to get you started - these can be maodified to suit)
+/* MEDIA QUERIES - uncomment to use
+(these are example queries to get you started and can be modified to suit)
 -------------------------------------------------- */
-@media screen and (min-width: 1200px) {
-  /* START 1200 STYLES */
-  /* END 1200 STYLES */
+/* 1200 styles
+-------------------------------------------------- */
+/*
+@media screen and (min-width:1200px) {
+
 }
-@media screen and (max-width: 979px) {
-  /* START 768-979 STYLES */
-  /* END 768-979 STYLES */
+*/
+/* 768-979 styles
+-------------------------------------------------- */
+/*
+@media screen and (max-width:979px) {
+
 }
+*/
+/* >767 styles
+-------------------------------------------------- */
+/*
 @media screen and (max-width: 767px) {
-  /* START >767 STYLES */
-  /* END >767 STYLES */
+
 }
+*/
+/* >720 styles
+-------------------------------------------------- */
+/*
 @media screen and (max-width: 720px) {
-  /* START >720 STYLES */
-  /* END >720 STYLES */
+
 }
+*/
+/* >520 styles
+-------------------------------------------------- */
+/*
 @media screen and (max-width: 520px) {
-  
+
 }
+*/
+/* >480 styles
+-------------------------------------------------- */
+/*
 @media screen and (max-width: 480px) {
-  
+
 }
+*/
