@@ -263,10 +263,10 @@ function megatron_process_block(&$variables, $hook) {
 function megatron_preprocess_page(&$variables) {
   // Define CLF page elements in an include
   include_once 'includes/template-ubc-clf-elements.inc';
-  // Add template suggestions based on content type
-  if (isset($variables['node'])) {
+  // Add template suggestions based on content type.
+  if (isset($variables['node']->type)) {
     //$variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
-    $variables['theme_hook_suggestions'][] = 'page__type__'. $variables['node']->type;
+    $variables['theme_hook_suggestions'][] = 'page__type__' . $variables['node']->type;
   }
 
   // Add information about the number of sidebars.
