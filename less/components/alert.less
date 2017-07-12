@@ -1,37 +1,28 @@
 /* UNIT Alert Styles
 -------------------------------------------------- */
 
-/*
+/* VARIABLES */
+@unit-warning:  #ef8843;
+@unit-danger:   #b33542;
+@unit-error:    @unit-danger;
+@unit-success:  #95be4f;
+@unit-info:     #324d6a;
+@unit-status:   @unit-info;
 
-  SAMPLE MARKUP:
-  --------------------------------------------------
-  
-  see: http://getbootstrap.com/2.3.2/components.html#alerts
-
-  VARIABLES
-  --------------------------------------------------
-  @unit-warning:          #f39c12;
-  @unit-danger:           #e74c3c;
-  @unit-error:            #e74c3c;
-  @unit-success:          #18bc9c;
-  @unit-info:             #3498db;
-  @unit-status:           #3498db;
-  
-*/
-@unit-warning:          #f39c12;
-@unit-danger:           #e74c3c;
-@unit-error:            #e74c3c;
-@unit-success:          #18bc9c;
-@unit-info:             #3498db;
-@unit-status:           #3498db;
-/* GENERAL STYLES 
-*/
+/* GENERAL STYLES */
 .alert {
-  padding: 15px 35px 15px 15px;
-  margin-bottom: 21px;
-  border-radius: 4px;
   color: #fff;
-  a {
+
+  padding: 15px 35px 15px 15px;
+
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  border-width: 2px;
+  border-radius: 0;
+
+  a,
+  h4 {
     color: #fff;
   }
 }
@@ -53,19 +44,29 @@ a.close {
     opacity: 1;
   }
 }
+
 .alert h4.alert-heading {
   margin-top: 0;
-  color: white;
 }
+
 .alert-warning {
   background-color: @unit-warning;
+  border-color: #d77a3c;
 }
-.alert-danger, .alert-error {
+
+.alert-danger,
+.alert-error {
   background-color: @unit-danger;
+  border-color: #900f1d;
 }
-.alert-success {
+
+.alert-success,
+.alert-status {
   background-color: @unit-success;
+  border-color: #73963d;
 }
-.alert-info, .alert-status {
+
+.alert-info {
   background-color: @unit-info;
+  border-color: #00162f;
 }
