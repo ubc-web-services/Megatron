@@ -70,7 +70,7 @@ function megatron_preprocess_search_block_form(&$variables) {
 function megatron_preprocess_html(&$variables) {
   // Classes for body element. Allows advanced theming based on context
   // (home page, node of certain type, etc.)
-  if (!$variables['is_front']) {
+  if (!$variables['is_front'] && !theme_get_setting('clf_use_path_body_classes')) {
     // Add unique class for each page.
     $path = drupal_get_path_alias($_GET['q']);
     // Add unique class for each website section.

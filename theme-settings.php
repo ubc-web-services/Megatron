@@ -121,6 +121,13 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('clf_nogradient'),
   );
 
+  $form['clf_theme']['clf_use_path_body_classes'] = array(
+    '#type' => 'checkbox',
+    '#title' => t("Remove the <em>section-*</em> and <em>path-*</em> CSS classes from the body."),
+    '#description' => t('Recommended: These CSS classes produce overhead and possible conflicts with Bootstrap 2.x span CSS classes. Only keep if your theme is using them to style specific pages.'),
+    '#default_value' => theme_get_setting('clf_use_path_body_classes'),
+  );
+
 /*
 REMOVED - Now handled in template.php by checking for the jQuery Update module - if not found, it loads jQuery 1.8 from the Google CDN
   $form['clf_theme']['clf_jqueryoption'] = array(
