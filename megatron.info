@@ -38,6 +38,7 @@ settings[clf_streetaddr] = '123 Main St.'
 settings[clf_locality] = 'Vancouver'
 settings[clf_region] = 'BC'
 settings[clf_country] = 'Canada'
+settings[clf_use_path_body_classes] = 0
 
 ;Excluded CSS Files
 exclude[css][] = 'misc/vertical-tabs.css'
