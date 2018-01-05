@@ -83,15 +83,15 @@ function megatron_preprocess_html(&$variables) {
         $section = 'node-' . arg(2);
       }
     }
-    // add a body class that reflects content placement
+    // Add a body class that reflects content placement.
     $variables['classes_array'][] = drupal_html_class('section-' . megatron_id_safe($section));
     $variables['classes_array'][] = drupal_html_class('path-' . megatron_id_safe($path));
   }
-  // add a body class to tell us what colours we're using
+  // Add a body class to tell us what colours we're using.
   $variables['classes_array'][] = drupal_html_class('themecolour' . theme_get_setting('clf_clf_theme_new'));
 
-  //Uses RDFa attributes if the RDF module is enabled
-  //Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
+  // Uses RDFa attributes if the RDF module is enabled
+  // Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
   // Add rdf info
   $variables['doctype'] = '<!DOCTYPE html>' . "\n";
   $variables['rdf'] = new stdClass;
@@ -135,13 +135,13 @@ function megatron_preprocess_html(&$variables) {
   if ($clfLayout == '__fluid') {
     $variables['classes_array'][] = drupal_html_class('full-width-left');
   }
-	// Add body class if theme_get_setting('clf_nogradient') is set to true
+  // Add body class if theme_get_setting('clf_nogradient') is set to true
   if (theme_get_setting('clf_nogradient') == TRUE) {
     $variables['classes_array'][] = drupal_html_class('no-gradient');
   }
 
-	/* ADD A NOFOLLOW META TAG TO PREVENT SITE INDEXING IF IT IS NOT A PRODUCTION WEBSITE */
-	// Setup meta tag
+  /* ADD A NOFOLLOW META TAG TO PREVENT SITE INDEXING IF IT IS NOT A PRODUCTION WEBSITE */
+  // Setup meta tag
   if (theme_get_setting('clf_environment')) {
     $nofollow = array(
       '#type' => 'html_tag',
@@ -155,29 +155,29 @@ function megatron_preprocess_html(&$variables) {
     drupal_add_html_head($nofollow, '$nofollow');
   }
 
-	// ADD CSS
-	$packageprefix = '7.0.4/css/ubc-clf';
-	$minversion = '';
-	$packagesuffix = '.min';
-	$minlayout = '-full';
-	if (theme_get_setting('clf_clf_minimal') == TRUE) {
-		$packageprefix = '7.0.4-minimal/css/minimal-clf';
-		$minversion = '-7.0.4';
-		$minlayout = '';
-		$packagesuffix = '';
-		if ((theme_get_setting('clf_layout') == '__full') || (theme_get_setting('clf_layout') == '__fluid')) {
-		  $minlayout = '-full';
-		}
-	}
-	drupal_add_css('https://cdn.ubc.ca/clf/' . $packageprefix . $minlayout . $minversion . theme_get_setting('clf_clf_theme_new') . $packagesuffix . '.css', array('type' => 'external', 'group'=>CSS_THEME, 'every_page' => TRUE, 'weight' => -2));
-	drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/clf_drupal.css', array('group' => CSS_THEME, 'every_page' => TRUE, 'weight' => -1));
-	// ADD JAVASCRIPT
-	// Load modernizr if requested
+  // ADD CSS
+  $packageprefix = '7.0.4/css/ubc-clf';
+  $minversion = '';
+  $packagesuffix = '.min';
+  $minlayout = '-full';
+  if (theme_get_setting('clf_clf_minimal') == TRUE) {
+    $packageprefix = '7.0.4-minimal/css/minimal-clf';
+    $minversion = '-7.0.4';
+    $minlayout = '';
+    $packagesuffix = '';
+    if ((theme_get_setting('clf_layout') == '__full') || (theme_get_setting('clf_layout') == '__fluid')) {
+      $minlayout = '-full';
+    }
+  }
+  drupal_add_css('https://cdn.ubc.ca/clf/' . $packageprefix . $minlayout . $minversion . theme_get_setting('clf_clf_theme_new') . $packagesuffix . '.css', array('type' => 'external', 'group'=>CSS_THEME, 'every_page' => TRUE, 'weight' => -2));
+  drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/clf_drupal.css', array('group' => CSS_THEME, 'every_page' => TRUE, 'weight' => -1));
+  // ADD JAVASCRIPT
+  // Load modernizr if requested
   if (theme_get_setting('clf_modernizr')) {
     drupal_add_js(drupal_get_path('theme', 'megatron') .'/js/lib/modernizr/modernizr.custom.2.6.2.js', array('group' => JS_THEME, 'every_page' => TRUE, 'weight' => 1000));
   }
-	drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/bootstrap/bootstrap-alert-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -99));
-	drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/megatron/megatron-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -98));
+  drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/bootstrap/bootstrap-alert-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -99));
+  drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/megatron/megatron-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -98));
 }
 
 /** BREADCRUMB ALTERATIONS
