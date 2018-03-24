@@ -334,6 +334,9 @@ function megatron_preprocess_page(&$variables) {
       ));
     }
   }
+
+  // Drawer nav
+  $variables['navigation_placement'] = theme_get_setting('clf_navigation_placement');
 }
 
 
@@ -479,7 +482,7 @@ function megatron_megatron_btn_dropdown($variables) {
 
   // Finish markup
   $output .= '
-  <div class="ubc7-arrow down-arrow"></div>
+  <div class="ubc7-arrow right-arrow"></div>
   </a>
   ' . $variables['links'] . '
   </div>';
@@ -919,7 +922,7 @@ function megatron_megatron_links($variables) {
         if (count($children) > 0) {
           $link['html'] = TRUE;
           $output .=  '<div class="btn-group">' .l($link['title'], $link['href'], $link);
-          $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
+          $output .=  '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow white right-arrow"></span></button>';
         }else{
           $output .= l($link['title'], $link['href'], $link);
         }

@@ -114,6 +114,22 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('clf_secondarynavoption'),
   );
 
+  $form['clf_theme']['clf_navigation_placement'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose the type of primary navigation that should be used on this website. | NOT YET ACTIVE'),
+    '#description' => t('<h2>General Navigation Options</h2>'),
+    '#default_value' => theme_get_setting('clf_navigation_placement'),
+    '#options' => array(
+      'default' => t('Default CLF - Horizontal'),
+      'double' => t('Default CLF - Horizontal, Two Rows'),
+      'higher' => t('Default CLF - Horizontal, Double Height'),
+      'drawer--push-left' => t('Left Push Drawer'),
+      'drawer--cover-left' => t('Left Cover Drawer'),
+      'drawer--push-right' => t('Right Push Drawer'),
+      'drawer--cover-right' => t('Right Cover Drawer'),
+    ),
+  );
+
   $form['clf_theme']['clf_nogradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
