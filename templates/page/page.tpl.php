@@ -257,34 +257,10 @@ if ($clf_layout == '') {
 <?php if (!empty($navigation_placement)): ?>
   <!-- UBC Unit Drawer -->
   <section id="off-canvas-drawer--primary" class="<?php print 'off-canvas-drawer ' . $navigation_placement; ?>">
-     <button class="drawer__close drawer-toggle--primary">&times; CLOSE MENU</button>
-     <ul id="main-menu" class="nav">
-        <li class="menu-219 home">
-          <a href="/">Home</a>
-        </li>
-        <li class="menu-304 about-ubc">
-          <a href="/node/1">About UBC</a>
-        </li>
-        <li class="menu-305 active-trail  our-campuses active dropdown">
-          <div class="btn-group">
-            <a href="/node/2" class="btn active">Our Campuses</a>
-            <button class="btn dropdown-toggle" data-toggle="dropdown">
-              <span class="ubc7-arrow white right-arrow"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li class="menu-307 vancouver">
-                <a href="/node/4">Vancouver</a>
-              </li>
-              <li class="menu-308 okanagan">
-                <a href="/node/5">Okanagan</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="menu-306 admissions">
-          <a href="/node/3">Admissions</a>
-        </li>
-      </ul>
+    <button class="drawer__close drawer-toggle--primary">&times; CLOSE MENU</button>
+    <?php if (!empty($drawer_nav)): ?>
+      <?php print $drawer_nav; ?>
+    <?php endif; ?>
   </section>
   <div id="off-canvas-mask" class="drawer-toggle--primary"></div>
   <!-- End of UBC Unit Drawer -->
