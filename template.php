@@ -337,6 +337,10 @@ function megatron_preprocess_page(&$variables) {
 
   // Drawer nav
   $variables['navigation_placement'] = theme_get_setting('clf_navigation_placement');
+  $drawer_enabled = theme_get_setting('clf_navigation_placement') != 'default' && theme_get_setting('clf_navigation_placement') != 'double' && theme_get_setting('clf_navigation_placement') != 'higher';
+  if ($drawer_enabled) {
+    $variables['drawer_enabled'] = TRUE;
+  }
   $variables['drawer_nav'] = FALSE;
   if ($variables['main_menu']) {
     // Build links
@@ -358,7 +362,13 @@ function megatron_preprocess_page(&$variables) {
     ));
   }
 
-  // Add js for navigation sticky option
+  // Add js and css for drawer option
+  if ($drawer_enabled) {
+    drupal_add_js(drupal_get_path('theme', 'megatron') .'/js/off.canvas.drawer.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') .'/css/off.canvas.drawer.css');
+  }
+
+  // Add js and css for navigation sticky option
   if (theme_get_setting('clf_sticky_option')) {
     drupal_add_js(drupal_get_path('theme', 'megatron') .'/js/navigation.sticky.js');
     drupal_add_css(drupal_get_path('theme', 'megatron') .'/css/navigation.sticky.css');

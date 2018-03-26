@@ -133,7 +133,7 @@ if ($clf_layout == '') {
   <nav id="ubc7-unit-menu" role="navigation" class="navbar expand">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>
-          <?php if (!empty($navigation_placement)): ?>
+          <?php if (!empty($drawer_enabled)): ?>
             <!-- UBC Unit Drawer Menu Button -->
             <button style="float:right;margin-right:17px;" class="hamburger visible-md visible-lg drawer-toggle--primary" id="button--slide-in">
               <span>Menu ☰</span>
@@ -254,7 +254,7 @@ if ($clf_layout == '') {
 <?php print $containerend; ?><!-- /#container -->
 </div><!-- /#pushed-content -->
 
-<?php if (!empty($navigation_placement)): ?>
+<?php if (!empty($drawer_enabled)): ?>
   <!-- UBC Unit Drawer -->
   <section id="off-canvas-drawer--primary" class="<?php print 'off-canvas-drawer ' . $navigation_placement; ?>">
     <button class="drawer__close drawer-toggle--primary">&times; CLOSE MENU</button>
