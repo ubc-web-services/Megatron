@@ -64,6 +64,7 @@ if ($clf_layout == '') {
   <a href="#ubc7-unit-menu" class="element-invisible element-focusable"><?php print t('Skip to main navigation'); ?></a>
 </div>
 
+<div id="pushed-content" class="<?php print $navigation_placement; ?>"><!-- pushed-content -->
 <?php print $containerstart; ?>
   <!-- UBC Global Utility Menu -->
   <div class="collapse expand" id="ubc7-global-menu">
@@ -132,6 +133,13 @@ if ($clf_layout == '') {
   <nav id="ubc7-unit-menu" role="navigation" class="navbar expand">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>
+          <?php if ($drawer_enabled == TRUE): ?>
+            <!-- UBC Unit Drawer Menu Button -->
+            <button style="float:right;margin-right:17px;" class="hamburger visible-md visible-lg drawer-toggle--primary" id="drawer-button">
+              <span>Menu ☰</span>
+            </button>
+            <!-- End of UBC Unit Drawer Menu Button -->
+          <?php endif; ?>
       <div class="nav-collapse collapse" id="ubc7-unit-navigation">
         <?php print $primary_nav; ?>
       </div>
@@ -244,3 +252,16 @@ if ($clf_layout == '') {
     <?php print theme('ubc_clf_global_utility_footer'); ?>
   </footer>
 <?php print $containerend; ?><!-- /#container -->
+</div><!-- /#pushed-content -->
+
+<?php if (!empty($drawer_enabled)): ?>
+  <!-- UBC Unit Drawer -->
+  <section id="off-canvas-drawer--primary" class="<?php print 'off-canvas-drawer ' . $navigation_placement; ?>">
+    <button class="drawer__close drawer-toggle--primary">&times; CLOSE MENU</button>
+    <?php if (!empty($drawer_nav)): ?>
+      <?php print $drawer_nav; ?>
+    <?php endif; ?>
+  </section>
+  <div id="off-canvas-mask" class="drawer-toggle--primary"></div>
+  <!-- End of UBC Unit Drawer -->
+<?php endif; ?>

@@ -100,20 +100,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
    ),
  );
 
-  $form['clf_theme']['clf_navoption'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Primary Navigation Mobile Placement'),
-    '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
-    '#default_value' => theme_get_setting('clf_navoption'),
-  );
-
-  $form['clf_theme']['clf_secondarynavoption'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Add a second row to the Primary Navigation?'),
-    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
-    '#default_value' => theme_get_setting('clf_secondarynavoption'),
-  );
-
   $form['clf_theme']['clf_nogradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
@@ -149,6 +135,54 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     ),
 );
 */
+
+  /** CLF NAVIGATION OPTIONS
+  ---------------------------------------------------------- */
+  $form['clf_navigation_option'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Navigation Option'),
+    '#prefix' => '<div class="clf_navigation_option">',
+    '#suffix' => '</div>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#weight' => -7,
+  );
+
+  $form['clf_navigation_option']['clf_navigation_placement'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose the type of primary navigation that should be used on this website. | NOT YET ACTIVE'),
+    '#default_value' => theme_get_setting('clf_navigation_placement'),
+    '#options' => array(
+      'default' => t('Default CLF - Horizontal'),
+      'double' => t('Default CLF - Horizontal, Two Rows'),
+      'higher' => t('Default CLF - Horizontal, Double Height'),
+      'drawer--push-left' => t('Left Push Drawer'),
+      'drawer--cover-left' => t('Left Cover Drawer'),
+      'drawer--push-right' => t('Right Push Drawer'),
+      'drawer--cover-right' => t('Right Cover Drawer'),
+    ),
+  );
+
+  $form['clf_navigation_option']['clf_sticky_option'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Make the default CLF navigation sticky | NOT YET ACTIVE'),
+    '#description' => t('If you\'d like the primary navigation to be \'sticky\' (stay on top of window when scrolling downward), select this option.'),
+    '#default_value' => theme_get_setting('clf_sticky_option'),
+  );
+
+  $form['clf_navigation_option']['clf_navoption'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Primary Navigation Mobile Placement'),
+    '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
+    '#default_value' => theme_get_setting('clf_navoption'),
+  );
+
+  $form['clf_navigation_option']['clf_secondarynavoption'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add a second row to the Primary Navigation?'),
+    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
+    '#default_value' => theme_get_setting('clf_secondarynavoption'),
+  );
 
   /** CLF CAMPUS IDENTITY OPTIONS
   ---------------------------------------------------------- */
