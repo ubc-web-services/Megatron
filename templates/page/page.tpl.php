@@ -133,9 +133,9 @@ if ($clf_layout == '') {
   <nav id="ubc7-unit-menu" role="navigation" class="navbar expand">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>
-          <?php if (!empty($drawer_enabled)): ?>
+          <?php if ($drawer_enabled == TRUE): ?>
             <!-- UBC Unit Drawer Menu Button -->
-            <button style="float:right;margin-right:17px;" class="hamburger visible-md visible-lg drawer-toggle--primary" id="button--slide-in">
+            <button style="float:right;margin-right:17px;" class="hamburger visible-md visible-lg drawer-toggle--primary" id="drawer-button">
               <span>Menu ☰</span>
             </button>
             <!-- End of UBC Unit Drawer Menu Button -->
