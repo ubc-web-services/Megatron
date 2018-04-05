@@ -338,6 +338,7 @@ function megatron_preprocess_page(&$variables) {
   // Drawer nav
   $variables['navigation_placement'] = theme_get_setting('clf_navigation_placement');
   $drawer_enabled = theme_get_setting('clf_navigation_placement') != 'default' && theme_get_setting('clf_navigation_placement') != 'double' && theme_get_setting('clf_navigation_placement') != 'higher'? TRUE: FALSE;
+  $variables['drawer_enabled'] = FALSE;
   if ($drawer_enabled) {
     $variables['drawer_enabled'] = TRUE;
   }
