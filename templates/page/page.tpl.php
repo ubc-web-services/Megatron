@@ -112,7 +112,7 @@ if ($clf_layout == '') {
     <?php print $fluidcontainerstart; ?>
     <div class="span12">
       <div class="navbar">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target="#ubc7-unit-navigation">
+        <a class="btn btn-navbar drawer-toggle--primary" data-toggle="collapse" data-target="#ubc7-unit-navigation">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>

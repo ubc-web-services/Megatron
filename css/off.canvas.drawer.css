@@ -67,7 +67,6 @@
   position: relative;
   z-index: 1;
   display: block;
-  overflow: hidden;
   transition: transform 0.125s ease;
 }
 #pushed-content.drawer--push-left.off-canvas-drawer--is-active {
