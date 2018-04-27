@@ -1,6 +1,6 @@
 (function ($) {
 
-  Drupal.behaviors.megatron = {
+  Drupal.behaviors.megatronStickyNav = {
     attach: function(context, settings) {
       window.onscroll = function() { stickyNav() };
       var navbar = document.getElementById("ubc7-unit-menu");
@@ -25,4 +25,5 @@
       }
     }
   }
+
 }(jQuery));

@@ -1,6 +1,6 @@
 (function ($) {
 
-  Drupal.behaviors.megatron = {
+  Drupal.behaviors.megatronDrawer = {
     attach: function(context, settings) {
       // Primary drawer toggle.
       var pushTrigger = document.getElementsByClassName("drawer-toggle--primary");
