@@ -141,12 +141,12 @@ if ($drawer_enabled) {
         <?php if ($drawer_enabled): ?>
           <!-- UBC Unit Drawer Menu Button -->
           <button class="hamburger visible-md visible-lg drawer-toggle--primary" id="drawer-button">
-            <div>Menu</div>
-            <div>
+            <span class="hamburger__elem">Menu</span>
+            <span class="hamburger__elem">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-            </div>
+            </span>
           </button>
           <!-- End of UBC Unit Drawer Menu Button -->
         <?php endif; ?>

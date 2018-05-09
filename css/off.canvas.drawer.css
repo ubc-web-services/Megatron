@@ -7,7 +7,6 @@
   font-family: Arial,Sans-Serif;
   padding:10px;
   font-size:14px;
-  line-height: 1.75em;
   outline: 0;
 }
 
@@ -62,6 +61,9 @@
     margin-top: 5px;
     margin-right: 17px;
     margin-bottom: 5px;
+  }
+  #drawer-button {
+    line-height: 1.75em;
   }
 }
 
@@ -256,6 +258,6 @@
 #drawer-button .icon-bar+.icon-bar {
   margin-top:3px
 }
-#drawer-button div {
+#drawer-button .hamburger__elem {
   display: inline-block;
 }
