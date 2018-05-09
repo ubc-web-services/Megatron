@@ -339,7 +339,7 @@ function megatron_preprocess_page(&$variables) {
   $variables['navigation_placement'] = theme_get_setting('clf_navigation_placement');
   $drawer_enabled = theme_get_setting('clf_navigation_placement') != 'default' && theme_get_setting('clf_navigation_placement') != 'double' && theme_get_setting('clf_navigation_placement') != 'higher';
   $variables['drawer_enabled'] = $drawer_enabled;
-  if ($variables['main_menu']) {
+  if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
     // Build links.
     $tree = menu_tree_page_data(variable_get('menu_main_links_source', 'main-menu'));
     $variables['main_menu'] = megatron_menu_navigation_links($tree);

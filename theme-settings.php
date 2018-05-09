@@ -161,6 +161,18 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     ),
   );
 
+  $form['clf_navigation_option']['clf_use_primary_menu_in_drawer'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use the primary menu in the drawer.'),
+    '#description' => t('This is optional in case you want to drop a menu block in the drawer region for example.'),
+    '#default_value' => theme_get_setting('clf_use_primary_menu_in_drawer'),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="clf_navigation_placement"]' => array('value' => 'default'),
+      ),
+    ),
+  );
+
   $form['clf_navigation_option']['clf_sticky_option'] = array(
     '#type' => 'checkbox',
     '#title' => t('Make the default CLF navigation sticky.'),
