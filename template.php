@@ -335,47 +335,43 @@ function megatron_preprocess_page(&$variables) {
     }
   }
 
-  // Drawer nav
+  // Drawer nav.
   $variables['navigation_placement'] = theme_get_setting('clf_navigation_placement');
-  $drawer_enabled = theme_get_setting('clf_navigation_placement') != 'default' && theme_get_setting('clf_navigation_placement') != 'double' && theme_get_setting('clf_navigation_placement') != 'higher'? TRUE: FALSE;
-  $variables['drawer_enabled'] = FALSE;
-  if ($drawer_enabled) {
-    $variables['drawer_enabled'] = TRUE;
-  }
-  $variables['drawer_nav'] = FALSE;
+  $drawer_enabled = theme_get_setting('clf_navigation_placement') != 'default' && theme_get_setting('clf_navigation_placement') != 'double' && theme_get_setting('clf_navigation_placement') != 'higher';
+  $variables['drawer_enabled'] = $drawer_enabled;
   if ($variables['main_menu']) {
-    // Build links
+    // Build links.
     $tree = menu_tree_page_data(variable_get('menu_main_links_source', 'main-menu'));
     $variables['main_menu'] = megatron_menu_navigation_links($tree);
 
-    // Build list
-    $variables['drawer_nav'] = theme('megatron_links', array(
-      'heading' => array(
+    // Build list.
+    $variables['page']['drawer'] = array(
+      '#theme' => 'megatron_links',
+      '#heading' => array(
         'text' => t('Main menu'),
         'level' => 'h2',
         'class' => array('element-invisible'),
       ),
-      'links' => $variables['main_menu'],
-      'attributes' => array(
+      '#links' => $variables['main_menu'],
+      '#attributes' => array(
         'id' => 'main-menu',
         'class' => array('nav'),
       ),
-    ));
+    );
   }
 
   // Add js and css for drawer option
   if ($drawer_enabled) {
-    drupal_add_js(drupal_get_path('theme', 'megatron') .'/js/off.canvas.drawer.js');
-    drupal_add_css(drupal_get_path('theme', 'megatron') .'/css/off.canvas.drawer.css');
+    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.drawer.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.drawer.css');
   }
 
   // Add js and css for navigation sticky option
   if (theme_get_setting('clf_sticky_option')) {
-    drupal_add_js(drupal_get_path('theme', 'megatron') .'/js/navigation.sticky.js');
-    drupal_add_css(drupal_get_path('theme', 'megatron') .'/css/navigation.sticky.css');
+    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/navigation.sticky.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/navigation.sticky.css');
   }
 }
-
 
 /** BOOTSTRAP THEME FUNCTIONS USED */
 /** Alter the span class for a region (main content / sidebars)
