@@ -1,0 +1,21 @@
+{
+  "name": "Megatron",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:ubc-web-services/Megatron.git",
+  "license": "GPL-2.0",
+  "engines": {
+    "yarn": ">= 1.6",
+    "node": ">= 8.11"
+  },
+  "scripts": {
+    "lint:css": "stylelint \"**/*.css\" || exit 0",
+    "lint:css-checkstyle": "stylelint \"**/*.css\" --custom-formatter ./node_modules/stylelint-checkstyle-formatter/index.js || exit 0"
+  },
+  "dependencies": {
+    "stylelint": "^9.2.0",
+    "stylelint-checkstyle-formatter": "^0.1.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-no-browser-hacks": "^1.2.1"
+  }
+}

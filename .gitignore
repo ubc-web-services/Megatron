@@ -1,12 +1,7 @@
-Project.espressostorage
-Megatron - PUBLIC.esproj
-megatron-public.esproj
-user.jim.espressostorage
-clf/
-theme-settings 2.php
-views-view--news-views--block.tpl.php
-__page--full.tpl.php
-__page--fluid.tpl.php
-unused/
-bower.json
-package.json
+# Editor files.
+*.espressostorage
+*.esproj
+
+# Node Packages
+*.log
+node_modules/
