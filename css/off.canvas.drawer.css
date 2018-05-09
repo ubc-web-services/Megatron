@@ -236,3 +236,6 @@
 .off-canvas-drawer button:focus {
   outline: 0;
 }
+.off-canvas-drawer .ubc7-arrow {
+  background-position: -1113px -227px !important;
+}
