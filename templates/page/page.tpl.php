@@ -140,8 +140,13 @@ if ($drawer_enabled) {
       <?php print $fluidcontainerstart; ?>
         <?php if ($drawer_enabled): ?>
           <!-- UBC Unit Drawer Menu Button -->
-          <button style="float:right;margin-right:17px;" class="hamburger visible-md visible-lg drawer-toggle--primary" id="drawer-button">
-            <span>Menu ☰</span>
+          <button class="hamburger visible-md visible-lg drawer-toggle--primary" id="drawer-button">
+            <div>Menu</div>
+            <div>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </div>
           </button>
           <!-- End of UBC Unit Drawer Menu Button -->
         <?php endif; ?>
