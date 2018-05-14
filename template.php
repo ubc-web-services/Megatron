@@ -365,12 +365,6 @@ function megatron_preprocess_page(&$variables) {
     drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.drawer.js');
     drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.drawer.css');
   }
-
-  // Add js and css for navigation sticky option
-  if (theme_get_setting('clf_sticky_option')) {
-    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/navigation.sticky.js');
-    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/navigation.sticky.css');
-  }
 }
 
 /** BOOTSTRAP THEME FUNCTIONS USED */
