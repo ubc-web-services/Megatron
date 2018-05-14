@@ -100,6 +100,13 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
    ),
  );
 
+  $form['clf_navigation_option']['clf_sticky_option'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Make the default CLF navigation sticky.'),
+    '#description' => t('If you\'d like the primary navigation to be \'sticky\' (stay on top of window when scrolling downward), select this option.'),
+    '#default_value' => theme_get_setting('clf_sticky_option'),
+  );
+
   $form['clf_theme']['clf_navoption'] = array(
     '#type' => 'checkbox',
     '#title' => t('Primary Navigation Mobile Placement'),
