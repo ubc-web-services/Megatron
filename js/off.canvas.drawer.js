@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
 
   Drupal.behaviors.megatronDrawer = {
     attach: function(context, settings) {
@@ -34,4 +34,4 @@
       }
     }
   }
-}(jQuery));
+}());

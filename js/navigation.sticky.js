@@ -1,4 +1,4 @@
-(function ($) {
+(function () {
 
   Drupal.behaviors.megatronStickyNav = {
     attach: function(context, settings) {
@@ -26,4 +26,4 @@
     }
   }
 
-}(jQuery));
+}());
