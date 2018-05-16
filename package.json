@@ -1,0 +1,19 @@
+{
+  "name": "Megatron",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:ubc-web-services/Megatron.git",
+  "license": "GPL-2.0",
+  "engines": {
+    "yarn": ">= 1.6",
+    "node": ">= 8.11"
+  },
+  "scripts": {
+    "build:postcss": "npx postcss css/*.css --use autoprefixer -d postcss/",
+    "install": "npm run build:postcss"
+  },
+  "dependencies": {
+    "autoprefixer": "^8.5.0",
+    "postcss-cli": "^5.0.0"
+  }
+}
