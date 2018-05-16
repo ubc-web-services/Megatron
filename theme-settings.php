@@ -153,11 +153,11 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#title' => t('Choose the type of primary navigation that should be used on this website.'),
     '#default_value' => theme_get_setting('clf_navigation_placement'),
     '#options' => array(
-      'default' => t('Default CLF - Horizontal'),
-      'drawer--push-left' => t('Left Push Drawer'),
-      'drawer--cover-left' => t('Left Cover Drawer'),
-      'drawer--push-right' => t('Right Push Drawer'),
-      'drawer--cover-right' => t('Right Cover Drawer'),
+      'default'             => t('Default: no drawer region'),
+      'drawer--push-left'   => t('Drawer Region: push from left'),
+      'drawer--cover-left'  => t('Drawer Region: cover from left'),
+      'drawer--push-right'  => t('Drawer Region: push from right'),
+      'drawer--cover-right' => t('Drawer Region: cover from right'),
     ),
   );
 
