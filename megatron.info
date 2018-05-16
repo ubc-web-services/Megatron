@@ -40,7 +40,7 @@ settings[clf_locality] = 'Vancouver'
 settings[clf_region] = 'BC'
 settings[clf_country] = 'Canada'
 settings[clf_use_path_body_classes] = 0
-settings[clf_navigation_placement] = 'default'
+settings[clf_drawer_region] = 'default'
 settings[clf_use_primary_menu_in_drawer] = TRUE
 
 ;Excluded CSS Files

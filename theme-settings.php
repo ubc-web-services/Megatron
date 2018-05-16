@@ -148,10 +148,10 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#weight' => -7,
   );
 
-  $form['clf_navigation_option']['clf_navigation_placement'] = array(
+  $form['clf_navigation_option']['clf_drawer_region'] = array(
     '#type' => 'select',
     '#title' => t('Choose the type of primary navigation that should be used on this website.'),
-    '#default_value' => theme_get_setting('clf_navigation_placement'),
+    '#default_value' => theme_get_setting('clf_drawer_region'),
     '#options' => array(
       'default'             => t('Default: no drawer region'),
       'drawer--push-left'   => t('Drawer Region: push from left'),
@@ -168,7 +168,7 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#default_value' => theme_get_setting('clf_use_primary_menu_in_drawer'),
     '#states' => array(
       'invisible' => array(
-        ':input[name="clf_navigation_placement"]' => array('value' => 'default'),
+        ':input[name="clf_drawer_region"]' => array('value' => 'default'),
       ),
     ),
   );

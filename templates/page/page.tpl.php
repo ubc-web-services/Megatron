@@ -62,7 +62,7 @@ if ($clf_layout == '') {
 
 if ($drawer_enabled) {
   $container_attributes['id'] = 'pushed-content';
-  $container_attributes['class'][] = $navigation_placement;
+  $container_attributes['class'][] = $drawer_region;
 }
 ?>
 <div class="skip">
@@ -265,7 +265,7 @@ if ($drawer_enabled) {
 
 <?php if (!empty($drawer_enabled)): ?>
   <!-- UBC Unit Drawer -->
-  <section id="off-canvas-drawer--primary" class="<?php print 'off-canvas-drawer ' . $navigation_placement; ?>">
+  <section id="off-canvas-drawer--primary" class="<?php print 'off-canvas-drawer ' . $drawer_region; ?>">
     <button class="drawer__close drawer-toggle--primary">&times; CLOSE MENU</button>
     <?php print render($page['drawer']); ?>
   </section>

@@ -336,8 +336,8 @@ function megatron_preprocess_page(&$variables) {
   }
 
   // Drawer nav.
-  $variables['navigation_placement'] = theme_get_setting('clf_navigation_placement');
-  $drawer_enabled = theme_get_setting('clf_navigation_placement') != 'default' && theme_get_setting('clf_navigation_placement') != 'double' && theme_get_setting('clf_navigation_placement') != 'higher';
+  $variables['drawer_region'] = theme_get_setting('clf_drawer_region');
+  $drawer_enabled = $variables['drawer_region'] != 'default' && $variables['drawer_region'] != 'double' && $variables['drawer_region'] != 'higher';
   $variables['drawer_enabled'] = $drawer_enabled;
   if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
     // Build links.
