@@ -9,8 +9,7 @@
     "node": ">= 8.11"
   },
   "scripts": {
-    "build:postcss": "npx postcss css/*.css --use autoprefixer -d postcss/",
-    "install": "npm run build:postcss"
+    "build:autoprefix": "postcss -u autoprefixer --autoprefixer.browsers '&gt; 5%, ie 9' -r css/*"
   },
   "dependencies": {
     "autoprefixer": "^8.5.0",
