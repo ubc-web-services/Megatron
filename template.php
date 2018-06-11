@@ -335,6 +335,12 @@ function megatron_preprocess_page(&$variables) {
     }
   }
 
+  // Add js and css for navigation sticky option
+  if (theme_get_setting('clf_sticky_option')) {
+    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/navigation.sticky.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/navigation.sticky.css');
+  }
+
   // Drawer nav.
   $variables['drawer_region'] = theme_get_setting('clf_drawer_region');
   $drawer_enabled = $variables['drawer_region'] != 'default' && $variables['drawer_region'] != 'double' && $variables['drawer_region'] != 'higher';
