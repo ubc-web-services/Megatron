@@ -1,7 +1,6 @@
-# Editor files.
-*.espressostorage
-*.esproj
-
 # Node Packages
 *.log
 node_modules/
+
+# Postcss-fied CSS files
+postcss/

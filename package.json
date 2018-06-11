@@ -9,10 +9,13 @@
     "node": ">= 8.11"
   },
   "scripts": {
+    "build:autoprefix": "postcss -u autoprefixer --autoprefixer.browsers '&gt; 5%, ie 9' -r css/*",
     "lint:css": "stylelint \"**/*.css\" || exit 0",
     "lint:css-checkstyle": "stylelint \"**/*.css\" --custom-formatter ./node_modules/stylelint-checkstyle-formatter/index.js || exit 0"
   },
   "dependencies": {
+    "autoprefixer": "^8.5.0",
+    "postcss-cli": "^5.0.0",
     "stylelint": "^9.2.0",
     "stylelint-checkstyle-formatter": "^0.1.1",
     "stylelint-config-standard": "^18.2.0",
