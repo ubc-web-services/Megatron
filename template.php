@@ -340,8 +340,38 @@ function megatron_preprocess_page(&$variables) {
     drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/navigation.sticky.js');
     drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/navigation.sticky.css');
   }
-}
 
+  // Drawer nav.
+  $variables['drawer_region'] = theme_get_setting('clf_drawer_region');
+  $drawer_enabled = $variables['drawer_region'] != 'default' && $variables['drawer_region'] != 'double' && $variables['drawer_region'] != 'higher';
+  $variables['drawer_enabled'] = $drawer_enabled;
+  if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
+    // Build links.
+    $tree = menu_tree_page_data(variable_get('menu_main_links_source', 'main-menu'));
+    $variables['main_menu'] = megatron_menu_navigation_links($tree);
+
+    // Build list.
+    $variables['page']['drawer'] = array(
+      '#theme' => 'megatron_links',
+      '#heading' => array(
+        'text' => t('Main menu'),
+        'level' => 'h2',
+        'class' => array('element-invisible'),
+      ),
+      '#links' => $variables['main_menu'],
+      '#attributes' => array(
+        'id' => 'main-menu',
+        'class' => array('nav'),
+      ),
+    );
+  }
+
+  // Add js and css for drawer option
+  if ($drawer_enabled) {
+    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.drawer.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.drawer.css');
+  }
+}
 
 /** BOOTSTRAP THEME FUNCTIONS USED */
 /** Alter the span class for a region (main content / sidebars)

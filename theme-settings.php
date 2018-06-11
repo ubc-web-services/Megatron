@@ -97,8 +97,8 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
      '' => t('Default (1200px Centered with Grey Background)'),
      '__fluid' => t('Full Width Left Aligned CLF'),
      '__full' => t('Full Width Centered CLF'),
-   ),
- );
+    ),
+  );
 
   $form['clf_navigation_option']['clf_sticky_option'] = array(
     '#type' => 'checkbox',
@@ -120,7 +120,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
     '#default_value' => theme_get_setting('clf_secondarynavoption'),
   );
-
   $form['clf_theme']['clf_nogradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
@@ -156,6 +155,57 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     ),
 );
 */
+
+  /** CLF NAVIGATION OPTIONS
+  ---------------------------------------------------------- */
+  $form['clf_navigation_option'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Navigation Option'),
+    '#prefix' => '<div class="clf_navigation_option">',
+    '#suffix' => '</div>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#weight' => -7,
+  );
+
+  $form['clf_navigation_option']['clf_drawer_region'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose whether or not to display an off-canvas drawer for content on this website.'),
+    '#default_value' => theme_get_setting('clf_drawer_region'),
+    '#options' => array(
+      'default'             => t('Default: no drawer region'),
+      'drawer--push-left'   => t('Drawer Region: push from left'),
+      'drawer--cover-left'  => t('Drawer Region: cover from left'),
+      'drawer--push-right'  => t('Drawer Region: push from right'),
+      'drawer--cover-right' => t('Drawer Region: cover from right'),
+    ),
+  );
+
+  $form['clf_navigation_option']['clf_use_primary_menu_in_drawer'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use the primary menu in the off-canvas drawer?'),
+    '#description' => t('This is optional in case you want to use additonal content blocks, such as a menu block, in the off-canvas drawer region.'),
+    '#default_value' => theme_get_setting('clf_use_primary_menu_in_drawer'),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="clf_drawer_region"]' => array('value' => 'default'),
+      ),
+    ),
+  );
+
+  $form['clf_navigation_option']['clf_navoption'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Primary Navigation Mobile Placement'),
+    '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
+    '#default_value' => theme_get_setting('clf_navoption'),
+  );
+
+  $form['clf_navigation_option']['clf_secondarynavoption'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add a second row to the Primary Navigation?'),
+    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
+    '#default_value' => theme_get_setting('clf_secondarynavoption'),
+  );
 
   /** CLF CAMPUS IDENTITY OPTIONS
   ---------------------------------------------------------- */

@@ -9,6 +9,7 @@ regions[help]           = 'Help'
 regions[content]        = 'Content'
 regions[sidebar_first]  = 'First Sidebar'
 regions[sidebar_second] = 'Second Sidebar'
+regions[drawer]         = 'Drawer'
 regions[prefooter]      = 'Content: Below'
 
 ;Styles - add your custom css here
@@ -39,6 +40,8 @@ settings[clf_locality] = 'Vancouver'
 settings[clf_region] = 'BC'
 settings[clf_country] = 'Canada'
 settings[clf_use_path_body_classes] = 0
+settings[clf_drawer_region] = 'default'
+settings[clf_use_primary_menu_in_drawer] = TRUE
 
 ;Excluded CSS Files
 exclude[css][] = 'misc/vertical-tabs.css'
