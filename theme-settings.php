@@ -170,7 +170,7 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
 
   $form['clf_navigation_option']['clf_drawer_region'] = array(
     '#type' => 'select',
-    '#title' => t('Choose the type of primary navigation that should be used on this website.'),
+    '#title' => t('Choose whether or not to display an off-canvas drawer for content on this website.'),
     '#default_value' => theme_get_setting('clf_drawer_region'),
     '#options' => array(
       'default'             => t('Default: no drawer region'),
@@ -183,8 +183,8 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
 
   $form['clf_navigation_option']['clf_use_primary_menu_in_drawer'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Use the primary menu in the drawer.'),
-    '#description' => t('This is optional in case you want to drop a menu block in the drawer region for example.'),
+    '#title' => t('Use the primary menu in the off-canvas drawer?'),
+    '#description' => t('This is optional in case you want to use additonal content blocks, such as a menu block, in the off-canvas drawer region.'),
     '#default_value' => theme_get_setting('clf_use_primary_menu_in_drawer'),
     '#states' => array(
       'invisible' => array(
