@@ -31,7 +31,7 @@
     width: 100%;
   }
 
-  #ubc7-unit.navigation-is-sticky .btn-navbar {
+  #ubc7-unit.navigation-is-sticky .btn-navbar:first-child {
     margin-right: 40px;
   }
 }
