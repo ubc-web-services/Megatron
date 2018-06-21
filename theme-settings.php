@@ -99,7 +99,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
      '__full' => t('Full Width Centered CLF'),
     ),
   );
-  
+
   $form['clf_theme']['clf_nogradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
