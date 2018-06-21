@@ -100,13 +100,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     ),
   );
 
-  $form['clf_navigation_option']['clf_sticky_option'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Make the default CLF navigation sticky.'),
-    '#description' => t('If you\'d like the primary navigation to be \'sticky\' (stay on top of window when scrolling downward), select this option.'),
-    '#default_value' => theme_get_setting('clf_sticky_option'),
-  );
-
   $form['clf_theme']['clf_navoption'] = array(
     '#type' => 'checkbox',
     '#title' => t('Primary Navigation Mobile Placement'),
@@ -205,6 +198,13 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#title' => t('Add a second row to the Primary Navigation?'),
     '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
     '#default_value' => theme_get_setting('clf_secondarynavoption'),
+  );
+
+  $form['clf_navigation_option']['clf_sticky_option'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Make the default CLF navigation sticky.'),
+    '#description' => t('If you\'d like the primary navigation to be \'sticky\' (stay on top of window when scrolling downward), select this option.'),
+    '#default_value' => theme_get_setting('clf_sticky_option'),
   );
 
   /** CLF CAMPUS IDENTITY OPTIONS
