@@ -34,5 +34,12 @@
   #ubc7-unit.navigation-is-sticky .btn-navbar:first-child {
     margin-right: 40px;
   }
+
+  #ubc7-unit-menu.navigation-is-sticky {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 999;
+  }
 }
 /*# sourceMappingURL=navigation.sticky.css.map */
