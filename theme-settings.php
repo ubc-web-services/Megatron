@@ -99,20 +99,7 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
      '__full' => t('Full Width Centered CLF'),
     ),
   );
-
-  $form['clf_theme']['clf_navoption'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Primary Navigation Mobile Placement'),
-    '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
-    '#default_value' => theme_get_setting('clf_navoption'),
-  );
-
-  $form['clf_theme']['clf_secondarynavoption'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Add a second row to the Primary Navigation?'),
-    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
-    '#default_value' => theme_get_setting('clf_secondarynavoption'),
-  );
+  
   $form['clf_theme']['clf_nogradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
