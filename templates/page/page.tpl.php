@@ -150,6 +150,18 @@ if ($drawer_enabled) {
           </button>
           <!-- End of UBC Unit Drawer Menu Button -->
         <?php endif; ?>
+      <?php if ($flyout_enabled): ?>
+          <!-- UBC Unit Flyout Menu Button -->
+          <button class="hamburger visible-sm visible-md visible-lg flyout-toggle" id="flyout-button">
+              <span class="hamburger__elem"><?php print $flyout_label; ?></span>
+              <span class="hamburger__elem">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </span>
+          </button>
+          <!-- End of UBC Unit Flyout Menu Button -->
+      <?php endif; ?>
       <div class="nav-collapse collapse" id="ubc7-unit-navigation">
         <?php print $primary_nav; ?>
       </div>
@@ -271,4 +283,14 @@ if ($drawer_enabled) {
   </section>
   <div id="off-canvas-mask" class="drawer-toggle--primary"></div>
   <!-- End of UBC Unit Drawer -->
+<?php endif; ?>
+
+<?php if (!empty($flyout_enabled)): ?>
+    <!-- UBC Unit Flyout -->
+    <section id="off-canvas-flyout" class="<?php print 'off-canvas-flyout ' . $flyout_region; ?>">
+        <button class="flyout__close flyout-toggle">&times; CLOSE MENU</button>
+      <?php print render($page['flyout']); ?>
+    </section>
+    <div id="off-canvas-mask" class="flyout-toggle"></div>
+    <!-- End of UBC Unit Flyout -->
 <?php endif; ?>
