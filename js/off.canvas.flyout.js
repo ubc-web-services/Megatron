@@ -1,13 +1,13 @@
 (function () {
 
-  Drupal.behaviors.clfFlyout = {
+  Drupal.behaviors.megatronFlyout = {
     attach: function (context, settings) {
       // Primary flyout toggle.
       if (document.getElementsByClassName("flyout-toggle").length > 0) {
         var pushTrigger = document.getElementsByClassName("flyout-toggle");
         var pushPanel = document.getElementById("off-canvas-flyout");
-        var pushContent = document.getElementById("pushed-content");
-        var pushMask = document.getElementById("off-canvas-mask");
+        var pushContent = document.getElementById("pushed-content-flyout");
+        var pushMask = document.getElementById("off-canvas-mask-flyout");
         var activeClass = "off-canvas-flyout--is-active";
         var animatingClass = "off-canvas-flyout--is-animating";
         var i;
