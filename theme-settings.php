@@ -194,6 +194,39 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#default_value' => theme_get_setting('clf_sticky_option'),
   );
 
+  /** CLF FLYOUT OPTIONS
+  ---------------------------------------------------------- */
+  $form['clf_flyout_option'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Flyout Option'),
+    '#prefix' => '<div class="clf_flyout_option">',
+    '#suffix' => '</div>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#weight' => -6,
+  );
+
+  $form['clf_flyout_option']['clf_flyout_region'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose whether or not to display an off-canvas flyout region for content on this website.'),
+    '#default_value' => theme_get_setting('clf_flyout_region'),
+    '#options' => array(
+      'default'             => t('Default: no flyout region'),
+      'flyout--push-left'   => t('Flyout Region: push from left'),
+      'flyout--cover-left'  => t('Flyout Region: cover from left'),
+      'flyout--push-right'  => t('Flyout Region: push from right'),
+      'flyout--cover-right' => t('Flyout Region: cover from right'),
+    ),
+  );
+
+  $form['clf_flyout_option']['clf_flyout_label'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Type a label for the off-canvas flyout region eg. Quicklinks'),
+    '#default_value' => theme_get_setting('clf_flyout_label'),
+    '#size' => 60,
+    '#maxlength' => 128,
+  );
+
   /** CLF CAMPUS IDENTITY OPTIONS
   ---------------------------------------------------------- */
   $form['clf_identity'] = array(
