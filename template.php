@@ -371,6 +371,19 @@ function megatron_preprocess_page(&$variables) {
     drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.drawer.js');
     drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.drawer.css');
   }
+
+  // Flyout
+  $variables['flyout_region'] = theme_get_setting('clf_flyout_region');
+  $flyout_enabled = $variables['flyout_region'] != 'default' && $variables['flyout_region'] != 'double' && $variables['flyout_region'] != 'higher';
+  $variables['flyout_enabled'] = $flyout_enabled;
+
+  $variables['flyout_label'] = theme_get_setting('clf_flyout_label');
+
+  // Add js and css for flyout option
+  if ($flyout_enabled) {
+    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.flyout.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.flyout.css');
+  }
 }
 
 /** BOOTSTRAP THEME FUNCTIONS USED */
