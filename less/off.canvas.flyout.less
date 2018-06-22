@@ -1,0 +1,308 @@
+#flyout-button {
+  position: fixed;
+  top: 50vh;
+  right: -30px;
+  color: #fff;
+  border:none;
+  background-color: #7C1F3D;
+  font-family: Arial,Sans-Serif;
+  padding:10px;
+  font-size:14px;
+  outline: 0;
+  transform: rotate(90deg);
+  z-index: 999;
+}
+
+#flyout-button:hover {
+  background-color: #002145;
+  color: #fff;
+}
+
+#flyout-button:hover .icon-bar {
+  background-color: #fff;
+}
+
+.flyout-toggle--hamburger {
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #191938;
+  -webkit-box-shadow: 1px 1px 1px #191938;
+  float: right;
+  height: 24px;
+  padding: 11px 0 0 13px;
+  width: 32px;
+}
+
+.flyout-toggle--hamburger:hover {
+  box-shadow: 1px 1px 1px #191938;
+  -webkit-box-shadow: inset 1px 1px 1px #191938;
+  -moz-box-shadow: 1px 1px 1px #191938;
+}
+
+.flyout-toggle--hamburger span {
+  margin-top: 3px;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #002145;
+  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+.flyout-toggle--hamburger span:first-child {
+  margin-top: 0;
+}
+
+@media screen and (min-width:998px) {
+  .flyout-toggle--hamburger {
+    display: block;
+    margin-top: 2px;
+    margin-right: 13px;
+    margin-bottom: 3px;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .flyout-toggle--hamburger {
+    margin-top: 5px;
+    margin-right: 17px;
+    margin-bottom: 5px;
+  }
+  #flyout-button {
+    line-height: 1.75em;
+  }
+}
+
+#pushed-content {
+  position: relative;
+  z-index: 1;
+  display: block;
+  transition: transform 0.125s ease;
+}
+
+#pushed-content.flyout--push-left.off-canvas-flyout--is-active {
+  transform: translate3D(-20rem, 0, 0);
+  box-shadow: 2px 0 2px rgba(0, 0, 0, .15);
+}
+
+#pushed-content.flyout--push-right.off-canvas-flyout--is-active {
+  transform: translate3D(20rem, 0, 0);
+  box-shadow: 2px 0 2px rgba(0, 0, 0, .15);
+}
+
+#off-canvas-flyout {
+  transition: transform 0.125s ease, visibility 0.125s ease;
+  visibility: visible;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  background-color: #686868;
+  display: block;
+  overflow: auto;
+}
+
+#off-canvas-flyout.flyout--cover-left, #off-canvas-flyout.flyout--push-left {
+  right: 0;
+  transform: translate3D(20rem, 0, 0);
+}
+
+#off-canvas-flyout.flyout--cover-right, #off-canvas-flyout.flyout--push-right {
+  left: 0;
+  transform: translate3D(-20rem, 0, 0);
+}
+
+#off-canvas-flyout.off-canvas-flyout--is-animating {
+  width: 20rem;
+  z-index: 10;
+}
+
+#off-canvas-flyout.off-canvas-flyout--is-active {
+  transform: translate3D(0, 0, 0);
+  z-index: 10;
+  width: 20rem;
+}
+
+#off-canvas-mask {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.125s;
+}
+
+#off-canvas-mask.off-canvas-flyout--is-active {
+  width: 100%;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 979px) {
+  .has-off-canvas-flyout #ubc7-unit-menu {
+    display: block;
+  }
+  .has-off-canvas-flyout #ubc7-unit-menu .drawer-toggle--primary {
+    display: none;
+  }
+}
+
+.flyout-toggle--hamburger .off-canvas-flyout, .off-canvas-flyout a, .off-canvas-flyout .dropdown-menu a {
+  /* Alter CLF Navigation markup to work vertically */
+  color: #fff;
+}
+
+.off-canvas-flyout .flyout__close {
+  background-color: #686868;
+  border-top: 1px solid #414141;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  color: #fff;
+  padding: 18px;
+  display: block;
+  position: relative;
+  text-transform: uppercase;
+  text-align: right;
+  width: 100%;
+}
+
+.off-canvas-flyout .flyout__close:hover {
+  background-color: #4f4f4f;
+}
+
+.off-canvas-flyout .flyout__close:focus {
+  background-color: #424242;
+}
+
+.off-canvas-flyout a {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-color: #414141;
+  box-shadow: none;
+  box-sizing: border-box;
+  padding: 18px;
+  padding-right: 0;
+  text-decoration: none;
+}
+
+.off-canvas-flyout a:hover {
+  color: #fff;
+  border-color: #414141;
+}
+
+.off-canvas-flyout .nav > li > a:focus, .off-canvas-flyout .nav > li > a:hover, .off-canvas-flyout .btn-group:hover > .btn, .off-canvas-flyout .btn-group > a:focus {
+  background-color: #4f4f4f;
+}
+
+.off-canvas-flyout .btn-group {
+  width: 100%;
+}
+
+.off-canvas-flyout .btn-group .dropdown-toggle {
+  z-index: 2;
+  float: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 55px;
+  box-shadow: none;
+}
+
+.off-canvas-flyout .btn-group .dropdown-toggle:hover:after, .off-canvas-flyout .btn-group .dropdown-toggle:focus:after {
+  color: #fff;
+}
+
+.off-canvas-flyout .btn-group .dropdown-toggle span {
+  transition: all 0.3s ease;
+}
+
+.off-canvas-flyout .btn-group .dropdown-toggle:hover span {
+  transform: rotate(90deg);
+}
+
+.off-canvas-flyout .btn-group .dropdown-menu {
+  border: none;
+  width: 100%;
+  margin-top: 0;
+}
+
+.off-canvas-flyout .btn-group .dropdown-menu li {
+  border-bottom: none;
+}
+
+.off-canvas-flyout .btn-group .dropdown-menu a {
+  background-color: #828282;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.off-canvas-flyout .btn-group > a {
+  width: 100%;
+  z-index: 1;
+}
+
+.off-canvas-flyout .btn-group > .btn {
+  background-color: #686868;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-color: #414141;
+  line-height: 18px;
+  box-shadow: none !important;
+  background-image: none;
+  text-align: left;
+}
+
+.off-canvas-flyout .btn-group:hover > .dropdown-toggle {
+  background-color: #424242;
+}
+
+.off-canvas-flyout .btn-group.open span {
+  transform: rotate(90deg);
+  transition: all 0.3s ease;
+}
+
+.off-canvas-flyout .btn-group.open .btn.dropdown-toggle {
+  background-color: #4f4f4f;
+  border-color: #4f4f4f;
+}
+
+.off-canvas-flyout .btn-group.open > .dropdown-menu {
+  display: block;
+  position: relative;
+}
+
+.off-canvas-flyout button:focus {
+  outline: 0;
+}
+
+.off-canvas-flyout .ubc7-arrow {
+  background-position: -1113px -227px !important;
+}
+
+#flyout-button .icon-bar {
+  display:block;
+  width:18px;
+  height:2px;
+  background-color:#fff;
+  -webkit-border-radius:1px;
+  -moz-border-radius:1px;
+  border-radius:1px;
+  -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.25);
+  -moz-box-shadow:0 1px 0 rgba(0,0,0,0.25);
+  box-shadow:0 1px 0 rgba(0,0,0,0.25)
+}
+
+#flyout-button .icon-bar+.icon-bar {
+  margin-top:3px
+}
+
+#flyout-button .hamburger__elem {
+  display: inline-block;
+  margin-left: 5px;
+  text-transform: uppercase;
+}
