@@ -65,6 +65,7 @@ if ($drawer_enabled) {
   $container_attributes['class'][] = $drawer_region;
 }
 
+$flyout_container_attributes = array();
 if ($flyout_enabled) {
   $flyout_container_attributes['id'] = 'pushed-content-flyout';
   $flyout_container_attributes['class'][] = $flyout_region;
@@ -172,6 +173,11 @@ if ($flyout_enabled) {
       <div class="nav-collapse collapse" id="ubc7-unit-navigation">
         <?php print $primary_nav; ?>
       </div>
+      <?php print $fluidcontainerend; ?>
+    </div>
+  </nav>
+  <?php endif; ?>
+  <!-- End of UBC Unit Navigation -->
       <?php if (!empty($secondary_nav)): ?>
           <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
               <div class="navbar-inner expand">
@@ -183,11 +189,6 @@ if ($flyout_enabled) {
               </div>
           </nav>
       <?php endif; ?>
-      <?php print $fluidcontainerend; ?>
-    </div>
-  </nav>
-  <?php endif; ?>
-  <!-- End of UBC Unit Navigation -->
   <!-- UBC Unit Breadcrumbs -->
   <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
   <div class="full-width-container">

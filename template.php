@@ -346,6 +346,15 @@ function megatron_preprocess_page(&$variables) {
   $drawer_enabled = $variables['drawer_region'] != 'default' && $variables['drawer_region'] != 'double' && $variables['drawer_region'] != 'higher';
   $variables['drawer_enabled'] = $drawer_enabled;
   if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
+
+    // Tell JS we're using primary nav so we can add a body class to hide the primary nav in CSS.
+    $drawer_settings = array(
+      'drawerNav' => array(
+        'class' => 'drawer-contains-primary-nav',
+      ),
+    );
+    drupal_add_js($drawer_settings, 'setting');
+
     // Build links.
     $tree = menu_tree_page_data(variable_get('menu_main_links_source', 'main-menu'));
     $variables['main_menu'] = megatron_menu_navigation_links($tree);

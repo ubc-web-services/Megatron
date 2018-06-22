@@ -1,7 +1,7 @@
 #flyout-button {
   position: fixed;
   top: 50vh;
-  right: -30px;
+  right: 0;
   color: #fff;
   border:none;
   background-color: #7C1F3D;
@@ -10,6 +10,7 @@
   font-size:14px;
   outline: 0;
   transform: rotate(90deg);
+  transform-origin: right top;
   z-index: 9;
 }
 
@@ -285,16 +286,16 @@
 }
 
 #flyout-button .icon-bar {
-  display:block;
-  width:18px;
-  height:2px;
-  background-color:#fff;
-  -webkit-border-radius:1px;
-  -moz-border-radius:1px;
-  border-radius:1px;
-  -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.25);
-  -moz-box-shadow:0 1px 0 rgba(0,0,0,0.25);
-  box-shadow:0 1px 0 rgba(0,0,0,0.25)
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #fff;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25)
 }
 
 #flyout-button .icon-bar+.icon-bar {
