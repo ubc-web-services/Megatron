@@ -96,9 +96,15 @@
   width: 0;
   position: fixed;
   top: 0;
-  background-color: #686868;
+  background-color: #002145;
   display: block;
   overflow: auto;
+
+  h2 {
+    padding: 14px;
+    color: white;
+    font-weight: 400;
+  }
 }
 
 #off-canvas-flyout.flyout--cover-left, #off-canvas-flyout.flyout--push-left {
@@ -157,8 +163,8 @@
 }
 
 .off-canvas-flyout .flyout__close {
-  background-color: #686868;
-  border-top: 1px solid #414141;
+  background-color: #002145;
+  border-top: none;
   border-bottom: none;
   border-left: none;
   border-right: none;
@@ -169,14 +175,7 @@
   text-transform: uppercase;
   text-align: right;
   width: 100%;
-}
-
-.off-canvas-flyout .flyout__close:hover {
-  background-color: #4f4f4f;
-}
-
-.off-canvas-flyout .flyout__close:focus {
-  background-color: #424242;
+  font-size: 36px;
 }
 
 .off-canvas-flyout a {
