@@ -158,18 +158,6 @@ if ($flyout_enabled) {
           </button>
           <!-- End of UBC Unit Drawer Menu Button -->
         <?php endif; ?>
-      <?php if ($flyout_enabled): ?>
-          <!-- UBC Unit Flyout Menu Button -->
-          <button class="hamburger visible-sm visible-md visible-lg flyout-toggle" id="flyout-button">
-              <span class="hamburger__elem"><?php print $flyout_label; ?></span>
-              <span class="hamburger__elem">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </span>
-          </button>
-          <!-- End of UBC Unit Flyout Menu Button -->
-      <?php endif; ?>
       <div class="nav-collapse collapse" id="ubc7-unit-navigation">
         <?php print $primary_nav; ?>
       </div>
@@ -189,6 +177,26 @@ if ($flyout_enabled) {
               </div>
           </nav>
       <?php endif; ?>
+
+      <?php if ($flyout_enabled): ?>
+          <!-- UBC Unit Flyout Menu Button -->
+          <button class="hamburger visible-sm visible-md visible-lg flyout-toggle" id="flyout-button">
+              <span class="hamburger__elem"><?php print $flyout_label; ?></span>
+              <span class="hamburger__elem">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </span>
+          </button>
+          <!-- End of UBC Unit Flyout Menu Button -->
+      <?php endif; ?>
+
+      <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
+        <div class="full-width-container">
+          <?php if (!empty($page['feature_image'])): ?>
+              <div class="feature inflate"><?php print render($page['feature_image']); ?></div>
+          <?php endif; ?>
+          <?php endif; ?>
   <!-- UBC Unit Breadcrumbs -->
   <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
   <div class="full-width-container">
@@ -201,7 +209,7 @@ if ($flyout_enabled) {
    <?php if (!empty($page['highlighted'])): ?>
      <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
    <?php endif; ?>
-	<?php print $fluidcontainerstart; ?>
+	<?php // print $fluidcontainerstart; ?>
   <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
     <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
 
@@ -244,7 +252,7 @@ if ($flyout_enabled) {
 
     </div><!-- /#content -->
   </div><!-- /#main -->
-	<?php print $fluidcontainerend; ?>
+	<?php // print $fluidcontainerend; ?>
   <?php if (!empty($page['prefooter'])): ?>
     <?php print render($page['prefooter']); ?>
   <?php endif; ?>
