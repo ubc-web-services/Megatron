@@ -1,3 +1,9 @@
+
+/* Menu should be on top */
+.has-off-canvas-flyout #ubc7-unit-navigation {
+  z-index: 2;
+}
+
 #flyout-button {
   position: fixed;
   top: 50vh;
@@ -11,7 +17,7 @@
   outline: 0;
   transform: rotate(90deg);
   transform-origin: right top;
-  z-index: 9;
+  z-index: 1;
 }
 
 #flyout-button:hover {
