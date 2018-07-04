@@ -2,6 +2,9 @@
  * @file
  * Placeholder
  */
+#ubc7-unit-menu {
+  background: transparent !important;
+}
 @media screen and (min-width: 980px) {
   body.unit-menu-is-sticky {
     padding-top: 40px;
@@ -49,10 +52,6 @@
     z-index: 999;
     height: 100%;
     overflow-y: scroll;
-  }
-  #ubc7-unit-menu,
-  #ubc7-unit-menu .navbar-inner {
-    background: transparent !important;
   }
 }
 /*# sourceMappingURL=navigation.sticky.css.map */
