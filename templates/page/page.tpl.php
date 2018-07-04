@@ -165,38 +165,19 @@ if ($flyout_enabled) {
     </div>
   </nav>
   <?php endif; ?>
-  <!-- End of UBC Unit Navigation -->
-      <?php if (!empty($secondary_nav)): ?>
-          <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
-              <div class="navbar-inner expand">
-                <?php print $fluidcontainerstart; ?>
-                  <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
-                    <?php print $secondary_nav; ?>
-                  </div>
-                <?php print $fluidcontainerend; ?>
+  <?php if (!empty($secondary_nav)): ?>
+      <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
+          <div class="navbar-inner expand">
+            <?php print $fluidcontainerstart; ?>
+              <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
+                <?php print $secondary_nav; ?>
               </div>
-          </nav>
-      <?php endif; ?>
-
-      <?php if ($flyout_enabled): ?>
-          <!-- UBC Unit Flyout Menu Button -->
-          <button class="hamburger visible-sm visible-md visible-lg flyout-toggle" id="flyout-button">
-              <span class="hamburger__elem"><?php print $flyout_label; ?></span>
-              <span class="hamburger__elem">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </span>
-          </button>
-          <!-- End of UBC Unit Flyout Menu Button -->
-      <?php endif; ?>
-
-      <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
-        <div class="full-width-container">
-          <?php if (!empty($page['feature_image'])): ?>
-              <div class="feature inflate"><?php print render($page['feature_image']); ?></div>
-          <?php endif; ?>
-          <?php endif; ?>
+            <?php print $fluidcontainerend; ?>
+          </div>
+      </nav>
+  <?php endif; ?>
+  <!-- End of UBC Unit Navigation -->
+>>>>>>> develop
   <!-- UBC Unit Breadcrumbs -->
   <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
   <div class="full-width-container">

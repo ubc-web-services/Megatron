@@ -2,38 +2,48 @@
  * @file
  * Placeholder
  */
-@media screen and (min-width:980px) {
+
+#ubc7-unit-menu,
+#ubc7-unit-menu .navbar-inner {
+  background: transparent !important;
+}
+@media screen and (min-width: 980px) {
   body.unit-menu-is-sticky {
     padding-top: 40px;
   }
-
   #ubc7-unit-menu.navigation-is-sticky {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 999;
+    height: 100%;
+    overflow-y: scroll;
   }
 }
-
-@media screen and (min-width:980px) and (min-width:1200px) {
+@media screen and (min-width: 980px) and (min-width: 1200px) {
   body.unit-menu-is-sticky {
     padding-top: 45px;
   }
 }
-
-@media screen and (max-width:979px) {
+@media screen and (max-width: 979px) {
   body.unit-area-is-sticky {
     padding-top: 50px;
   }
-
   body.unit-menu-is-sticky {
 
     #ubc7-unit-menu .dropdown .btn-group .btn {
-      margin-right: 40px;
+      margin-right: 26px;
+    }
+
+    body.unit-menu-is-sticky {
+
+      #ubc7-unit-menu .dropdown .btn-group .btn {
+        margin-right: 40px;
+      }
+
     }
 
   }
-
   #ubc7-unit.navigation-is-sticky {
     position: fixed;
     top: 0;
@@ -45,12 +55,16 @@
     }
 
   }
-
+  #ubc7-unit.navigation-is-sticky .btn-navbar:first-child {
+    margin-right: 40px;
+  }
   #ubc7-unit-menu.navigation-is-sticky {
     position: fixed;
     top: 50px;
     width: 100%;
     z-index: 999;
+    height: 100%;
+    overflow-y: scroll;
   }
 }
 /*# sourceMappingURL=navigation.sticky.css.map */

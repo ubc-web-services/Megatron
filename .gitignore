@@ -4,3 +4,5 @@ node_modules/
 
 # Postcss-fied CSS files
 postcss/
+
+.DS_Store

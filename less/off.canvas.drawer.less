@@ -14,6 +14,11 @@
 @drawer__border-color--darker: #414141;
 @drawer__border-color--dark: #4f4f4f;
 
+body.drawer-contains-primary-nav {
+  #ubc7-unit-navigation.collapse {
+    display: none;
+  }
+}
 #drawer-button {
   float: right;
   margin-right: 17px;
@@ -35,7 +40,7 @@
     display: block;
     width: 18px;
     height: 2px;
-    margin-top: 3px;
+    margin-top: 2px;
     background-color: @icon-bar__background-color;
     -webkit-border-radius: 1px;
     -moz-border-radius: 1px;
@@ -51,7 +56,6 @@
     display: inline-block;
   }
 }
-
 .drawer-toggle--hamburger {
   background-color: @hamburger__background-color;
   box-shadow: 1px 1px 1px #191938;
@@ -80,24 +84,20 @@
     color: @secondary-font-color;
   }
 }
-
 #pushed-content {
   position: relative;
   z-index: 1;
   display: block;
   transition: transform 0.125s ease;
 }
-
 #pushed-content.drawer--push-left.off-canvas-drawer--is-active {
   transform: translate3D(-20rem, 0, 0);
   box-shadow: 2px 0 2px rgba(0, 0, 0, .15);
 }
-
 #pushed-content.drawer--push-right.off-canvas-drawer--is-active {
   transform: translate3D(20rem, 0, 0);
   box-shadow: 2px 0 2px rgba(0, 0, 0, .15);
 }
-
 #off-canvas-drawer--primary {
   transition: transform 0.125s ease, visibility 0.125s ease;
   visibility: visible;
@@ -109,38 +109,31 @@
   display: block;
   overflow: auto;
 }
-
 #off-canvas-drawer--primary.drawer--cover-left {
   right: 0;
   transform: translate3D(20rem, 0, 0);
 }
-
 #off-canvas-drawer--primary.drawer--push-left {
   right: 0;
   transform: translate3D(20rem, 0, 0);
 }
-
 #off-canvas-drawer--primary.drawer--cover-right {
   left: 0;
   transform: translate3D(-20rem, 0, 0);
 }
-
 #off-canvas-drawer--primary.drawer--push-right {
   left: 0;
   transform: translate3D(-20rem, 0, 0);
 }
-
 #off-canvas-drawer--primary.off-canvas-drawer--is-animating {
   width: 20rem;
   z-index: 10;
 }
-
 #off-canvas-drawer--primary.off-canvas-drawer--is-active {
   transform: translate3D(0, 0, 0);
   z-index: 10;
   width: 20rem;
 }
-
 #off-canvas-mask {
   height: 100%;
   width: 0;
@@ -155,12 +148,10 @@
   opacity: 0;
   transition: opacity 0.125s;
 }
-
 #off-canvas-mask.off-canvas-drawer--is-active {
   width: 100%;
   opacity: 0.5;
 }
-
 .off-canvas-drawer {
   a {
     color: @secondary-font-color;
@@ -304,7 +295,6 @@
     background-position: -1113px -227px !important;
   }
 }
-
 @media screen and (min-width: 998px) {
   .drawer-toggle--hamburger {
     display: block;
@@ -313,19 +303,16 @@
     margin-bottom: 3px;
   }
 }
-
 @media screen and (min-width: 1200px) {
   .drawer-toggle--hamburger {
     margin-top: 5px;
     margin-right: 17px;
     margin-bottom: 5px;
   }
-
   #drawer-button {
     line-height: 1.75em;
   }
 }
-
 @media screen and (max-width: 979px) {
   .has-off-canvas-drawer {
     #ubc7-unit-menu {
