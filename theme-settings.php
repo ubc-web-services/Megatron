@@ -164,7 +164,7 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
   $form['clf_navigation_option']['clf_use_primary_menu_in_drawer'] = array(
     '#type' => 'checkbox',
     '#title' => t('Use the primary menu in the off-canvas drawer?'),
-    '#description' => t('If not chosen, you should use a menu block or alternate method for main navigation in the off-canvas drawer region.'),
+    '#description' => t('If you do not use the primary menu in the drawer, you should use a menu block or alternate method for main navigation in the off-canvas drawer region.'),
     '#default_value' => theme_get_setting('clf_use_primary_menu_in_drawer'),
     '#states' => array(
       'invisible' => array(
