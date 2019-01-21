@@ -119,7 +119,7 @@ function megatron_preprocess_html(&$variables) {
 
   $showSecondary = theme_get_setting('clf_secondarynavoption');
   if ($showSecondary) {
-    drupal_add_css(path_to_theme('megatron') . '/css/secondary-nav.css', array(
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/secondary-nav.css', array(
       'group' => CSS_THEME,
       'weight' => 115,
       'every_page' => TRUE,
