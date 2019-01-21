@@ -189,7 +189,7 @@ if ($flyout_enabled) {
    <?php if (!empty($page['highlighted'])): ?>
      <div class="highlighted inflate"><?php print render($page['highlighted']); ?></div>
    <?php endif; ?>
-	<?php // print $fluidcontainerstart; ?>
+	<?php print $fluidcontainerstart; ?>
   <div id="main" class="expand row-fluid <?php if (!$is_front): print ' contentwrapper-node-'; ?><?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>">
     <div id="content" class="column<?php if (!$is_front): ?> maincontent-node-<?php if (isset($node)): print $node->nid; endif; ?><?php endif; ?>" role="main">
 
@@ -232,7 +232,7 @@ if ($flyout_enabled) {
 
     </div><!-- /#content -->
   </div><!-- /#main -->
-	<?php // print $fluidcontainerend; ?>
+	<?php print $fluidcontainerend; ?>
   <?php if (!empty($page['prefooter'])): ?>
     <?php print render($page['prefooter']); ?>
   <?php endif; ?>
