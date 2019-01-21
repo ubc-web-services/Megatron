@@ -177,7 +177,6 @@ if ($flyout_enabled) {
       </nav>
   <?php endif; ?>
   <!-- End of UBC Unit Navigation -->
->>>>>>> develop
   <!-- UBC Unit Breadcrumbs -->
   <?php if (($clf_layout == '__full') || ($clf_layout == '__fluid')): ?>
   <div class="full-width-container">
