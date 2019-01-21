@@ -19,7 +19,6 @@
           closeTrigger[i].addEventListener("click", flyOutClose, true);
         }
         function flyOutOpen(e) {
-          console.log('open clicked');
           document.body.classList.add(activeClass);
           pushPanel.classList.add(activeClass);
           pushContent.classList.add(activeClass);
@@ -30,7 +29,6 @@
           pushMask.classList.remove(animatingClass);
         }
         function flyOutClose(e) {
-          console.log('close clicked');
           document.body.classList.remove(activeClass);
           pushPanel.classList.remove(activeClass);
           pushContent.classList.remove(activeClass);
@@ -40,16 +38,15 @@
           pushContent.classList.add(animatingClass);
           pushMask.classList.add(animatingClass);
         }
-        // Old Safari requires 'webkit' prefix.
-        pushPanel.addEventListener("webkitTransitionEnd", finishedAnimating);
-        pushPanel.addEventListener("transitionend", finishedAnimating);
-
         function finishedAnimating() {
           document.body.classList.remove(animatingClass);
           pushPanel.classList.remove(animatingClass);
           pushContent.classList.remove(animatingClass);
           pushMask.classList.remove(animatingClass);
         }
+        // Old Safari requires 'webkit' prefix.
+        pushPanel.addEventListener("webkitTransitionEnd", finishedAnimating);
+        pushPanel.addEventListener("transitionend", finishedAnimating);
       }
     }
   }
