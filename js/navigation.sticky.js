@@ -25,7 +25,6 @@
       function update() {
         ticking = false;
         var currentScrollY = latestKnownScrollY;
-
         /* Issue with modal close button
         console.log showed that CTools modal close button adds numerous zero values to stickynav var.
         We were getting the original correct value (178) followed by zero values, which made the nav perpetually stick.
@@ -51,7 +50,6 @@
             document.body.classList.remove("unit-area-is-sticky");
           }
         }
-
       }
 
       // window.requestAnimationFrame(update);
