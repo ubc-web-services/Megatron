@@ -233,12 +233,12 @@ if ($drawer_enabled) {
   <?php endif; ?>
 
   <!-- Footer Area Unit Menu - Mobile Only -->
-  <?php if (!empty($primary_nav) && (!empty($mobilenav))): ?>
+  <?php if (!empty($mobile_nav) && (!empty($mobilenav))): ?>
   <nav id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
     <div class="navbar-inner expand">
       <?php print $fluidcontainerstart; ?>
       <div class="nav-collapse collapse">
-        <?php print $primary_nav; ?>
+        <?php print $mobile_nav; ?>
       </div>
       <?php print $fluidcontainerend; ?>
     </div>
