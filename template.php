@@ -323,12 +323,10 @@ function megatron_preprocess_page(&$variables) {
   $showSecondary = theme_get_setting('clf_secondarynavoption');
   $variables['secondary_nav'] = FALSE;
   if ($showSecondary) {
-    if ($variables['secondary_nav']) {
-      $menu_tree = menu_tree_page_data('user-menu');
-      $tree_output_prepare = menu_tree_output($menu_tree);
-      $variables['secondary_nav']['attributes']['id'] = 'secondary-menu';
-      $variables['secondary_nav'] = drupal_render($tree_output_prepare);
-    }
+    $menu_tree = menu_tree_page_data('user-menu');
+    $tree_output_prepare = menu_tree_output($menu_tree);
+    $variables['secondary_nav']['attributes']['id'] = 'secondary-menu';
+    $variables['secondary_nav'] = drupal_render($tree_output_prepare);
   }
 
   // Add js and css for navigation sticky option
@@ -527,7 +525,7 @@ function megatron_menu_link(array $variables) {
       $button = '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
     }
     // load the main and secondary menus and remove third level links
-    elseif ((($element['#original_link']['menu_name'] == 'main-menu') || ($element['#original_link']['menu_name'] == 'secondary_nav')) && ($element['#original_link']['depth'] <= 2)) {
+    elseif ((($element['#original_link']['menu_name'] == 'main-menu') || ($element['#original_link']['menu_name'] == 'user-menu')) && ($element['#original_link']['depth'] <= 2)) {
       unset($element['#below']);
     }
     // load other menus as normal
