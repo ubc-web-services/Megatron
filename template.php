@@ -312,11 +312,11 @@ function megatron_preprocess_page(&$variables) {
     $variables['primary_nav'] = drupal_render($tree_output_prepare);
   }
 
+  $showMobile = theme_get_setting('clf_navoption');
   $variables['mobile_nav'] = FALSE;
-  if ($variables['main_menu']) {
+  if ($showMobile) {
     $menu_tree = menu_tree_page_data(variable_get('menu_primary_links_source', 'main-menu'));
     $tree_output_prepare = menu_tree_output($menu_tree);
-    $variables['mobile_nav']['attributes']['id'] = 'mobile-menu';
     $variables['mobile_nav'] = drupal_render($tree_output_prepare);
   }
 
@@ -325,7 +325,6 @@ function megatron_preprocess_page(&$variables) {
   if ($showSecondary) {
     $menu_tree = menu_tree_page_data(variable_get('menu_secondary_links_source', 'user-menu'));
     $tree_output_prepare = menu_tree_output($menu_tree);
-    $variables['secondary_nav']['attributes']['id'] = 'secondary-menu';
     $variables['secondary_nav'] = drupal_render($tree_output_prepare);
   }
 
@@ -342,7 +341,6 @@ function megatron_preprocess_page(&$variables) {
   if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
     $menu_tree = menu_tree_page_data(variable_get('menu_primary_links_source', 'main-menu'));
     $tree_output_prepare = menu_tree_output($menu_tree);
-    $variables['drawer']['attributes']['id'] = 'drawer-menu';
     $variables['drawer'] = drupal_render($tree_output_prepare);
   }
 
@@ -510,10 +508,12 @@ function megatron_menu_link(array $variables) {
   $opening = '';
   $closing = '';
   $button = '';
+  $element['#attributes']['class'][] = 'menu-mlid-' . $element['#original_link']['mlid'];
+  $secondary_menu = variable_get('menu_secondary_links_source', '');
 
   if ($element['#below']) {
     // load the main and secondary menus if they have expanded children
-    if ((($element['#original_link']['menu_name'] == 'main-menu') || ($element['#original_link']['menu_name'] == 'user-menu')) && ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1))) {
+    if ((($element['#original_link']['menu_name'] == 'main-menu') || ($element['#original_link']['menu_name'] == $secondary_menu)) && ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1))) {
       unset($element['#below']['#theme_wrappers']);
       $element['#localized_options']['attributes']['class'][] = 'btn';
       $element['#attributes']['class'][] = 'dropdown';
@@ -524,7 +524,7 @@ function megatron_menu_link(array $variables) {
       $button = '<button class="btn dropdown-toggle" data-toggle="dropdown"><span class="ubc7-arrow blue down-arrow"></span></button>';
     }
     // load the main and secondary menus and remove third level links
-    elseif ((($element['#original_link']['menu_name'] == 'main-menu') || ($element['#original_link']['menu_name'] == 'user-menu')) && ($element['#original_link']['depth'] <= 2)) {
+    elseif ((($element['#original_link']['menu_name'] == 'main-menu') || ($element['#original_link']['menu_name'] == $secondary_menu)) && ($element['#original_link']['depth'] <= 2)) {
       unset($element['#below']);
     }
     // load other menus as normal
