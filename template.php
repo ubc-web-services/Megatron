@@ -307,14 +307,14 @@ function megatron_preprocess_page(&$variables) {
 
   $variables['primary_nav'] = FALSE;
   if ($variables['main_menu']) {
-    $menu_tree = menu_tree_page_data('main-menu');
+    $menu_tree = menu_tree_page_data(variable_get('menu_primary_links_source', 'main-menu');
     $tree_output_prepare = menu_tree_output($menu_tree);
     $variables['primary_nav'] = drupal_render($tree_output_prepare);
   }
 
   $variables['mobile_nav'] = FALSE;
   if ($variables['main_menu']) {
-    $menu_tree = menu_tree_page_data('main-menu');
+    $menu_tree = menu_tree_page_data(variable_get('menu_primary_links_source', 'main-menu');
     $tree_output_prepare = menu_tree_output($menu_tree);
     $variables['mobile_nav']['attributes']['id'] = 'mobile-menu';
     $variables['mobile_nav'] = drupal_render($tree_output_prepare);
@@ -323,7 +323,7 @@ function megatron_preprocess_page(&$variables) {
   $showSecondary = theme_get_setting('clf_secondarynavoption');
   $variables['secondary_nav'] = FALSE;
   if ($showSecondary) {
-    $menu_tree = menu_tree_page_data('user-menu');
+    $menu_tree = menu_tree_page_data(variable_get('menu_secondary_links_source', 'user-menu');
     $tree_output_prepare = menu_tree_output($menu_tree);
     $variables['secondary_nav']['attributes']['id'] = 'secondary-menu';
     $variables['secondary_nav'] = drupal_render($tree_output_prepare);
@@ -340,8 +340,7 @@ function megatron_preprocess_page(&$variables) {
   $drawer_enabled = $variables['drawer_region'] != 'default' && $variables['drawer_region'] != 'double' && $variables['drawer_region'] != 'higher';
   $variables['drawer_enabled'] = $drawer_enabled;
   if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
-
-    $menu_tree = menu_tree_page_data('main-menu');
+    $menu_tree = menu_tree_page_data(variable_get('menu_primary_links_source', 'main-menu');
     $tree_output_prepare = menu_tree_output($menu_tree);
     $variables['drawer']['attributes']['id'] = 'drawer-menu';
     $variables['drawer'] = drupal_render($tree_output_prepare);
