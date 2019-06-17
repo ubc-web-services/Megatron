@@ -92,21 +92,21 @@ if ($drawer_enabled) {
     <?php print $fluidcontainerstart; ?>
     <div class="span1">
       <div id="ubc7-logo">
-        <a href="http://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
+        <a href="https://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
       </div>
     </div>
     <div class="span2">
       <div id="ubc7-apom">
-        <a href="http://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>
+        <a href="https://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>
       </div>
     </div>
     <div class="span9" id="ubc7-wordmark-block">
       <div id="ubc7-wordmark">
-        <a href="http://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
+        <a href="https://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
       </div>
       <div id="ubc7-global-utility">
         <button data-toggle="collapse" data-target="#ubc7-global-menu" tabindex="4"><span>UBC Search</span></button>
-        <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
+        <noscript><a id="ubc7-global-utility-no-script" href="https://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
       </div>
     </div>
     <?php print $fluidcontainerend; ?>
