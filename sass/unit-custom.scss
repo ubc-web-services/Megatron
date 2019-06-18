@@ -1,0 +1,75 @@
+/* Custom Unit Styles */
+// Core variables and mixins - uncomment to use
+// @import 'variables';
+// @import 'mixins';
+
+/* Custom classes
+-------------------------------------------------- */
+
+/* Unit Colors
+Unit Bar background gradient and box shadow */
+#ubc7-unit {
+background: #245b7b;
+/* replace with unit colour (or use theme settings) */
+box-shadow: inset 0px -10px 10px -10px #333333;
+-moz-box-shadow: inset 0px -10px 10px -10px #333333;
+-webkit-box-shadow: inset 0px -10px 10px -10px #333333; }
+
+
+/* UNIT SPECIFIC
+Typography
+-------------------------------------------------- */
+
+
+
+/* MEDIA QUERIES - uncomment to use
+(these are example queries to get you started and can be modified to suit)
+-------------------------------------------------- */
+
+/* 1200 styles
+-------------------------------------------------- */
+/*
+@media screen and (min-width:1200px) {
+
+}
+*/
+
+/* 768-979 styles
+-------------------------------------------------- */
+/*
+@media screen and (max-width:979px) {
+
+}
+*/
+
+/* >767 styles
+-------------------------------------------------- */
+/*
+@media screen and (max-width: 767px) {
+
+}
+*/
+
+/* >720 styles
+-------------------------------------------------- */
+/*
+@media screen and (max-width: 720px) {
+
+}
+*/
+
+/* >520 styles
+-------------------------------------------------- */
+/*
+@media screen and (max-width: 520px) {
+
+}
+*/
+
+/* >480 styles
+-------------------------------------------------- */
+/*
+@media screen and (max-width: 480px) {
+
+}
+*/
