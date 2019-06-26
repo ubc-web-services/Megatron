@@ -10,6 +10,7 @@ regions[content]        = 'Content'
 regions[sidebar_first]  = 'First Sidebar'
 regions[sidebar_second] = 'Second Sidebar'
 regions[drawer]         = 'Drawer'
+regions[flyout]         = 'Flyout'
 regions[prefooter]      = 'Content: Below'
 
 ;Styles - add your custom css here

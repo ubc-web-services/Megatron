@@ -100,26 +100,6 @@ function megatron_form_system_theme_settings_alter(&$form, &$form_state) {
     ),
   );
 
-  $form['clf_navigation_option']['clf_sticky_option'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Make the default CLF navigation sticky.'),
-    '#description' => t('If you\'d like the primary navigation to be \'sticky\' (stay on top of window when scrolling downward), select this option.'),
-    '#default_value' => theme_get_setting('clf_sticky_option'),
-  );
-
-  $form['clf_theme']['clf_navoption'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Primary Navigation Mobile Placement'),
-    '#description' => t('Show the Primary Navigation at the bottom of the page on Mobile devices, in addition to the top navigation placement'),
-    '#default_value' => theme_get_setting('clf_navoption'),
-  );
-
-  $form['clf_theme']['clf_secondarynavoption'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Add a second row to the Primary Navigation?'),
-    '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
-    '#default_value' => theme_get_setting('clf_secondarynavoption'),
-  );
   $form['clf_theme']['clf_nogradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Remove the gradient and text shadow in the Unit Name region?'),
@@ -184,7 +164,7 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
   $form['clf_navigation_option']['clf_use_primary_menu_in_drawer'] = array(
     '#type' => 'checkbox',
     '#title' => t('Use the primary menu in the off-canvas drawer?'),
-    '#description' => t('This is optional in case you want to use additonal content blocks, such as a menu block, in the off-canvas drawer region.'),
+    '#description' => t('If you do not use the primary menu in the drawer, you should use a menu block or alternate method for main navigation in the off-canvas drawer region.'),
     '#default_value' => theme_get_setting('clf_use_primary_menu_in_drawer'),
     '#states' => array(
       'invisible' => array(
@@ -205,6 +185,46 @@ REMOVED - was interfering with proper SCOPE declarations - if the functionality 
     '#title' => t('Add a second row to the Primary Navigation?'),
     '#description' => t('Show the Secondary Navigation on a second line, directly beneath the Primary Navigation<br />Defaults to the <strong>User Menu</strong> - this can be changed at <a href="@url">Admin > Structure > Menu > Settings</a>', array('@url' => url('/admin/structure/menu/settings'))),
     '#default_value' => theme_get_setting('clf_secondarynavoption'),
+  );
+
+  $form['clf_navigation_option']['clf_sticky_option'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Make the default CLF navigation sticky.'),
+    '#description' => t('If you\'d like the primary navigation to be \'sticky\' (stay on top of window when scrolling downward), select this option.'),
+    '#default_value' => theme_get_setting('clf_sticky_option'),
+  );
+
+  /** CLF FLYOUT OPTIONS
+  ---------------------------------------------------------- */
+  $form['clf_flyout_option'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Flyout Option'),
+    '#prefix' => '<div class="clf_flyout_option">',
+    '#suffix' => '</div>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#weight' => -6,
+  );
+
+  $form['clf_flyout_option']['clf_flyout_region'] = array(
+    '#type' => 'select',
+    '#title' => t('Choose whether or not to display an off-canvas flyout region for content on this website.'),
+    '#default_value' => theme_get_setting('clf_flyout_region'),
+    '#options' => array(
+      'default'             => t('Default: no flyout region'),
+      'flyout--push-left'   => t('Flyout Region: push from left'),
+      'flyout--cover-left'  => t('Flyout Region: cover from left'),
+      'flyout--push-right'  => t('Flyout Region: push from right'),
+      'flyout--cover-right' => t('Flyout Region: cover from right'),
+    ),
+  );
+
+  $form['clf_flyout_option']['clf_flyout_label'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Type a label for the off-canvas flyout region eg. Quicklinks'),
+    '#default_value' => theme_get_setting('clf_flyout_label'),
+    '#size' => 60,
+    '#maxlength' => 128,
   );
 
   /** CLF CAMPUS IDENTITY OPTIONS
