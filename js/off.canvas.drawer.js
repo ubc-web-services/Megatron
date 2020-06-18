@@ -11,6 +11,9 @@
       var animatingClass = "off-canvas-drawer--is-animating";
       var i;
       document.body.classList.add("has-off-canvas-drawer");
+      if (settings.drawerNav !== undefined) {
+        document.body.classList.add(settings.drawerNav.class);
+      }
       for (i = 0; i < pushTrigger.length; i++) {
         pushTrigger[i].addEventListener("click", function() {
           document.body.classList.toggle(activeClass);
