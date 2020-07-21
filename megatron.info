@@ -70,7 +70,3 @@ exclude[css][] = 'modules/taxonomy/taxonomy.css'
 exclude[css][] = 'modules/tracker/tracker.css'
 exclude[css][] = 'modules/update/update.css'
 exclude[css][] = 'modules/user/user.css'
-
-core = "7.x"
-project = "megatron"
-datestamp = "1339332196"
