@@ -493,32 +493,28 @@ changes link to toggle and adds toggle graphic
 function megatron_megatron_btn_dropdown($variables) {
   $type_class = '';
 
-  // Type class
+  // Type class.
   if (isset($variables['type'])) {
     $type_class = ' btn-'. $variables['type'];
   }
 
-  // Start markup
+  // Start markup.
   $output = '<div'. drupal_attributes($variables['attributes']) .'>';
 
-  // Add as string if its not a link
+  // Add as string if its not a link.
   if (is_array($variables['label'])) {
     $output .= l($variables['label']['title'], $$variables['label']['href'], $variables['label']);
   }
 
   $output .= '<a class="btn '. $type_class .' dropdown-toggle" data-toggle="dropdown" href="#">';
 
-  // Its a link so create one
+  // Its a link so create one.
   if (is_string($variables['label'])) {
     $output .= check_plain($variables['label']);
   }
 
-  // Finish markup
-  $output .= '
-  <div class="ubc7-arrow down-arrow"></div>
-  </a>
-  ' . $variables['links'] . '
-  </div>';
+  // Finish markup.
+  $output .= '<div class="ubc7-arrow down-arrow"></div></a>' . $variables['links'] . '</div>';
 
   return $output;
 }
