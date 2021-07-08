@@ -14,11 +14,11 @@
  */
 ?>
 <!DOCTYPE html>
-<!--[if IEMobile 7]><html class="no-js iem7 oldie" dir="<?php print $language->dir; ?>"><![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" dir="<?php print $language->dir; ?>"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" dir="<?php print $language->dir; ?>"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="dir="<?php print $language->dir; ?>"><![endif]-->
-<!--[[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js" dir="<?php print $language->dir; ?>"><!--<![endif]-->
+  <!--[if IEMobile 7]><html class="no-js iem7 oldie" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
+  <!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
+  <!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
+  <!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><![endif]-->
+  <!--[[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>" <?php print $rdf->version . $rdf->namespaces; ?>><!--<![endif]-->
   <head>
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
@@ -27,15 +27,15 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="cleartype" content="on">
-  <link rel="dns-prefetch" href="//cdn.ubc.ca">
+  <link rel="dns-prefetch" href="https://cdn.ubc.ca">
   <!--[if lte IE 7]>
   <link href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/css/font-awesome-ie7.css" rel="stylesheet">
   <![endif]-->
-  <link rel="shortcut icon" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/favicon.ico">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="//cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="https://cdn.ubc.ca/clf/<?php print theme_get_setting('clf_clf_version'); ?>/img/apple-touch-icon-57-precomposed.png">
   <?php print $styles; ?>
 	<?php print $scripts; ?>
 </head>
@@ -64,21 +64,21 @@
   <header id="ubc7-header" class="row-fluid expand" role="banner">
     <div class="span1">
       <div id="ubc7-logo">
-        <a href="http://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
+        <a href="https://www.ubc.ca" tabindex="1" title="The University of British Columbia (UBC)">The University of British Columbia</a>
       </div>
     </div>
     <div class="span2">
       <div id="ubc7-apom">
-        <a href="http://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>
+        <a href="https://aplaceofmind.ubc.ca" tabindex="2" title="UBC a place of mind">UBC - A Place of Mind</a>
       </div>
     </div>
     <div class="span9" id="ubc7-wordmark-block">
       <div id="ubc7-wordmark">
-        <a href="http://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
+        <a href="https://www.ubc.ca" tabindex="3" title="The University of British Columbia (UBC)">The University of British Columbia <span class="ubc7-campus" id="ubc7-<?php print theme_get_setting('clf_unit_campus'); ?>-campus"><?php print theme_get_setting('clf_unit_campus'); ?> campus</span></a>
       </div>
       <div id="ubc7-global-utility">
         <button data-toggle="collapse" data-target="#ubc7-global-menu" tabindex="4"><span>UBC Search</span></button>
-        <noscript><a id="ubc7-global-utility-no-script" href="http://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
+        <noscript><a id="ubc7-global-utility-no-script" href="https://ubc.ca/" title="UBC Search">UBC Search</a></noscript>
       </div>
     </div>
   </header>
