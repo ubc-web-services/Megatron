@@ -180,9 +180,9 @@ function megatron_preprocess_html(&$variables) {
   drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/lib/megatron/megatron-min.js', array('scope' => 'footer', 'group' => JS_THEME, 'every_page' => TRUE, 'weight' => -98));
 }
 
-/** BREADCRUMB ALTERATIONS
-Return a themed breadcrumb trail
----------------------------------------------------------- */
+/**
+ * Implements theme_breadcrumb().
+ */
 function megatron_breadcrumb($variables) {
   global $base_path;
   $breadcrumb = $variables['breadcrumb'];
@@ -198,25 +198,23 @@ function megatron_breadcrumb($variables) {
     $crumbs = '<ul class="breadcrumb expand">';
     $crumbs .= '<li class="breadcrumb-home"><a href="' . $base_path . '">' . theme_get_setting('clf_unitname') . '</a></li>';
 
-    $array_size = count($breadcrumb);
-    $i = 0;
-    while ( $i < $array_size) {
-      if (drupal_get_title()) {
-        $pos = strpos($breadcrumb[$i], drupal_get_title());
+    $title = drupal_get_title();
+    foreach ($breadcrumb as $i => $crumb) {
+      if ($title) {
+        $pos = strpos($crumb, $title);
       }
-      //we stop duplicates entering where there is a sub nav based on page jumps
+      // We stop duplicates entering where there is a sub nav based on page
+      // jumps.
       if ($pos === FALSE) {
-        $crumbs .= '<li class="breadcrumb-' . $i;
-        $crumbs .=  '">' . $breadcrumb[$i] . '</li> » ';
+        $crumbs .= '<li class="breadcrumb-' . $i . '">' . $crumb . '</li> » ';
       }
-      $i++;
     }
-    $crumbs .= '<li class="active">'. drupal_get_title() .'</li></ul>';
+    $crumbs .= '<li class="active">' . $title . '</li></ul>';
     return $crumbs;
   }
+
   return '';
 }
-
 
 /** NODE.TPL.PHP PREPROCESS VARIABLES
 stripe and add 'Unpublished' div.
