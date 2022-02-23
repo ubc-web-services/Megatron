@@ -45,8 +45,9 @@ function megatron_id_safe($string) {
   // Replace with dashes anything that isn't A-Z, numbers, dashes, or underscores.
   $string = strtolower(preg_replace('/[^a-zA-Z0-9_-]+/', '-', $string));
   // If the first character is not a-z, add 'n' in front.
-  if (!ctype_lower($string[0])) { // Don't use ctype_alpha since its locale aware.
-    $string = 'id'. $string;
+  if (!ctype_lower($string[0])) {
+    // Don't use ctype_alpha since its locale aware.
+    $string = 'id' . $string;
   }
   return $string;
 }
@@ -55,7 +56,7 @@ function megatron_id_safe($string) {
 ---------------------------------------------------------- */
 function megatron_html_head_alter(&$head_elements) {
   $head_elements['system_meta_content_type']['#attributes'] = array(
-    'charset' => 'utf-8'
+    'charset' => 'utf-8',
   );
 }
 
@@ -221,7 +222,7 @@ stripe and add 'Unpublished' div.
 ---------------------------------------------------------- */
 function megatron_preprocess_node(&$variables, $hook) {
   // Add a striping class.
-   $variables['classes_array'][] = 'node-' . $variables['zebra'];
+  $variables['classes_array'][] = 'node-' . $variables['zebra'];
   // Add 'node-unpublished' class to unpublished nodes.
   if (!$variables['status']) {
     $variables['classes_array'][] = 'node-unpublished';
@@ -231,7 +232,7 @@ function megatron_preprocess_node(&$variables, $hook) {
     $variables['unpublished'] = FALSE;
   }
   if ($variables['teaser']) {
-      $variables['classes_array'][] = 'row-fluid';
+    $variables['classes_array'][] = 'row-fluid';
   }
   // add node template suggestions for teasers!
   if ($variables['view_mode'] == 'teaser') {
@@ -397,7 +398,6 @@ function _megatron_content_span($columns = 1) {
   return $class;
 }
 
-
 function megatron_theme_get_info($setting_name, $theme = NULL) {
 // If no key is given, use the current theme if we can determine it.
   if (!isset($theme)) {
@@ -427,7 +427,6 @@ function megatron_theme_get_info($setting_name, $theme = NULL) {
 
   return $output;
 }
-
 
 /** THEME MEGATRON MAIN MENU LINKS
 Returns navigational links based on a menu tree */
@@ -463,7 +462,6 @@ function megatron_menu_navigation_links($tree, $lvl = 0) {
   return $result;
 }
 
-
 /** OTHER THEME FUNCTIONS
 ---------------------------------------------------------- */
 
@@ -475,15 +473,14 @@ function megatron_preprocess_megatron_btn_dropdown(&$variables) {
 
   // Check if its a array of links so we need to theme it first here.
   if (is_array($variables['links'])) {
-  $variables['links'] = theme('links', array(
-    'links' => $variables['links'],
-    'attributes' => array(
-    'class' => array('dropdown-menu'),
-    ),
-  ));
+    $variables['links'] = theme('links', array(
+      'links' => $variables['links'],
+      'attributes' => array(
+        'class' => array('dropdown-menu'),
+      ),
+    ));
   }
 }
-
 
 /** theme_megatron_btn_dropdown
 changes link to toggle and adds toggle graphic
@@ -493,7 +490,7 @@ function megatron_megatron_btn_dropdown($variables) {
 
   // Type class.
   if (isset($variables['type'])) {
-    $type_class = ' btn-'. $variables['type'];
+    $type_class = ' btn-' . $variables['type'];
   }
 
   // Start markup.
@@ -517,7 +514,6 @@ function megatron_megatron_btn_dropdown($variables) {
   return $output;
 }
 
-
 /** THEME MENU UNORDERED LIST MARKUP
 theme all sets of links
 -- you can override this for specific menus with megatron_menu_tree__menu_name
@@ -532,16 +528,14 @@ function megatron_menu_link(array $variables) {
   $sub_menu = '';
 
   if ($element['#below']) {
-      $sub_menu = drupal_render($element['#below']);
+    $sub_menu = drupal_render($element['#below']);
   }
 
   $element['#attributes']['class'][] = megatron_id_safe($element['#title']);
   $element['#attributes']['id'] = 'mid-' . $element['#original_link']['mlid'];
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
-
-
 
 /** TABS
 ZEN TABS (also see custom styles in stylesheet)
@@ -573,7 +567,6 @@ function megatron_menu_local_tasks() {
   }
   return drupal_render($output);
 }
-
 
 /** FORMS
 Implements hook_form_alter().
@@ -808,6 +801,9 @@ function megatron_preprocess_views_view_table(&$variables) {
   $variables['classes_array'][] = 'table';
 }
 
+/**
+ * Implements THEME_preprocess_views_view_grid().
+ */
 function megatron_preprocess_views_view_grid(&$variables) {
   $variables['class'] .= ' table';
 }
@@ -859,7 +855,6 @@ function megatron_css_alter(&$css) {
   $css = array_diff_key($css, $excludes);
 }
 
-
 /** REPLACE CORE jQUERY
 Replace jQuery with updated version
 ---------------------------------------------------------- */
@@ -876,13 +871,12 @@ function megatron_js_alter(&$javascript) {
   }
 }
 
-
 function _megatron_alter($files, $type) {
   $output = array();
 
-  foreach($files as $key => $value) {
+  foreach ($files as $key => $value) {
     if (isset($files[$key][$type])) {
-      foreach($files[$key][$type] as $file => $name) {
+      foreach ($files[$key][$type] as $file => $name) {
         $output[$name] = FALSE;
       }
     }
@@ -965,14 +959,14 @@ function megatron_megatron_links($variables) {
        $output .= '<span' . $span_attributes . '>' . $link['title'] . '</span>';
      }
 
-    if (count($children) > 0) {
-      $attributes = array();
-      $attributes['class'] = array('dropdown-menu');
-      $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
-      $output .= '</div>';
-    }
+      if (count($children) > 0) {
+        $attributes = array();
+        $attributes['class'] = array('dropdown-menu');
+        $output .= theme('megatron_links', array('links' => $children, 'attributes' => $attributes));
+        $output .= '</div>';
+      }
 
-    $output .= "</li>\n";
+      $output .= "</li>\n";
     }
 
     $output .= '</ul>';
