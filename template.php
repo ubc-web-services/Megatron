@@ -192,11 +192,11 @@ function megatron_breadcrumb($variables) {
   $show_breadcrumb = theme_get_setting('breadcrumb_display');
   $pos = FALSE;
 
-  if ((!empty($breadcrumb)) && ($show_breadcrumb == 'yes')) {
+  if (!empty($breadcrumb) && $show_breadcrumb == 'yes') {
     // Provide a navigational heading to give context for breadcrumb links to
     // screen-reader users. Make the heading invisible with .element-invisible.
-    $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
-    $crumbs = '<ul class="breadcrumb expand">';
+    $crumbs = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+    $crumbs .= '<ul class="breadcrumb expand">';
     $crumbs .= '<li class="breadcrumb-home"><a href="' . $base_path . '">' . theme_get_setting('clf_unitname') . '</a></li>';
 
     $title = drupal_get_title();
