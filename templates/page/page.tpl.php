@@ -158,15 +158,15 @@ if ($drawer_enabled) {
   </nav>
   <?php endif; ?>
   <?php if (!empty($secondary_nav)): ?>
-  <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
-    <div class="navbar-inner expand">
-      <?php print $fluidcontainerstart; ?>
-      <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
-        <?php print $secondary_nav; ?>
-      </div>
-      <?php print $fluidcontainerend; ?>
-    </div>
-  </nav>
+      <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
+          <div class="navbar-inner expand">
+            <?php print $fluidcontainerstart; ?>
+              <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
+                <?php print $secondary_nav; ?>
+              </div>
+            <?php print $fluidcontainerend; ?>
+          </div>
+      </nav>
   <?php endif; ?>
   <!-- End of UBC Unit Navigation -->
   <!-- UBC Unit Breadcrumbs -->
