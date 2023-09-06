@@ -64,6 +64,13 @@ if ($drawer_enabled) {
   $container_attributes['id'] = 'pushed-content';
   $container_attributes['class'][] = $drawer_region;
 }
+
+$flyout_container_attributes = array();
+if ($flyout_enabled) {
+  $flyout_container_attributes['id'] = 'pushed-content-flyout';
+  $flyout_container_attributes['class'][] = $flyout_region;
+}
+
 ?>
 <div class="skip">
   <a href="#main" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
@@ -71,6 +78,7 @@ if ($drawer_enabled) {
 </div>
 
 <div<?php print drupal_attributes($container_attributes); ?>>
+    <div<?php print drupal_attributes($flyout_container_attributes); ?>>
   <!-- UBC Global Utility Menu -->
   <div class="collapse expand" id="ubc7-global-menu">
     <div id="ubc7-search" class="expand">
@@ -158,15 +166,15 @@ if ($drawer_enabled) {
   </nav>
   <?php endif; ?>
   <?php if (!empty($secondary_nav)): ?>
-  <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
-    <div class="navbar-inner expand">
-      <?php print $fluidcontainerstart; ?>
-      <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
-        <?php print $secondary_nav; ?>
-      </div>
-      <?php print $fluidcontainerend; ?>
-    </div>
-  </nav>
+      <nav id="ubc7-unit-menu-second" role="navigation" class="navbar expand ubc-unit-styled">
+          <div class="navbar-inner expand">
+            <?php print $fluidcontainerstart; ?>
+              <div class="nav-collapse collapse" id="ubc7-unit-navigation-secondary">
+                <?php print $secondary_nav; ?>
+              </div>
+            <?php print $fluidcontainerend; ?>
+          </div>
+      </nav>
   <?php endif; ?>
   <!-- End of UBC Unit Navigation -->
   <!-- UBC Unit Breadcrumbs -->
@@ -261,8 +269,8 @@ if ($drawer_enabled) {
     <?php print theme('ubc_clf_visual_identity_footer'); ?>
     <?php print theme('ubc_clf_global_utility_footer'); ?>
   </footer>
+</div><!-- /#flyout-container -->
 </div><!-- /#container -->
-
 <?php if (!empty($drawer_enabled)): ?>
   <!-- UBC Unit Drawer -->
   <section id="off-canvas-drawer--primary" class="<?php print 'off-canvas-drawer ' . $drawer_region; ?>">
@@ -271,4 +279,14 @@ if ($drawer_enabled) {
   </section>
   <div id="off-canvas-mask" class="drawer-toggle--primary"></div>
   <!-- End of UBC Unit Drawer -->
+<?php endif; ?>
+
+<?php if (!empty($flyout_enabled)): ?>
+    <!-- UBC Unit Flyout -->
+    <section id="off-canvas-flyout" class="<?php print 'off-canvas-flyout ' . $flyout_region; ?>">
+        <button class="flyout__close flyout-toggle">&times;</button>
+      <?php print render($page['flyout']); ?>
+    </section>
+    <div id="off-canvas-mask-flyout" class="flyout-toggle"></div>
+    <!-- End of UBC Unit Flyout -->
 <?php endif; ?>

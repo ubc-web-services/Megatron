@@ -120,7 +120,7 @@ function megatron_preprocess_html(&$variables) {
 
   $showSecondary = theme_get_setting('clf_secondarynavoption');
   if ($showSecondary) {
-    drupal_add_css(path_to_theme('megatron') . '/css/secondary-nav.css', array(
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/secondary-nav.css', array(
       'group' => CSS_THEME,
       'weight' => 115,
       'every_page' => TRUE,
@@ -261,7 +261,8 @@ function megatron_process_block(&$variables, $hook) {
 ---------------------------------------------------------- */
 function megatron_preprocess_page(&$variables) {
   // Define CLF page elements in an include
-  include_once 'includes/template-ubc-clf-elements.inc';
+  $path = drupal_get_path('theme','megatron');
+  include_once $path . '/includes/template-ubc-clf-elements.inc';
   // Add template suggestions based on content type.
   if (isset($variables['node']->type)) {
     //$variables['theme_hook_suggestions'][] = 'page' . theme_get_setting('clf_layout') . '';
@@ -345,6 +346,15 @@ function megatron_preprocess_page(&$variables) {
   $drawer_enabled = $variables['drawer_region'] != 'default' && $variables['drawer_region'] != 'double' && $variables['drawer_region'] != 'higher';
   $variables['drawer_enabled'] = $drawer_enabled;
   if ($variables['main_menu'] && theme_get_setting('clf_use_primary_menu_in_drawer')) {
+
+    // Tell JS we're using primary nav so we can add a body class to hide the primary nav in CSS.
+    $drawer_settings = array(
+      'drawerNav' => array(
+        'class' => 'drawer-contains-primary-nav',
+      ),
+    );
+    drupal_add_js($drawer_settings, 'setting');
+
     // Build links.
     $tree = menu_tree_page_data(variable_get('menu_main_links_source', 'main-menu'));
     $variables['main_menu'] = megatron_menu_navigation_links($tree);
@@ -369,6 +379,19 @@ function megatron_preprocess_page(&$variables) {
   if ($drawer_enabled) {
     drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.drawer.js');
     drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.drawer.css');
+  }
+
+  // Flyout
+  $variables['flyout_region'] = theme_get_setting('clf_flyout_region');
+  $flyout_enabled = $variables['flyout_region'] != 'default' && $variables['flyout_region'] != 'double' && $variables['flyout_region'] != 'higher';
+  $variables['flyout_enabled'] = $flyout_enabled;
+
+  $variables['flyout_label'] = theme_get_setting('clf_flyout_label');
+
+  // Add js and css for flyout option
+  if ($flyout_enabled) {
+    drupal_add_js(drupal_get_path('theme', 'megatron') . '/js/off.canvas.flyout.js');
+    drupal_add_css(drupal_get_path('theme', 'megatron') . '/css/off.canvas.flyout.css');
   }
 }
 

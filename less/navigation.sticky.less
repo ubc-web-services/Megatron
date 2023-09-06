@@ -2,9 +2,11 @@
  * @file
  * Placeholder
  */
+
 #ubc7-unit-menu {
   background: transparent !important;
 }
+
 @media screen and (min-width: 980px) {
   body.unit-menu-is-sticky {
     padding-top: 40px;
@@ -25,20 +27,31 @@
   body.unit-area-is-sticky {
     padding-top: 50px;
   }
-  body.unit-menu-is-sticky #ubc7-unit-menu .dropdown .btn-group .btn {
-    margin-right: 26px;
-  }
-  body.unit-menu-is-sticky body.unit-menu-is-sticky #ubc7-unit-menu .dropdown .btn-group .btn {
-    margin-right: 40px;
+  body.unit-menu-is-sticky {
+
+    #ubc7-unit-menu .dropdown .btn-group .btn {
+      margin-right: 26px;
+    }
+
+    body.unit-menu-is-sticky {
+
+      #ubc7-unit-menu .dropdown .btn-group .btn {
+        margin-right: 40px;
+      }
+
+    }
+
   }
   #ubc7-unit.navigation-is-sticky {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 999;
-  }
-  #ubc7-unit.navigation-is-sticky .btn-navbar:first-child {
-    margin-right: 40px;
+
+    .btn-navbar:first-child {
+      margin-right: 40px;
+    }
+
   }
   #ubc7-unit.navigation-is-sticky .btn-navbar:first-child {
     margin-right: 40px;
